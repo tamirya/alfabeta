@@ -1,0 +1,919 @@
+# Translation of Themes - GeneratePress in Hebrew
+# This file is distributed under the same license as the Themes - GeneratePress package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-11-20 07:46:26+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: he_IL\n"
+"Project-Id-Version: Themes - GeneratePress\n"
+
+#. Description of the plugin/theme
+msgid "GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 15kb (gzipped) to your page size. We take full advantage of the new block editor (Gutenberg), which gives you more control over creating your content. If you use page builders, GeneratePress is the right theme for you. It is completely compatible with all major page builders, including Beaver Builder and Elementor. Thanks to our emphasis on WordPress coding standards, we can boast full compatibility with all well-coded plugins, including WooCommerce. GeneratePress is fully responsive, uses valid HTML/CSS and is translated into over 25 languages by our amazing community of users. A few of our many features include microdata integration, 9 widget areas, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover) and navigation color presets. Learn more and check out our powerful premium version at https://generatepress.com"
+msgstr ""
+"GeneratePress היא ערכת עיצוב קלה לוורדפרס הבנויה עם דגש על מהירות ושימושיות. ביצועים הם מאוד חשובים לנו, ולכן התקנה נקיה של GeneratePress שוקלת פחות מ-15kb (דחוסים ב-gzip) לנפח עמוד האתר שלך. אנו מנצלים לחלוטין את עורך הבלוקים החדש (גוטנברג), אשר נותן לך יותר שליטה ביצירת התכנים לאתר שלך. אם האתר עושה שימוש בבוני עמודים (אלמנטור וכו׳) אז GeneratePress היא ערכת העיצוב הנכונה עבורך, ויש לה תמיכה מלאה לכולם. הודות לתשומת לב לכתיבת קוד עם תמיכה מלאה בסטנדרטים של וורדפרס יש לנו תמיכה מלאה לכל תוסף המתוכנת כהלכה, כולל WooCommerce.\n"
+"GeneratePress היא רספונסיבית באופן מלא, ועושה שימוש ב-HTML/CSS תקני והיא מתורגמת ליותר מ-25 שפות על ידי הקהילה הנהדרת של המשתמשים שלנו. חלק מהפיצ׳רים כולל שילוב של microdata בתבנית, 9 איזורי וידג׳טים, 5 מיקומי ניווט, 5 פריסות סרגל צדדי, תפריטים נפתחים (בקליק או מעבר עכבר) והגדרות צבע ניווט מוכנות מראש. ניתן ללמוד עוד ולבדוק את גרסת הפרמיום העוצמתית שלנו בקישור https://generatepress.com"
+
+#. #-#-#-#-#  generatepress.pot (GeneratePress 2.2.1)  #-#-#-#-#
+#. Theme Name of the plugin/theme
+#: inc/structure/footer.php:83
+msgid "GeneratePress"
+msgstr "GeneratePress"
+
+#: inc/typography.php:658
+msgid "Heading 3 (H3)"
+msgstr "כותרת בגודל 3 (H3)"
+
+#: inc/typography.php:511
+msgid "Heading 2 (H2)"
+msgstr "כותרת בגודל 2 (H2)"
+
+#: inc/typography.php:364
+msgid "Heading 1 (H1)"
+msgstr "כותרת בגודל 1 (H1)"
+
+#: inc/dashboard.php:257
+msgid "Reset Settings"
+msgstr "איפוס הגדרות"
+
+#: inc/dashboard.php:243
+msgid "Visit documentation &rarr;"
+msgstr "לתיעוד ערכת העיצוב &larr;"
+
+#: inc/dashboard.php:242
+msgid "Want to learn more about the theme? Check out our extensive documentation."
+msgstr "מעוניין/ת ללמוד עוד אודות ערכת העיצוב? יש לנו תיעוד מקיף."
+
+#: inc/dashboard.php:227
+msgid "Start Customizing"
+msgstr "התחלת התאמה אישית"
+
+#: inc/dashboard.php:217
+msgid "All Options"
+msgstr "כל האפשרויות"
+
+#: inc/dashboard.php:212
+msgid "Layout Options"
+msgstr "אפשרויות פריסה"
+
+#: inc/dashboard.php:207
+msgid "Customize Colors"
+msgstr "התאמה אישית לצבעים"
+
+#: inc/dashboard.php:202
+msgid "Customize Fonts"
+msgstr "התאמה אישית לפונטים"
+
+#: inc/dashboard.php:197
+msgid "Upload Logo"
+msgstr "העלאת לוגו"
+
+#: inc/customizer.php:969
+msgid "Dropdown Direction"
+msgstr "כיוון תפריט נפתח"
+
+#: inc/customizer.php:912
+msgid "The width when the navigation ceases to float and drops below your logo."
+msgstr "הרוחב כאשר הניווט מפסיק לצוף וצונח מתחת ללוגו."
+
+#: inc/customizer.php:911
+msgid "Navigation Drop Point"
+msgstr "נקודת הצניחה בניווט"
+
+#: inc/customizer.php:699
+msgid "Navigation Left"
+msgstr "ניווט שמאל"
+
+#: inc/customizer.php:698
+msgid "Navigation Right"
+msgstr "ניווט ימין"
+
+#: inc/customizer.php:697
+msgid "Navigation After - Centered"
+msgstr "ניווט אחרי - ממורכז"
+
+#: inc/customizer.php:696
+msgid "Navigation Before - Centered"
+msgstr "ניווט לפני - ממורכז"
+
+#: inc/customizer.php:691
+msgid "Header Presets"
+msgstr "הגדרות מוכנות מראש לראש האתר"
+
+#: inc/customizer.php:386
+msgid "Blue"
+msgstr "כחול"
+
+#: inc/customizer.php:385
+msgid "Green"
+msgstr "ירוק"
+
+#: inc/customizer.php:384
+msgid "Red"
+msgstr "אדום"
+
+#: inc/customizer.php:383
+msgid "Grey"
+msgstr "אפור"
+
+#: inc/customizer.php:382
+msgid "White"
+msgstr "לבן"
+
+#: inc/customizer.php:380 inc/customizer.php:694
+msgid "Current"
+msgstr "נוכחי"
+
+#: inc/customizer.php:376
+msgid "Navigation Color Presets"
+msgstr "הגדרות צבעי ניווט מוכנות מראש"
+
+#: inc/customizer.php:354
+msgid "Blog Post Title Hover"
+msgstr "כותרת הפוסט בבלוג במעבר עכבר"
+
+#: inc/customizer.php:333
+msgid "Blog Post Title"
+msgstr "כותרת הפוסט בבלוג"
+
+#: inc/customizer.php:182
+msgid "Logo Width"
+msgstr "רוחב הלוגו"
+
+#: inc/structure/footer.php:82
+msgctxt "GeneratePress"
+msgid "Powered by"
+msgstr "מונע על ידי"
+
+#: inc/structure/navigation.php:347
+msgid "Mobile Menu"
+msgstr "תפריט ניווט למובייל"
+
+#: inc/structure/footer.php:106
+msgid "Footer Widget"
+msgstr "ווידג׳ט תחתית אתר"
+
+#: inc/meta-box.php:240
+msgid "Premium module available"
+msgstr "יש רכיב פרמיום זמין"
+
+#: inc/dashboard.php:259
+msgid "Deleting your settings can not be undone."
+msgstr "מחיקת ההגדרות שלך היא בלתי ניתנת לשחזור."
+
+#: inc/dashboard.php:155
+msgid "Premium Modules"
+msgstr "רכיבי פרמיום"
+
+#: inc/customizer.php:1355
+msgid "Cache CSS generated by your options to boost performance."
+msgstr "זכרון מטמון ל-CSS אשר נוצר על פי ההגדרות כדי להאיץ את הביצועים."
+
+#: inc/customizer.php:1354
+msgid "Cache dynamic CSS"
+msgstr "שמור CSS בזכרון המטמון"
+
+#: inc/customizer.php:1334
+msgid "Load essential Font Awesome icons instead of the full library."
+msgstr "טעינת האייקונים של Font Awesome הכי נחוצים בלבד, במקום הספריה המלאה."
+
+#: inc/customizer.php:1333
+msgid "Load essential icons only"
+msgstr "טעינת אייקונים הכרחיים בלבד"
+
+#: inc/customizer.php:1314
+msgid "General"
+msgstr "כללי"
+
+#: inc/customizer.php:1286
+msgid "Excerpt"
+msgstr "תקציר"
+
+#: inc/customizer.php:1282
+msgid "Content Type"
+msgstr "סוג תוכן"
+
+#: inc/customizer.php:518 inc/customizer.php:1302 inc/typography.php:746
+msgid "More options are available for this section in our premium version."
+msgstr "קיימות אפשרויות נוספות באיזור זה בגרסת הפרמיום."
+
+#: inc/customizer.php:517
+msgid "Learn More"
+msgstr "למידע נוסף"
+
+#: inc/customizer.php:159
+msgid "Retina Logo"
+msgstr "לוגו למסך רטינה"
+
+#: inc/customizer.php:74
+msgid "Premium Modules Available"
+msgstr "יש רכיבי פרימיום זמינים"
+
+#: inc/customizer/controls/class-typography-control.php:41
+msgid "Variants"
+msgstr "גרסאות"
+
+#: inc/customizer/controls/class-typography-control.php:33
+msgid "System fonts"
+msgstr "גופני מערכת"
+
+#: comments.php:111
+msgid "Comment"
+msgstr "תגובה"
+
+#: inc/customizer/controls/class-range-control.php:58
+msgid "Mobile"
+msgstr "מובייל"
+
+#: inc/customizer/controls/class-range-control.php:57
+msgid "Tablet"
+msgstr "טאבלט"
+
+#: inc/customizer/controls/class-range-control.php:56
+msgid "Desktop"
+msgstr "מחשב שולחני"
+
+#: inc/meta-box.php:221
+msgid "Full Width"
+msgstr "רוחב מלא"
+
+#: inc/meta-box.php:210
+msgid "Choose your page builder content container type. Both options remove the content padding for you."
+msgstr "ניתן לבחור את רוחב התוכן של העמוד עבור בנאי העמודים שלך. שתי האפשרויות מסירות את השוליים הפנימיים של התוכן עבורך."
+
+#: inc/meta-box.php:96
+msgid "Page Builder Container"
+msgstr "רוחב תכולת עמוד עבור בנאי העמודים"
+
+#: inc/meta-box.php:141 inc/meta-box.php:146 inc/meta-box.php:156
+#: inc/meta-box.php:161 inc/meta-box.php:166
+msgctxt "Short name for meta box"
+msgid "Sidebar"
+msgstr "סרגל צדדי"
+
+#: inc/customizer.php:655
+msgid "Top Bar Alignment"
+msgstr "יישור בר עליון"
+
+#: inc/customizer.php:629
+msgid "Top Bar Inner Width"
+msgstr "רוחב פנימי של בר עליון"
+
+#: inc/customizer.php:603
+msgid "Top Bar Width"
+msgstr "רוחב בר עליון"
+
+#: inc/customizer.php:583 inc/general.php:75
+msgid "Top Bar"
+msgstr "בר עליון"
+
+#: inc/customizer.php:1301 inc/dashboard.php:164 inc/typography.php:745
+msgid "Learn more"
+msgstr "למידע נוסף"
+
+#: inc/dashboard.php:56
+msgid "Documentation"
+msgstr "תיעוד"
+
+#: inc/dashboard.php:53
+msgid "Premium"
+msgstr "פרמיום"
+
+#: inc/customizer.php:1223
+msgid "Footer Bar Alignment"
+msgstr "יישור בר תחתון"
+
+#: inc/general.php:74
+msgid "Footer Bar"
+msgstr "בר תחתון"
+
+#: inc/customizer.php:1170
+msgid "Inner Footer Width"
+msgstr "רוחב בר תחתון"
+
+#: inc/customizer.php:830
+msgid "Inner Navigation Width"
+msgstr "רוחב פנימי של תפריט הניווט"
+
+#: inc/customizer.php:745
+msgid "Inner Header Width"
+msgstr "רוחב החלק הפנימי של ראש האתר"
+
+#: inc/typography.php:296
+msgid "Paragraph margin"
+msgstr "שוליים חיצוניים של פסקה"
+
+#: inc/typography.php:262 inc/typography.php:443 inc/typography.php:590
+#: inc/typography.php:719
+msgid "Line height"
+msgstr "גובה שורה"
+
+#: inc/customizer/controls/class-range-control.php:59 inc/dashboard.php:266
+msgid "Reset"
+msgstr "איפוס"
+
+#: inc/customizer.php:1125
+msgid "Footer"
+msgstr "תחתית האתר"
+
+#: inc/customizer.php:1032 inc/meta-box.php:81
+msgid "Sidebars"
+msgstr "סרגלים צדדיים"
+
+#: inc/customizer.php:785
+msgid "Primary Navigation"
+msgstr "תפריט ניווט ראשי"
+
+#: inc/customizer.php:539
+msgid "Container"
+msgstr "מכולת עמוד"
+
+#: inc/structure/footer.php:228 inc/structure/footer.php:232
+msgid "Scroll back to top"
+msgstr "גלילה חזרה למעלה"
+
+#: inc/customizer.php:1249
+msgid "Back to Top Button"
+msgstr "כפתור גלילה חזרה מעלה"
+
+#: inc/customizer.php:1145
+msgid "Footer Width"
+msgstr "רוחב תחתית אתר"
+
+#: inc/customizer.php:949
+msgid "Click - Arrow"
+msgstr "קליק - חץ"
+
+#: inc/customizer.php:948
+msgid "Click - Menu Item"
+msgstr "קליק - פריט בתפריט הניווט"
+
+#: inc/customizer.php:947
+msgid "Hover"
+msgstr "מעבר"
+
+#: inc/customizer.php:944
+msgid "Navigation Dropdown"
+msgstr "תפריטים נפתחים של הניווט"
+
+#: inc/customizer.php:805
+msgid "Navigation Width"
+msgstr "רוחב ניווט"
+
+#: inc/customizer.php:606 inc/customizer.php:632 inc/customizer.php:723
+#: inc/customizer.php:749 inc/customizer.php:808 inc/customizer.php:834
+#: inc/customizer.php:1148 inc/customizer.php:1174 inc/customizer.php:1285
+msgid "Full"
+msgstr "מלא"
+
+#: inc/customizer.php:720
+msgid "Header Width"
+msgstr "רוחב ראש האתר"
+
+#. translators: %s: Heart icon
+#: inc/dashboard.php:293
+msgctxt "made with love"
+msgid "Made with %s by Tom Usborne"
+msgstr "נעשה ב-%s על ידי טום אוסבורן"
+
+#: inc/customizer.php:887
+msgid "Float Left"
+msgstr "יישור לשמאל"
+
+#: inc/dashboard.php:55
+msgid "Support"
+msgstr "תמיכה"
+
+#: inc/meta-box.php:233 inc/meta-box.php:235
+msgid "Content Title"
+msgstr "כותרת תוכן"
+
+#: 404.php:55
+msgid "It looks like nothing was found at this location. Maybe try searching?"
+msgstr "עושה רושם ששום דבר לא נמצא בעמוד הזה. אולי כדאי לנסות את החיפוש?"
+
+#. translators: 1: admin URL
+#: inc/structure/footer.php:121
+msgid "To remove or choose the number of footer widgets, go to <a href=\"%1$s\"><strong>Appearance / Customize / Layout / Footer Widgets</strong></a>."
+msgstr "כדי להסיר, או לבחור, מספר איזורי וידגט׳ים לתחתית האתר, יש ללכת אל <a href=\"%1$s\"><strong>עיצוב / התאמה אישית / פריסה / ווידג׳טים של תחתית האתר</strong></a>."
+
+#. translators: 1: admin URL
+#: inc/structure/footer.php:112
+msgid "Replace this widget content by going to <a href=\"%1$s\"><strong>Appearance / Widgets</strong></a> and dragging widgets into this widget area."
+msgstr "ניתן להחליף תוכן וידג׳ט ב<a href=\"%1$s\"><strong>עיצוב / וידג׳טים</strong></a> וגרירת וידג׳טים אל תוך איזור הוידג׳טים הזה."
+
+#: searchform.php:15
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "חיפוש &hellip;"
+
+#: searchform.php:14 searchform.php:15
+msgctxt "label"
+msgid "Search for:"
+msgstr "חיפוש:"
+
+#. translators: 1: Search query name
+#: search.php:31
+msgid "Search Results for: %s"
+msgstr "תוצאות חיפוש: %s"
+
+#: no-results.php:62
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "נראה שלא הצלחנו למצוא את מה שחיפשת. ייתכן שביצוע חיפוש יסייע."
+
+#: no-results.php:57
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "לא נמצאו תוצאות התואמות לביטוי החיפוש, ניתן לנסות שוב עם ביטויים אחרים."
+
+#. translators: 1: Admin URL
+#: no-results.php:49
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "מוכן לפרסם את הפוסט הראשון שלך? <a href=\"%1$s\">התחל כאן</a>."
+
+#: no-results.php:27
+msgid "Nothing Found"
+msgstr "לא נמצא כלום"
+
+#: inc/structure/post-meta.php:183
+msgid "% Comments"
+msgstr "% תגובות"
+
+#: inc/structure/post-meta.php:183
+msgid "1 Comment"
+msgstr "תגובה אחת"
+
+#: inc/structure/post-meta.php:183
+msgid "Leave a comment"
+msgstr "כתיבת תגובה"
+
+#: inc/structure/post-meta.php:176
+msgctxt "Used before tag names."
+msgid "Tags"
+msgstr "תגיות"
+
+#: inc/structure/post-meta.php:168
+msgctxt "Used before category names."
+msgid "Categories"
+msgstr "קטגוריות"
+
+#: inc/structure/post-meta.php:165 inc/structure/post-meta.php:173
+msgctxt "Used between list items, there is a space after the comma."
+msgid ", "
+msgstr ", "
+
+#: inc/structure/navigation.php:257
+msgctxt "label"
+msgid "Search"
+msgstr "חיפוש"
+
+#: inc/structure/post-meta.php:203 inc/structure/post-meta.php:223
+msgid "Read more"
+msgstr "להמשך קריאה"
+
+#. translators: 1: Author name
+#: inc/structure/post-meta.php:145
+msgid "View all posts by %s"
+msgstr "כל הפוסטים מאת %s"
+
+#: inc/structure/post-meta.php:142
+msgid "by"
+msgstr "מאת"
+
+#: inc/structure/comments.php:68
+msgid "Your comment is awaiting moderation."
+msgstr "תגובתך ממתינה לאישור."
+
+#. translators: 1: date, 2: time
+#: inc/structure/comments.php:48
+msgctxt "1: date, 2: time"
+msgid "%1$s at %2$s"
+msgstr "%1$s בשעה %2$s"
+
+#: inc/structure/comments.php:25
+msgid "Pingback:"
+msgstr "פינגבאק:"
+
+#: inc/structure/post-meta.php:60
+msgid "Newer posts"
+msgstr "פוסטים חדשים"
+
+#: inc/structure/post-meta.php:56
+msgid "Older posts"
+msgstr "פוסטים ישנים"
+
+#: inc/structure/post-meta.php:51 inc/structure/post-meta.php:60
+msgid "Next"
+msgstr "הבא"
+
+#: inc/structure/post-meta.php:50 inc/structure/post-meta.php:56
+msgid "Previous"
+msgstr "קודם"
+
+#: inc/structure/post-meta.php:46
+msgid "Post navigation"
+msgstr "ניווט פוסטים"
+
+#: inc/deprecated.php:28 inc/structure/post-meta.php:67
+msgid "Next &rarr;"
+msgstr "הבא &larr;"
+
+#: inc/deprecated.php:27 inc/structure/post-meta.php:66
+msgid "&larr; Previous"
+msgstr "&rarr; הקודם"
+
+#: inc/dashboard.php:362
+msgid "Settings removed."
+msgstr "ההגדרות הוסרו."
+
+#: inc/dashboard.php:358
+msgid "Import successful."
+msgstr "הייבוא בוצע בהצלחה."
+
+#: inc/dashboard.php:354
+msgid "Settings saved."
+msgstr "הגדרות נשמרו."
+
+#: inc/meta-box.php:91
+msgid "Disable Elements"
+msgstr "השבתת רכיבים"
+
+#: inc/dashboard.php:264
+msgid "Warning: This will delete your settings."
+msgstr "אזהרה: פעולה זו תמחק את כל ההגדרות."
+
+#: inc/dashboard.php:92
+msgid "Customize"
+msgstr "התאמה אישית"
+
+#: inc/structure/navigation.php:83 inc/structure/navigation.php:286
+#: inc/structure/navigation.php:316 inc/structure/navigation.php:318
+#: searchform.php:17
+msgctxt "submit button"
+msgid "Search"
+msgstr "חיפוש"
+
+#: inc/structure/header.php:263 inc/structure/header.php:264
+msgid "Skip to content"
+msgstr "לדלג לתוכן"
+
+#: inc/structure/navigation.php:35
+msgid "Menu"
+msgstr "תפריט"
+
+#: inc/meta-box.php:202 inc/meta-box.php:204
+msgid "5 Widgets"
+msgstr "5 וידג׳טים"
+
+#: inc/meta-box.php:197 inc/meta-box.php:199
+msgid "4 Widgets"
+msgstr "4 וידג׳טים"
+
+#: inc/meta-box.php:192 inc/meta-box.php:194
+msgid "3 Widgets"
+msgstr "3 וידג׳טים"
+
+#: inc/meta-box.php:187 inc/meta-box.php:189
+msgid "2 Widgets"
+msgstr "2 וידג׳טים"
+
+#: inc/meta-box.php:182 inc/meta-box.php:184
+msgid "1 Widget"
+msgstr "וידג׳ט 1"
+
+#: inc/meta-box.php:177 inc/meta-box.php:179
+msgid "0 Widgets"
+msgstr "0 וידג׳טים"
+
+#: inc/meta-box.php:164
+msgid "Both Sidebars on Right"
+msgstr "שני הסרגלים הצדדיים בימין"
+
+#: inc/meta-box.php:159
+msgid "Both Sidebars on Left"
+msgstr "שני הסרגלים הצדדיים בשמאל"
+
+#: inc/meta-box.php:154
+msgid "Both Sidebars"
+msgstr "שני הסרגלים הצדדיים"
+
+#: inc/meta-box.php:149
+msgid "No Sidebars"
+msgstr "ללא סרגלים צדדיים"
+
+#: inc/meta-box.php:141 inc/meta-box.php:146 inc/meta-box.php:156
+#: inc/meta-box.php:161 inc/meta-box.php:166
+msgid "Content"
+msgstr "תוכן"
+
+#: inc/customizer.php:381 inc/customizer.php:695 inc/meta-box.php:136
+#: inc/meta-box.php:174 inc/meta-box.php:216
+msgid "Default"
+msgstr "ברירת מחדל"
+
+#: inc/customizer.php:1263
+msgid "Blog"
+msgstr "חדשות וורדפרס בעברית"
+
+#: inc/customizer.php:1194 inc/meta-box.php:86
+msgid "Footer Widgets"
+msgstr "וידג'טים לתחתית האתר"
+
+#: inc/customizer.php:1107
+msgid "Single Post Sidebar Layout"
+msgstr "פריסת סרגל צדדי בפוסט יחיד"
+
+#: inc/customizer.php:1079
+msgid "Blog Sidebar Layout"
+msgstr "פריסת סרגל צדדי בבלוג"
+
+#: inc/customizer.php:1059 inc/customizer.php:1087 inc/customizer.php:1115
+msgid "Content / Sidebar / Sidebar"
+msgstr "תוכן / סרגל צדדי / סרגל צדדי"
+
+#: inc/customizer.php:1058 inc/customizer.php:1086 inc/customizer.php:1114
+msgid "Sidebar / Sidebar / Content"
+msgstr "סרגל צדדי / סרגל צדדי / תוכן"
+
+#: inc/customizer.php:1057 inc/customizer.php:1085 inc/customizer.php:1113
+msgid "Sidebar / Content / Sidebar"
+msgstr "סרגל צדדי/ תוכן / סרגל צדדי"
+
+#: inc/customizer.php:1056 inc/customizer.php:1084 inc/customizer.php:1112
+#: inc/meta-box.php:151
+msgid "Content (no sidebars)"
+msgstr "תוכן (ללא סרגלים צדדיים)"
+
+#: inc/customizer.php:1055 inc/customizer.php:1083 inc/customizer.php:1111
+msgid "Content / Sidebar"
+msgstr "תוכן / סרגל צדדי"
+
+#: inc/customizer.php:1054 inc/customizer.php:1082 inc/customizer.php:1110
+msgid "Sidebar / Content"
+msgstr "סרגל צדדי / תוכן"
+
+#: inc/customizer.php:1051
+msgid "Sidebar Layout"
+msgstr "פריסת סרגל צדדי"
+
+#: inc/customizer.php:1022
+msgid "One Container"
+msgstr "מכולה אחת"
+
+#: inc/customizer.php:1021
+msgid "Separate Containers"
+msgstr "מכולות נפרדות"
+
+#: inc/customizer.php:1018
+msgid "Content Layout"
+msgstr "פריסת תוכן"
+
+#: inc/customizer.php:997 inc/customizer.php:1253
+msgid "Disable"
+msgstr "כיבוי"
+
+#: inc/customizer.php:996 inc/customizer.php:1252
+msgid "Enable"
+msgstr "הפעלה"
+
+#: inc/customizer.php:993
+msgid "Navigation Search"
+msgstr "חיפוש בתפריט הניווט"
+
+#: inc/customizer.php:855
+msgid "Navigation Alignment"
+msgstr "יישור הטקסט בתפריט הניווט "
+
+#: inc/customizer.php:890
+msgid "No Navigation"
+msgstr "ללא ניווט"
+
+#: inc/customizer.php:886
+msgid "Float Right"
+msgstr "יישור לימין"
+
+#: inc/customizer.php:885
+msgid "Above Header"
+msgstr "מעל איזור ראש האתר"
+
+#: inc/customizer.php:884
+msgid "Below Header"
+msgstr "מתחת לאיזור ראש האתר"
+
+#: inc/customizer.php:881
+msgid "Navigation Location"
+msgstr "מיקום תפריט הניווט"
+
+#: inc/customizer.php:660 inc/customizer.php:775 inc/customizer.php:860
+#: inc/customizer.php:972 inc/customizer.php:1228
+msgid "Right"
+msgstr "לימין"
+
+#: inc/customizer.php:659 inc/customizer.php:774 inc/customizer.php:859
+#: inc/customizer.php:1227
+msgid "Center"
+msgstr "למרכז"
+
+#: inc/customizer.php:658 inc/customizer.php:773 inc/customizer.php:858
+#: inc/customizer.php:973 inc/customizer.php:1226
+msgid "Left"
+msgstr "לשמאל"
+
+#: inc/customizer.php:770
+msgid "Header Alignment"
+msgstr "יישור ראש האתר"
+
+#: inc/customizer.php:607 inc/customizer.php:633 inc/customizer.php:724
+#: inc/customizer.php:748 inc/customizer.php:809 inc/customizer.php:833
+#: inc/customizer.php:1149 inc/customizer.php:1173 inc/meta-box.php:226
+msgid "Contained"
+msgstr "תחום"
+
+#: inc/customizer.php:561
+msgid "Container Width"
+msgstr "רוחב קונטיינר"
+
+#: inc/customizer.php:531 inc/meta-box.php:53
+msgid "Layout"
+msgstr "פריסה"
+
+#: inc/customizer.php:309
+msgid "Link Color Visited"
+msgstr "צבע קישור שהוקלק"
+
+#: inc/customizer.php:288
+msgid "Link Color Hover"
+msgstr "צבע קישור במעבר עכבר"
+
+#: inc/customizer.php:267
+msgid "Link Color"
+msgstr "צבע קישור"
+
+#: inc/customizer.php:246
+msgid "Text Color"
+msgstr "צבע טקסט"
+
+#: inc/customizer.php:225
+msgid "Background Color"
+msgstr "צבע רקע"
+
+#: inc/customizer.php:204
+msgid "Colors"
+msgstr "צבעים"
+
+#: inc/customizer.php:137
+msgid "Logo"
+msgstr "לוגו"
+
+#: inc/customizer.php:116
+msgid "Hide site tagline"
+msgstr "הסתר תיאור אתר"
+
+#: inc/customizer.php:97
+msgid "Hide site title"
+msgstr "הסתר שם אתר"
+
+#: inc/typography.php:228 inc/typography.php:402 inc/typography.php:549
+#: inc/typography.php:686
+msgid "Font size"
+msgstr "גודל גופן"
+
+#: inc/customizer/controls/class-typography-control.php:39
+msgid "Text transform"
+msgstr "המרת טקסט לועזי"
+
+#: inc/customizer/controls/class-typography-control.php:38
+msgid "Font weight"
+msgstr "משקל פונט"
+
+#: inc/customizer.php:204 inc/typography.php:198
+msgid "Body"
+msgstr "תוכן"
+
+#: inc/typography.php:141
+msgid "Typography"
+msgstr "טיפוגרפיה"
+
+#: inc/customizer/controls/class-deprecated.php:53
+#: inc/customizer/controls/class-typography-control.php:37
+msgid "Font family"
+msgstr "גופנים"
+
+#: inc/customizer/controls/class-deprecated.php:52
+#: inc/customizer/controls/class-typography-control.php:34
+msgid "Google fonts"
+msgstr "הפונטים של גוגל"
+
+#: inc/customizer/controls/class-deprecated.php:51
+msgid "Default fonts"
+msgstr "פונטים ברירת מחדל"
+
+#: inc/customizer.php:671 inc/general.php:68
+msgid "Header"
+msgstr "תמונת כותרת"
+
+#: inc/customizer.php:888 inc/general.php:67 inc/meta-box.php:144
+msgid "Left Sidebar"
+msgstr "סרגל צדדי בצד שמאל"
+
+#: inc/customizer.php:889 inc/general.php:66 inc/meta-box.php:139
+msgid "Right Sidebar"
+msgstr "סרגל צדדי בצד ימין"
+
+#: functions.php:48
+msgid "Primary Menu"
+msgstr "תפריט ראשי"
+
+#: inc/general.php:73
+msgid "Footer Widget 5"
+msgstr "איזור וידג׳טים תחתי 5"
+
+#: inc/general.php:72
+msgid "Footer Widget 4"
+msgstr "איזור וידג׳טים תחתי 4"
+
+#: inc/general.php:71
+msgid "Footer Widget 3"
+msgstr "איזור וידג׳טים תחתי 3"
+
+#: inc/general.php:70
+msgid "Footer Widget 2"
+msgstr "איזור וידג׳טים תחתי 2"
+
+#: inc/general.php:69
+msgid "Footer Widget 1"
+msgstr "איזור וידג׳טים תחתי 1"
+
+#: inc/structure/comments.php:25 inc/structure/comments.php:54
+msgid "Edit"
+msgstr "עריכה"
+
+#: content-link.php:71 content-page.php:48 content-single.php:66 content.php:70
+msgid "Pages:"
+msgstr "עמודים:"
+
+#: comments.php:117
+msgid "Post Comment"
+msgstr "להגיב"
+
+#: comments.php:116
+msgid "Leave a Comment"
+msgstr "כתוב/כתבי תגובה"
+
+#: inc/structure/comments.php:94
+msgid "Website"
+msgstr "אתר"
+
+#: inc/structure/comments.php:93
+msgid "Email"
+msgstr "אימייל"
+
+#: inc/structure/comments.php:92
+msgid "Name"
+msgstr "שם"
+
+#: comments.php:107
+msgid "Comments are closed."
+msgstr "סגור לתגובות."
+
+#: comments.php:76 comments.php:99
+msgid "Newer Comments &rarr;"
+msgstr "תגובות חדשות יותר &larr;"
+
+#: comments.php:75 comments.php:98
+msgid "&larr; Older Comments"
+msgstr "&rarr; תגובות ישנות יותר"
+
+#: comments.php:74 comments.php:97
+msgid "Comment navigation"
+msgstr "ניווט בתגובות"
+
+#. translators: 1: number of comments, 2: post title
+#: comments.php:49
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "מחשבה %1$s על &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s מחשבות על &ldquo;%2$s&rdquo;"
+
+#: inc/structure/sidebars.php:77
+msgid "Archives"
+msgstr "ארכיון"
+
+#: 404.php:39
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "אופס... העמוד המבוקש לא נמצא."
+
+#. Author of the plugin/theme
+msgid "Tom Usborne"
+msgstr "טום אוסבורן"
+
+#. Author URI of the plugin/theme
+msgid "https://tomusborne.com"
+msgstr "https://tomusborne.com"
+
+#. Theme URI of the plugin/theme
+msgid "https://generatepress.com"
+msgstr "https://generatepress.com"

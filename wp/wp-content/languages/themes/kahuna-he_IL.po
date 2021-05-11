@@ -1,0 +1,1950 @@
+# Translation of Themes - Kahuna in Hebrew
+# This file is distributed under the same license as the Themes - Kahuna package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-10-26 16:33:54+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: he_IL\n"
+"Project-Id-Version: Themes - Kahuna\n"
+
+#. Theme Name of the plugin/theme
+msgid "Kahuna"
+msgstr "קהונה"
+
+#. Description of the plugin/theme
+msgid "Kahuna is the big kahuna among WordPress themes. It proved itself with an exotic design, effective and easy to use customizer settings and a responsive, fully editable layout. Many personal and business sites have embraced it for a wide spectrum of uses, ranging from portfolio and photography sites to blogs and online shops. The features are too many to list but here are some of the main attractions: translatable, search engine optimized (both microformats and micordata), supports RTL (right-to-left) languages, supports eCommerce (WooCommerce), has both wide and boxed layouts, masonry bricks, socials, Google fonts, typography options, and a great customizable landing page."
+msgstr "קהונה היא הקהונה (הרופא הגדול בהוואי) הגדולה מבין תבניות וורדפרס. היא הוכיחה את עצמה עם עיצוב אקזוטי, הגדרות קסטומייזר קלות ואפקטיביות, מבנה שניתן לעריכה בצורה מלאה. עסקים ואנשים פרטיים רבים אימצו את התבנית לאתרים שלהם בעבור שימושים רבים, החל מפורטפוליו ואתרי צלמים ועד בלוגים וחנויות אונליין. מגוון האפשרויות הוא עצום ולא ניתן לפירוט מלא כאן אבל הנה כמה מהאפשרויות היותר אטרקטיביות: קלה לתרגום, אופטימיזציה של מנוע החיפוש, תמיכה בשפות מימין לשמאל, תמיכה במסחר אלקטרוני (ווקומרס), בעלת מבנה רחב או תָּאִי, קישורים לרשתות חברתיות, גופני גוגל, אפשרויות טיפוגרפיה ועמוד נחיתה בעל אפשרויות התאמה אישית רבות."
+
+#: admin/options.php:958
+msgid "Featured Content Background"
+msgstr "צבע הרקע של התוכן המומלץ"
+
+#: cryout/back-compat-php.php:15
+msgid "<strong>%1$s requires at least PHP version %2$s. Your site is running version %3$s.</strong><br>The theme will not be able to function correctly on the curent setup. Please upgrade or change the hosting provider."
+msgstr "<strong>%1$s דורש שגרסת ה- PHP תהיה לפחות %2$s. האתר שלכם עובד עם גרסת %3$s. </strong><br> התבנית לא תוכל לפעול בצורה תקינה בגרסת ההתקנה הקיימת. נא שדרגו או החליפו ספק אירוח."
+
+#: cryout/back-compat.php:15
+msgid "<strong>%1$s requires at least WordPress version %2$s. Your site is running version %3$s.</strong><br>The theme will not be able to function on the curent setup. Please upgrade."
+msgstr "<strong>%1$s דורש שגרסת הוורדפקס שלכם תהיה לפחות %2$s. האתר שלכם נמצא בגרסה %3$s. </strong><br> התבנית לא תעבוד בצורה תקינה בגרסה זו. נא שדרגו."
+
+#: admin/options.php:620
+msgid "No Text"
+msgstr "לטקסט"
+
+#: admin/options.php:110
+msgid "Upgrade to PLUS"
+msgstr "שדרגו ל\"פלוס\""
+
+#: admin/options.php:103
+msgid "Get Plus"
+msgstr "קבלו את \"פלוס\""
+
+#: admin/options.php:111
+msgid "Find out what features you're missing out on and how the Plus version of %1$s can improve your site."
+msgstr "גלו אילו תכונות אתם מפספסים ואיך השִדרוג לגרסת \"פלוס\" של %1$s ישפר לכם את האתר."
+
+#: includes/comments.php:133
+msgid "Save my name, email, and site URL in my browser for next time I post a comment."
+msgstr "שמרו את שמי, כתובת האימייל שלי וכתובת האתר שלי בדפדפן שלי לפעם הבאה בה אגיב לפוסט כאן."
+
+#: admin/options.php:457
+msgid "Edit the site's title, tagline and logo from WordPress' Site Identity panel."
+msgstr "עירכו את כותרת האתר, שורת התגיות והלוגו מפאנל הזהויות של אתר הוורדפרס."
+
+#: admin/options.php:368
+msgid "Fine tune the visibility of these elements in the theme's Header options"
+msgstr "בצעו כיוונונים מפורטים לניראות של האלמנטים האלה בהגדרות הכותרת של התבנית."
+
+#: includes/core.php:257
+msgid "Back to Top"
+msgstr "בחזרה ללמעלה"
+
+#: admin/options.php:628
+msgid "Configure the 'Read More' link text."
+msgstr "הגדירו את טקסט הקישור \"קיראו עוד\"."
+
+#: includes/loop.php:195
+msgid "Edit %s"
+msgstr "ערוך את %s"
+
+#: admin/options.php:204
+msgid "Featured Boxes"
+msgstr "תאים מומלצים"
+
+#: admin/options.php:1552
+msgid "Set to 0 to disable image processing"
+msgstr "שנו ל 0 כדי לבטל עיבוד תמונה"
+
+#: admin/options.php:987 admin/options.php:1016 admin/options.php:1045
+#: admin/options.php:1074 admin/options.php:1103 admin/options.php:1132
+#: admin/options.php:1161 admin/options.php:1191
+msgid "900 black"
+msgstr "900 שחור"
+
+#: admin/options.php:987 admin/options.php:1016 admin/options.php:1045
+#: admin/options.php:1074 admin/options.php:1103 admin/options.php:1132
+#: admin/options.php:1161 admin/options.php:1191
+msgid "800 extra-bold"
+msgstr "800 מובלט יותר"
+
+#: admin/options.php:987 admin/options.php:1016 admin/options.php:1045
+#: admin/options.php:1074 admin/options.php:1103 admin/options.php:1132
+#: admin/options.php:1161 admin/options.php:1191
+msgid "700 bold"
+msgstr "700 מובלט"
+
+#: admin/options.php:987 admin/options.php:1016 admin/options.php:1045
+#: admin/options.php:1074 admin/options.php:1103 admin/options.php:1132
+#: admin/options.php:1161 admin/options.php:1191
+msgid "600 semi-bold"
+msgstr "600 חצי מובלט"
+
+#: admin/options.php:987 admin/options.php:1016 admin/options.php:1045
+#: admin/options.php:1074 admin/options.php:1103 admin/options.php:1132
+#: admin/options.php:1161 admin/options.php:1191
+msgid "500 medium"
+msgstr "500 מדיום"
+
+#: admin/options.php:987 admin/options.php:1016 admin/options.php:1045
+#: admin/options.php:1074 admin/options.php:1103 admin/options.php:1132
+#: admin/options.php:1161 admin/options.php:1191
+msgid "400 regular"
+msgstr "400 רגיל"
+
+#: admin/options.php:987 admin/options.php:1016 admin/options.php:1045
+#: admin/options.php:1074 admin/options.php:1103 admin/options.php:1132
+#: admin/options.php:1161 admin/options.php:1191
+msgid "200 extra-light"
+msgstr "200 קל ביותר"
+
+#: admin/options.php:987 admin/options.php:1016 admin/options.php:1045
+#: admin/options.php:1074 admin/options.php:1103 admin/options.php:1132
+#: admin/options.php:1161 admin/options.php:1191
+msgid "100 thin"
+msgstr "100 דק"
+
+#: admin/options.php:427 admin/options.php:1566
+msgid "Contained"
+msgstr "כלול"
+
+#: single.php:64
+msgid "Next Post"
+msgstr "הפוסט הבא"
+
+#: single.php:63
+msgid "Previous Post"
+msgstr "הפוסט הקודם"
+
+#: sidebar-right.php:18
+msgid "Right Sidebar"
+msgstr "סרגל צד ימני"
+
+#: sidebar-left.php:22 sidebar-right.php:22
+msgid "To hide this sidebar, switch to a different Layout via the <a href=\"%s\">Theme Customizations</a>."
+msgstr "על מנת להסתיר את סרגל הצד הזה החליפו לסידור אחר דרך <a href=\"%s\"> הגדרות התבנית</a>."
+
+#: sidebar-left.php:21 sidebar-right.php:21
+msgid "You currently have no widgets set in this sidebar. You can add widgets via the <a href=\"%s\">Dashboard</a>."
+msgstr "אין לכם כרגע וידג'טים בסרגל הצד הזה. אתם יכולים להוסיף ווידג'טים דרך<a href=\"%s\"> לוח הבקרה</a>."
+
+#: includes/core.php:425 searchform.php:14
+msgid "Search"
+msgstr "חיפוש"
+
+#: searchform.php:11
+msgid "Search for:"
+msgstr "חפש את:"
+
+#: includes/tgmpa.php:110
+msgid "Return to Suggested Plugins Installer"
+msgstr "חזרו למתקין התוספים המומלצים"
+
+#: includes/tgmpa.php:53
+msgid "Kahuna Addons"
+msgstr "תוספי קהונה"
+
+#: includes/tgmpa.php:52
+msgid "Kahuna Suggested Plugins"
+msgstr "תוספים מוצעים ע\"י קהונה"
+
+#: includes/setup.php:185
+msgid "Skip to content"
+msgstr "דלגו לתוכן"
+
+#: includes/setup.php:135
+msgid "creative"
+msgstr "יצירתי"
+
+#: includes/setup.php:130
+msgid "intersection"
+msgstr "הצטלבות"
+
+#: includes/setup.php:125
+msgid "cactus"
+msgstr "קקטוס"
+
+#: includes/setup.php:120
+msgid "lunch"
+msgstr "צהריים"
+
+#: includes/setup.php:56
+msgid "Footer Navigation"
+msgstr "ניווט בכותרת תחתונה"
+
+#: includes/setup.php:55 sidebar-left.php:18
+msgid "Left Sidebar"
+msgstr "סרגל צד שמאלי"
+
+#: includes/setup.php:54
+msgid "Primary Navigation"
+msgstr "ניווט ראשי"
+
+#: includes/meta.php:40
+msgid "Default Theme Layout"
+msgstr "מבנה תבנית ברירת מחדל"
+
+#: includes/meta.php:18
+msgid "Static Page Layout"
+msgstr "מבנה עמוד סטטי"
+
+#: includes/loop.php:268
+msgid "Newer posts"
+msgstr "פוסטים חדשים יותר"
+
+#: includes/loop.php:264
+msgid "Older posts"
+msgstr "פוסטים ישנים יותר"
+
+#: includes/loop.php:206
+msgid "Featured"
+msgstr "מומלץ"
+
+#: includes/loop.php:159
+msgid "Date"
+msgstr "תאריך"
+
+#: includes/loop.php:103
+msgid "Author"
+msgstr "מחבר"
+
+#: includes/loop.php:85
+msgid "Categories"
+msgstr "קטגוריות"
+
+#: includes/core.php:409
+msgid "Page"
+msgstr "עמוד"
+
+#: includes/core.php:408
+msgid "Post format"
+msgstr "פורמט הפוסט"
+
+#: includes/core.php:406
+msgid "Articles posted by"
+msgstr "מאמרים שפורסמו ע\"י"
+
+#: includes/core.php:405
+msgid "Posts tagged"
+msgstr "תיוגי פוסטים"
+
+#: includes/core.php:404
+msgid "Search results for"
+msgstr "חפשו תוצאות עבור"
+
+#: searchform.php:12
+msgid "To search type and press enter"
+msgstr "הקלידו וחפשו"
+
+#: includes/loop.php:183
+msgid "Tagged"
+msgstr "תגיות"
+
+#: includes/loop.php:109 includes/loop.php:135
+msgid "View all posts by %s"
+msgstr "צפו בכל הפוסטים מאת  %s"
+
+#: admin/options.php:1326
+msgid "Article Animation on Scroll"
+msgstr "אנימצית המאמר בגלילה"
+
+#: includes/core.php:403
+msgid "Archive for category"
+msgstr "ארכיון עבור קטגוריה"
+
+#: includes/core.php:402
+msgid "Home"
+msgstr "בית"
+
+#: includes/core.php:308
+msgid "Semantic Personal Publishing Platform"
+msgstr "פלטפורמת פרסום אישי סמנטי"
+
+#: includes/core.php:305
+msgid "Powered by"
+msgstr "פועל באמצעות"
+
+#: includes/core.php:190 search.php:18
+msgid "Search Results for: %s"
+msgstr "חפשו תוצאות עבור: %s"
+
+#: includes/comments.php:142 includes/comments.php:143
+msgctxt "noun"
+msgid "Comment"
+msgstr "תגובה"
+
+#: includes/comments.php:128 includes/comments.php:129
+msgid "Website"
+msgstr "אתר"
+
+#: includes/comments.php:124 includes/comments.php:125
+msgid "Email"
+msgstr "אימייל"
+
+#: includes/comments.php:120 includes/comments.php:121
+msgid "Name"
+msgstr "שם"
+
+#: includes/comments.php:90
+msgid "Leave a comment"
+msgstr "השאירו תגובה"
+
+#: includes/comments.php:36
+msgid "Your comment is awaiting moderation."
+msgstr "תגובתכם ממתינה לאישור."
+
+#: includes/comments.php:66
+msgid "Reply"
+msgstr "השיבו"
+
+#. translators: 1: date, 2: time
+#: includes/comments.php:53
+msgid "at"
+msgstr "ב"
+
+#: includes/comments.php:25 includes/comments.php:61
+msgid "(Edit)"
+msgstr "(עריכה)"
+
+#: includes/comments.php:25
+msgid "Pingback: "
+msgstr "פינגבק:"
+
+#: image.php:66
+msgid "Next image"
+msgstr "התמונה הבאה"
+
+#: image.php:65
+msgid "Previous image"
+msgstr "התמונה הקודמת"
+
+#: image.php:38
+msgid "Published in"
+msgstr "פורסם ב"
+
+#: image.php:31
+msgid "pixels"
+msgstr "פיקסלים"
+
+#: image.php:27
+msgctxt "Used before full size attachment link."
+msgid "Full size"
+msgstr "גודל מלא"
+
+#: header.php:44
+msgid "Primary Menu"
+msgstr "תפריט ראשי"
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: cryout/tgmpa-class.php:3520
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr "מתקין תוסף %1$s (%2$d/%3$d)"
+
+#: cryout/tgmpa-class.php:3518
+msgid "All installations have been completed."
+msgstr "כל ההתקנות הסתיימו."
+
+#. translators: 1: plugin name.
+#: cryout/tgmpa-class.php:3517
+msgid "%1$s installed successfully."
+msgstr "%1$s הותקן בהצלחה."
+
+#: cryout/tgmpa-class.php:3515
+msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr "תהליך ההתקנה מתחיל. התהליך יכול להמשך זמן מה על חלק מהשרתים אז נא העזרו סבלנות."
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: cryout/tgmpa-class.php:3512
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr "מתקין ומפעיל את התוסף %1$s (%2$d/%3$d)"
+
+#: cryout/tgmpa-class.php:3510
+msgid "All installations and activations have been completed."
+msgstr "כל ההתקנות וההפעלות הושלמו."
+
+#: cryout/tgmpa-class.php:3509 cryout/tgmpa-class.php:3517
+msgid "Hide Details"
+msgstr "הסתר פרטים"
+
+#: cryout/tgmpa-class.php:3509 cryout/tgmpa-class.php:3517
+msgid "Show Details"
+msgstr "הצג פרטים"
+
+#. translators: 1: plugin name.
+#: cryout/tgmpa-class.php:3509
+msgid "%1$s installed and activated successfully."
+msgstr "%1$s הותקן והופעל בהצלחה."
+
+#: cryout/tgmpa-class.php:3507
+msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr "תהליך ההתקנה וההפעלה התחיל. תהליך זה יכול להמשך זמן מה על חלק מהשרתים, לכן היו סבלניים."
+
+#. translators: 1: plugin name.
+#: cryout/tgmpa-class.php:3503
+msgid "The installation of %1$s failed."
+msgstr "ההתקנה של %1$s נכשלה."
+
+#. translators: 1: plugin name, 2: error message.
+#: cryout/tgmpa-class.php:3501
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr "ארעה שגיאה בעת התקנת %1$s: <strong>%2$s</strong>."
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: cryout/tgmpa-class.php:3498
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr "מעדכן את התוסף %1$s (%2$d/%3$d)"
+
+#: cryout/tgmpa-class.php:3158
+msgid "Plugin activation failed."
+msgstr "הפכלת התוסף נכשלה."
+
+#: cryout/tgmpa-class.php:2934
+msgid "No plugins are available to be activated at this time."
+msgstr "אין תוספים שממתינים להפעלה כרגע."
+
+#: cryout/tgmpa-class.php:2908
+msgid "No plugins were selected to be activated. No action taken."
+msgstr "לא נבחרו תוספים להפעלה. לא בוצעה כל פעולה."
+
+#: cryout/tgmpa-class.php:2802
+msgid "No plugins are available to be updated at this time."
+msgstr "אין תוספים זמינים לעדכון כעת."
+
+#: cryout/tgmpa-class.php:2800
+msgid "No plugins are available to be installed at this time."
+msgstr "אין תוספים הממתינים להתקנה כרגע."
+
+#: cryout/tgmpa-class.php:2759
+msgid "No plugins were selected to be updated. No action taken."
+msgstr "לא נבחרו תוספים לעדכון. לא בוצעה כל פעולה."
+
+#: cryout/tgmpa-class.php:2757
+msgid "No plugins were selected to be installed. No action taken."
+msgstr "לא נבחרו תוספים להתקנה. לא בוצעה כל פעולה."
+
+#: cryout/tgmpa-class.php:2726
+msgid "Activate"
+msgstr "הפעל"
+
+#: cryout/tgmpa-class.php:2723
+msgid "Update"
+msgstr "עדכן"
+
+#: cryout/tgmpa-class.php:2717
+msgid "Install"
+msgstr "התקן"
+
+#: cryout/tgmpa-class.php:2684
+msgid "Upgrade message from the plugin author:"
+msgstr "הודעת עדכון מיוצר התוסף:"
+
+#. translators: %2$s: plugin name in screen reader markup
+#: cryout/tgmpa-class.php:2614
+msgid "Activate %2$s"
+msgstr "הפעל את %2$s"
+
+#. translators: %2$s: plugin name in screen reader markup
+#: cryout/tgmpa-class.php:2608
+msgid "Update %2$s"
+msgstr "עדכן את %2$s"
+
+#. translators: %2$s: plugin name in screen reader markup
+#: cryout/tgmpa-class.php:2603
+msgid "Install %2$s"
+msgstr "התקן את %2$s"
+
+#: cryout/tgmpa-class.php:2554
+msgid "Status"
+msgstr "סטטוס"
+
+#: cryout/tgmpa-class.php:2553
+msgid "Version"
+msgstr "גרסה"
+
+#: cryout/tgmpa-class.php:2549
+msgid "Type"
+msgstr "סוג"
+
+#: cryout/tgmpa-class.php:2548
+msgid "Source"
+msgstr "מקור"
+
+#: cryout/tgmpa-class.php:2547
+msgid "Plugin"
+msgstr "תוסף"
+
+#: cryout/tgmpa-class.php:2533
+msgid "No plugins to install, update or activate."
+msgstr "אין תוספים להתקנה, עדכון או הפעלה."
+
+#: cryout/tgmpa-class.php:2510
+msgid "Available version:"
+msgstr "גרסה זמינה:"
+
+#: cryout/tgmpa-class.php:2498
+msgid "Minimum required version:"
+msgstr "גרסה מינימאלית נדרשת:"
+
+#: cryout/tgmpa-class.php:2490
+msgid "Installed version:"
+msgstr "גרסה מותקנת:"
+
+#: cryout/tgmpa-class.php:2482
+msgctxt "as in: \"version nr unknown\""
+msgid "unknown"
+msgstr "לא ידוע"
+
+#. translators: 1: number of plugins.
+#: cryout/tgmpa-class.php:2400
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgid_plural "To Activate <span class=\"count\">(%s)</span>"
+msgstr[0] "להפעלה <span class=\"count\">(%s)</span>"
+msgstr[1] "להפעלה <span class=\"count\">(%s)</span>"
+
+#. translators: 1: number of plugins.
+#: cryout/tgmpa-class.php:2396
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgid_plural "Update Available <span class=\"count\">(%s)</span>"
+msgstr[0] "יש עדכון זמין <span class=\"count\">(%s)</span>"
+msgstr[1] "יש עדכונים זמינים <span class=\"count\">(%s)</span>"
+
+#. translators: 1: number of plugins.
+#: cryout/tgmpa-class.php:2392
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgid_plural "To Install <span class=\"count\">(%s)</span>"
+msgstr[0] "להתקין את <span class=\"count\">(%s)</span>"
+msgstr[1] "להתקין את <span class=\"count\">(%s)</span>"
+
+#. translators: 1: number of plugins.
+#: cryout/tgmpa-class.php:2388
+msgctxt "plugins"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] "הכל <span class=\"count\">(%s)</span>"
+msgstr[1] "הכל <span class=\"count\">(%s)</span>"
+
+#. translators: 1: install status, 2: update status
+#: cryout/tgmpa-class.php:2342
+msgctxt "Install/Update Status"
+msgid "%1$s, %2$s"
+msgstr "%1$s, %2$s"
+
+#: cryout/tgmpa-class.php:2333
+msgid "Update recommended"
+msgstr "מומלץ לעדכן"
+
+#: cryout/tgmpa-class.php:2330
+msgid "Requires Update"
+msgstr "דורש עדכון"
+
+#: cryout/tgmpa-class.php:2327
+msgid "Required Update not Available"
+msgstr "העדכון הדרוש אינו זמין"
+
+#: cryout/tgmpa-class.php:2321
+msgid "Active"
+msgstr "פעיל"
+
+#: cryout/tgmpa-class.php:2319
+msgid "Installed But Not Activated"
+msgstr "הותקן אך לא הופעל"
+
+#: cryout/tgmpa-class.php:2315
+msgid "Not Installed"
+msgstr "לא הותקן"
+
+#: cryout/tgmpa-class.php:2298
+msgid "Pre-Packaged"
+msgstr "ארוז מראש"
+
+#: cryout/tgmpa-class.php:2295
+msgid "External Source"
+msgstr "מקור חיצוני"
+
+#: cryout/tgmpa-class.php:2292
+msgid "WordPress Repository"
+msgstr "מאגר וורדפרס"
+
+#: cryout/tgmpa-class.php:2276
+msgid "Recommended"
+msgstr "מומלץ"
+
+#: cryout/tgmpa-class.php:2273
+msgid "Required"
+msgstr "דרוש"
+
+#. translators: %s: version number
+#: cryout/tgmpa-class.php:1982
+msgid "TGMPA v%s"
+msgstr "TGMPA v%s"
+
+#: cryout/tgmpa-class.php:1121 cryout/tgmpa-class.php:2948
+msgctxt "plugin A *and* plugin B"
+msgid "and"
+msgstr "ו"
+
+#: cryout/tgmpa-class.php:937
+msgid "The remote plugin package consists of more than one file, but the files are not packaged in a folder."
+msgstr "אריזת התוסף המרוחק מכילה יותר מקובץ אחד, אבל הקבצים לא נארזו בתיקייה."
+
+#: cryout/tgmpa-class.php:934 cryout/tgmpa-class.php:937
+msgid "Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines."
+msgstr "נא צרו קשר עם ספק התוסף ובקשו ממנו לארוז את התוסף לפי הנחיות וורדפרס."
+
+#: cryout/tgmpa-class.php:934
+msgid "The remote plugin package does not contain a folder with the desired slug and renaming did not work."
+msgstr "חבילת התוסף המרוחק לא כולל תיקייה עם שורת הסדר הנדרשת ושינוי שם לא עזר."
+
+#: cryout/tgmpa-class.php:523
+msgid "Update Required"
+msgstr "דרוש עדכון"
+
+#: cryout/tgmpa-class.php:522
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr "יש לעדכן תוסף זה על מנת שיהיה תואם לתבנית שלכם."
+
+#: cryout/tgmpa-class.php:397 includes/tgmpa.php:121
+msgid "Please contact the administrator of this site for help."
+msgstr "לעזרה צרו קשר עם מנהל האתר הזה."
+
+#: cryout/tgmpa-class.php:396 includes/tgmpa.php:120
+msgid "There are one or more required or recommended plugins to install, update or activate."
+msgstr "תוסף אחד או יותר מומלצים או נדרשים להיות מותקנים, מעודכנים או מופעלים."
+
+#: cryout/tgmpa-class.php:395 includes/tgmpa.php:119
+msgid "Dismiss this notice"
+msgstr "דחה הודעה זו"
+
+#. translators: 1: dashboard link.
+#: cryout/tgmpa-class.php:394 includes/tgmpa.php:118
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr "כל התוספים הותקנו והופעלו בהצלחה. %1$s"
+
+#. translators: 1: plugin name.
+#: cryout/tgmpa-class.php:392 includes/tgmpa.php:116
+msgid "Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin."
+msgstr "התוסף לא הופעל. נדרשת גרסה גבוהה יותר של התוסף %s לתבנית זו. נא עדכנו את התוסף."
+
+#. translators: 1: plugin name.
+#: cryout/tgmpa-class.php:390 includes/tgmpa.php:114
+msgid "No action taken. Plugin %1$s was already active."
+msgstr "לא בוצעה כל פעולה. התוסף %1$s כבר הופעל."
+
+#: cryout/tgmpa-class.php:388 cryout/tgmpa-class.php:2952
+#: includes/tgmpa.php:112
+msgid "The following plugin was activated successfully:"
+msgstr "התוספים הבאים הופעלו בהצלחה:"
+
+#: cryout/tgmpa-class.php:387 cryout/tgmpa-class.php:3159
+#: includes/tgmpa.php:111
+msgid "Plugin activated successfully."
+msgstr "התוסף הופעל בהצלחה."
+
+#: cryout/tgmpa-class.php:386 cryout/tgmpa-class.php:827
+#: cryout/tgmpa-class.php:2533 cryout/tgmpa-class.php:3580
+msgid "Return to the Dashboard"
+msgstr "חזרו ללוח הבקרה"
+
+#: cryout/tgmpa-class.php:385
+msgid "Return to Required Plugins Installer"
+msgstr "חזרו למתקין התוספים הנדרשים"
+
+#: cryout/tgmpa-class.php:380 includes/tgmpa.php:105
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] "התחילו בהפעלת התוסף"
+msgstr[1] "התחילו בהפעלת התוספים"
+
+#: cryout/tgmpa-class.php:375 includes/tgmpa.php:100
+msgid "Begin updating plugin"
+msgid_plural "Begin updating plugins"
+msgstr[0] "התחילו בעדכון התוסף"
+msgstr[1] "התחילו בעדכון התוספים"
+
+#. translators: 1: plugin name(s).
+#: cryout/tgmpa-class.php:370 includes/tgmpa.php:95
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] "התחילו בהתקנת התוסף"
+msgstr[1] "התחילו בהתקנת התוספים"
+
+#: cryout/tgmpa-class.php:333 includes/tgmpa.php:58
+msgid "Something went wrong with the plugin API."
+msgstr "משהו השתבש עם ה- API של התוסף."
+
+#. translators: %s: plugin name.
+#: cryout/tgmpa-class.php:332 includes/tgmpa.php:57
+msgid "Updating Plugin: %s"
+msgstr "מעדכן תוסף: %s"
+
+#. translators: %s: plugin name.
+#: cryout/tgmpa-class.php:330 includes/tgmpa.php:55
+msgid "Installing Plugin: %s"
+msgstr "מתקין תוסף: %s"
+
+#: cryout/tgmpa-class.php:328
+msgid "Install Plugins"
+msgstr "התקן תוספים"
+
+#: cryout/tgmpa-class.php:327
+msgid "Install Required Plugins"
+msgstr "התקן תוספים נדרשים"
+
+#: cryout/admin-functions.php:30
+msgid "Read the full post"
+msgstr "קראו את הפוסט המלא"
+
+#: cryout/admin-functions.php:29
+msgid "Posted on"
+msgstr "פורסם ב"
+
+#: cryout/admin-functions.php:25
+msgid "No update news."
+msgstr "אין עדכוני חדשות."
+
+#: content/content-page.php:34 content/content.php:40 single.php:45
+msgid "Pages:"
+msgstr "עמודים:"
+
+#: content/content-notfound.php:12
+msgid "No search results for: <em>%s</em>"
+msgstr "אין תוצאות חיפוש עבור: <em>%s</em>"
+
+#: content/content-notfound.php:10
+msgid "Nothing Found"
+msgstr "לא מצאתי כלום"
+
+#: comments.php:45
+msgid "Comments are closed."
+msgstr "התגובות סגורות."
+
+#: comments.php:21 includes/comments.php:91 includes/comments.php:92
+msgid "One Comment"
+msgid_plural "%1$s Comments"
+msgstr[0] "תגובה אחת"
+msgstr[1] "%1$s תגובות"
+
+#: admin/options.php:2339
+msgid "Content After"
+msgstr "תוכן אחרי"
+
+#: admin/options.php:2332
+msgid "Content Before"
+msgstr "תוכן לפני"
+
+#: admin/options.php:2325
+msgid "You can configure how many columns the footer displays from the theme options"
+msgstr "אתם יכולים להגדיר כמה עמודות יהיו בכותרת התחתונה דרך הגדרות התבנית"
+
+#: admin/options.php:2317
+msgid "Sidebar Right"
+msgstr "סרגל צד ימני"
+
+#: admin/options.php:2310
+msgid "Sidebar Left"
+msgstr "סרגל צד שמאלי"
+
+#: admin/options.php:1663
+msgid "<br>Only use these options to troubleshoot issues."
+msgstr "<br>השתמשו רק באפשרויות אלה על מנת לאבחן בעיות."
+
+#: admin/options.php:1660
+msgid "Editor Styles"
+msgstr "סגנונות עורך"
+
+#: admin/options.php:1652
+msgid "Autoscroll"
+msgstr "גלילה אוטומטית"
+
+#: admin/options.php:1646
+msgid "Enable on mobiles"
+msgstr "אפשר במכשירים ניידים"
+
+#: admin/options.php:1644
+msgid "FitVids"
+msgstr "FitVids"
+
+#: admin/options.php:1636
+msgid "JS Defer loading"
+msgstr "טעינה מעוכבת של JS"
+
+#: admin/options.php:1628
+msgid "Masonry"
+msgstr "בנייה (Masonry)"
+
+#: admin/options.php:1619
+msgid "Display in Right Sidebar"
+msgstr "הצג בסרגל צד ימני"
+
+#: admin/options.php:1613
+msgid "Display in Left Sidebar"
+msgstr "הצג בסרגל צד שמאלי"
+
+#: admin/options.php:1607
+msgid "Display in Footer"
+msgstr "הצג בכותרת תחתונה"
+
+#: admin/options.php:1601
+msgid "Display in Header"
+msgstr "הצג בכותרת עליונה"
+
+#: admin/options.php:1590
+msgid "Use Featured Images in Header"
+msgstr "השתמשו בתמונה מומלצת בכותרת"
+
+#: admin/options.php:1575
+msgid "Center Bottom"
+msgstr "מרכז תחתון"
+
+#: admin/options.php:1575
+msgid "Center Center"
+msgstr "מרכז מרכז"
+
+#: admin/options.php:1575
+msgid "Center Top"
+msgstr "מרכז עליון"
+
+#: admin/options.php:1575
+msgid "Right Bottom"
+msgstr "מימין למטה"
+
+#: admin/options.php:1575
+msgid "Right Center"
+msgstr "מימין במרכז"
+
+#: admin/options.php:1575
+msgid "Right Top"
+msgstr "מימין למעלה"
+
+#: admin/options.php:1575
+msgid "Left Bottom"
+msgstr "משמאל למטה"
+
+#: admin/options.php:1575
+msgid "Left Center"
+msgstr "משמאל במרכז"
+
+#: admin/options.php:1575
+msgid "Left Top"
+msgstr "משמאל למעלה"
+
+#: admin/options.php:1573
+msgid "Featured Image Crop Position"
+msgstr "מיקום התמונה המומלצת המקוצצת"
+
+#: admin/options.php:1567
+msgid "Featured Image Behaviour"
+msgstr "התנהגות תמונה מומלצת"
+
+#: admin/options.php:1551
+msgid "Featured Image Height (in pixels)"
+msgstr "גובה התמונה המומלצת (בפיקסלים)"
+
+#: admin/options.php:1543
+msgid "Auto Select Image From Content"
+msgstr "בחר אוטומטית תמונה מהתוכן"
+
+#: admin/options.php:1535
+msgid "Featured Images"
+msgstr "תמונות מומלצות"
+
+#: admin/options.php:1527
+msgid "Continue Reading Label"
+msgstr "תוית המשיכו לקרוא"
+
+#: admin/options.php:1521
+msgid "Excerpt Suffix"
+msgstr "קידומת מובאה"
+
+#: admin/options.php:1515
+msgid "Excerpt Length (words)"
+msgstr "אורך מובאה (במילים)"
+
+#: admin/options.php:1507
+msgid "Standard Posts in Categories/Archives"
+msgstr "פוסטים סטנדרטיים בקטגורויות/ארכיונים"
+
+#: admin/options.php:1501
+msgid "Inherit"
+msgstr "בירושה"
+
+#: admin/options.php:1499
+msgid "Sticky Posts on Homepage"
+msgstr "פוסטים דביקים בעמוד הבית"
+
+#: admin/options.php:1494
+msgid "Post formats always display full posts."
+msgstr "פורמט הפוסט יציג תמיד פוסטים מלאים"
+
+#: admin/options.php:1493 admin/options.php:1501 admin/options.php:1509
+msgid "Full Post"
+msgstr "הפוסט המלא"
+
+#: admin/options.php:1491
+msgid "Standard Posts On Homepage"
+msgstr "פוסטים סטנדרטיים בעמוד הבית"
+
+#: admin/options.php:1484
+msgid "Comment Form Width (pixels)"
+msgstr "רוחב טופס התגובות (פיקסלים)"
+
+#: admin/options.php:1479
+msgid "Change to labels for better compatibility with comment-related plugins."
+msgstr "שנו את התוויות כדי להתאימן טוב יותר לתוסף comment-related"
+
+#: admin/options.php:1478
+msgid "Labels"
+msgstr "תוויות"
+
+#: admin/options.php:1478
+msgid "Placeholders"
+msgstr "מראי מקום"
+
+#: admin/options.php:1476
+msgid "Comment Field Label"
+msgstr "תווית שדה התגובה"
+
+#: admin/options.php:1470
+msgid "Relative"
+msgstr "יחסי"
+
+#: admin/options.php:1470
+msgid "Specific"
+msgstr "ספציפי"
+
+#: admin/options.php:1468
+msgid "Comment Date Format"
+msgstr "פורמט תאריך התגובה"
+
+#: admin/options.php:1462
+msgid "Hide everywhere"
+msgstr "הסתר בכל מקום"
+
+#: admin/options.php:1462
+msgid "Hide in pages"
+msgstr "הסתר בעמודים"
+
+#: admin/options.php:1462
+msgid "Hide in posts"
+msgstr "הסתר בפוסטים"
+
+#: admin/options.php:1462
+msgid "Show"
+msgstr "הצג"
+
+#: admin/options.php:1460
+msgid "'Comments Are Closed' Text"
+msgstr "טקסט \"התגובות סגורות\""
+
+#: admin/options.php:1452
+msgid "Home page"
+msgstr "עמוד הבית"
+
+#: admin/options.php:1446
+msgid "Archive pages"
+msgstr "עמודי ארכיון"
+
+#: admin/options.php:1440
+msgid "Pages"
+msgstr "עמודים"
+
+#: admin/options.php:1427
+msgid "Choose meta information to show on posts."
+msgstr "בחרו מידע META להצגה בפוסטים"
+
+#: admin/options.php:1426
+msgid "Display Comments"
+msgstr "הצג תגובות"
+
+#: admin/options.php:1420
+msgid "Display Tags"
+msgstr "הצג תוויות "
+
+#: admin/options.php:1414
+msgid "Display Category"
+msgstr "הצג קטגוריה"
+
+#: admin/options.php:1408
+msgid "Display Time"
+msgstr "הצג זמן"
+
+#: admin/options.php:1402
+msgid "Display Date"
+msgstr "הצג תאריך"
+
+#: admin/options.php:1396
+msgid "Display Author"
+msgstr "הצג מחבר"
+
+#: admin/options.php:1386
+msgid "With Background"
+msgstr "עם רקע"
+
+#: admin/options.php:1386
+msgid "With Border"
+msgstr "עם גבול"
+
+#: admin/options.php:1386
+msgid "Plain"
+msgstr "פשוט"
+
+#: admin/options.php:1384
+msgid "Post Captions"
+msgstr "כותרות הפוסט"
+
+#: admin/options.php:1359 admin/options.php:1363 admin/options.php:1367
+#: admin/options.php:1371 admin/options.php:1375
+msgid "Style %d"
+msgstr "סגנון %d"
+
+#: admin/options.php:1355
+msgid "No Styling"
+msgstr "ללא סגנון"
+
+#: admin/options.php:1352
+msgid "Post Images"
+msgstr "תמונות הפוסט"
+
+#: admin/options.php:1343
+msgid "Add Search to Footer Menu"
+msgstr "הוסף שדה חיפוש בתפריט תחתון"
+
+#: admin/options.php:1337
+msgid "Add Search to Main Menu"
+msgstr "הוסף שדה חיפוש בתפריט ראשי"
+
+#: admin/options.php:1328
+msgid "Zoom Out"
+msgstr "זום החוצה"
+
+#: admin/options.php:1328
+msgid "Zoom In"
+msgstr "זום פנימה"
+
+#: admin/options.php:1328
+msgid "Slide"
+msgstr "החלקה"
+
+#: admin/options.php:1328
+msgid "Fade"
+msgstr "עמעום"
+
+#: admin/options.php:1328
+msgid "None"
+msgstr "כלום"
+
+#: admin/options.php:1321
+msgid "These decorations apply to certain theme elements."
+msgstr "הדקורציות האלה יחולו על חלק מרכיבי התבנית."
+
+#: admin/options.php:1320
+msgid "Rounded Corners"
+msgstr "פינות מעוגלות"
+
+#: admin/options.php:1314
+msgid "Shadow"
+msgstr "צל"
+
+#: admin/options.php:1308
+msgid "Border"
+msgstr "גבול"
+
+#: admin/options.php:1300
+msgid "Insert custom text or basic HTML code that will appear in your footer. <br /> You can use HTML to insert links, images and special characters."
+msgstr "הכניסו טקסט מותאם אישית או קוד HTML שיוצג בכותרת התחתונה. <br />  אתם יכולים להשתמש ב- HTML להכנסת קישורים, תמונות או סימנים מיוחדים."
+
+#: admin/options.php:1299
+msgid "Custom Footer Text"
+msgstr "טקסט בכותרת תחתונה מותאם אישית."
+
+#: admin/options.php:1293
+msgid "Uniform Boxes"
+msgstr "Uniform Boxes"
+
+#: admin/options.php:1293
+msgid "Size Emphasis"
+msgstr "Size Emphasis"
+
+#: admin/options.php:1291
+msgid "Tags Cloud Appearance"
+msgstr "צורת תצוגת תגיות ענן"
+
+#: admin/options.php:1285
+msgid "Bordered"
+msgstr "עם גבולות"
+
+#: admin/options.php:1285
+msgid "Stripped"
+msgstr "מופשטות"
+
+#: admin/options.php:1285
+msgid "Clean"
+msgstr "נקי"
+
+#: admin/options.php:1285
+msgid "No border"
+msgstr "ללא גבול"
+
+#: admin/options.php:1283
+msgid "Tables Style"
+msgstr "סגנון טבלאות"
+
+#: admin/options.php:1277
+msgid "In footer"
+msgstr "בכותרת תחתונה"
+
+#: admin/options.php:1277
+msgid "Bottom of page"
+msgstr "תחתית העמוד"
+
+#: admin/options.php:1275
+msgid "Back to Top Button"
+msgstr "כפתור חזרו ללמעלה"
+
+#: admin/options.php:1269
+msgid "Always Hidden"
+msgstr "תמיד מוסתר"
+
+#: admin/options.php:1269
+msgid "Hide on Categories"
+msgstr "הסתר בקטגוריות"
+
+#: admin/options.php:1269
+msgid "Hide on Pages"
+msgstr "הסתר בעמודים"
+
+#: admin/options.php:1269
+msgid "Always Visible"
+msgstr "תמיד מוצג"
+
+#: admin/options.php:1267
+msgid "Page/Category Titles"
+msgstr "כותרות עמוד/קטגוריה"
+
+#: admin/options.php:1261
+msgid "Absolute"
+msgstr "מוחלט"
+
+#: admin/options.php:1259
+msgid "Single Post Prev/Next Navigation"
+msgstr "ניווט הבא/הקודם בפוסט בודד"
+
+#: admin/options.php:1251
+msgid "Numbered Pagination"
+msgstr "עימוד ממוספר"
+
+#: admin/options.php:1245 admin/options.php:1253 admin/options.php:1261
+#: admin/options.php:1592 admin/options.php:1630 admin/options.php:1638
+#: admin/options.php:1646 admin/options.php:1654 admin/options.php:1662
+msgid "Disable"
+msgstr "מבוטל"
+
+#: admin/options.php:1243
+msgid "Breadcrumbs"
+msgstr "פרורי לחם"
+
+#: admin/options.php:1233
+msgid "Paragraph Indentation"
+msgstr "מרחק פסקה מהשוליים"
+
+#: admin/options.php:1226
+msgid "Paragraph Spacing"
+msgstr "מרווח פסקה"
+
+#: admin/options.php:1220
+msgid "Justify"
+msgstr "יישור (Justify)"
+
+#: admin/options.php:1218
+msgid "Text Alignment"
+msgstr "יישור טקסט"
+
+#: admin/options.php:1211
+msgid "Line Height"
+msgstr "גובה שורה"
+
+#: admin/options.php:1182
+msgid "Headings"
+msgstr "כותרות"
+
+#: admin/options.php:1152
+msgid "Post metas"
+msgstr "META של הפוסט"
+
+#: admin/options.php:1123
+msgid "Post/Page Titles"
+msgstr "כותרות פוסט/עמוד"
+
+#: admin/options.php:1094
+msgid "Widget Content"
+msgstr "תוכן הווידג'ט"
+
+#: admin/options.php:1065
+msgid "Widget Title"
+msgstr "כותרת הווידג'ט"
+
+#: admin/options.php:1036
+msgid "Main Menu"
+msgstr "תפריט ראשי"
+
+#: admin/options.php:1001 admin/options.php:1030 admin/options.php:1059
+#: admin/options.php:1088 admin/options.php:1117 admin/options.php:1146
+#: admin/options.php:1175 admin/options.php:1205
+msgid "or enter Google Font Identifier"
+msgstr "או הכניסו מזהה גופן גוגל"
+
+#: admin/options.php:970
+msgid "Secondary Accent"
+msgstr "הבלטה שנייה"
+
+#: admin/options.php:964
+msgid "Primary Accent"
+msgstr "הבלטה ראשונה"
+
+#: admin/options.php:952
+msgid "Text Areas Background"
+msgstr "רקע אזורי טקסט"
+
+#: admin/options.php:940
+msgid "Blocks Background"
+msgstr "רקע בלוקים"
+
+#: admin/options.php:934
+msgid "Footer Text"
+msgstr "טקסט בכותרת תחתונה"
+
+#: admin/options.php:928
+msgid "Footer Background"
+msgstr "רקע כותרת תחתונה"
+
+#: admin/options.php:922
+msgid "Submenu Background"
+msgstr "רקע תפריט משני"
+
+#: admin/options.php:916
+msgid "Submenu Text"
+msgstr "טקסט תפריט משני"
+
+#: admin/options.php:910
+msgid "Menu Text"
+msgstr "טקסט תפריט"
+
+#: admin/options.php:904
+msgid "Header Background"
+msgstr "רקע הכותרת"
+
+#: admin/options.php:897
+msgid "Overlay Opacity"
+msgstr "שקיפות הכיסוי"
+
+#: admin/options.php:891
+msgid "Overlay Color"
+msgstr "צבע הכיסוי"
+
+#: admin/options.php:885
+msgid "Right Sidebar Background"
+msgstr "רקע סרגל צד ימני"
+
+#: admin/options.php:879
+msgid "Left Sidebar Background"
+msgstr "רקע סרגל צד שמאלי"
+
+#: admin/options.php:873
+msgid "Content Background"
+msgstr "רקע התוכן"
+
+#: admin/options.php:867
+msgid "Content Headings"
+msgstr "תוכן הכותרות"
+
+#: admin/options.php:861
+msgid "Site Text"
+msgstr "טקסט האתר"
+
+#: admin/options.php:855
+msgid "Site Background"
+msgstr "רקע האתר"
+
+#: admin/options.php:819 admin/options.php:827 admin/options.php:835
+#: admin/options.php:843
+msgid "Text Area %d"
+msgstr "אזור הטקסט %d"
+
+#: admin/options.php:810
+msgid "Content Length (words)"
+msgstr "אורך התוכן (במילים)"
+
+#: admin/options.php:627 admin/options.php:799
+msgid "Read More Button"
+msgstr "כפתור קראו עוד"
+
+#: admin/options.php:792 admin/options.php:1261
+msgid "Static"
+msgstr "סטטי"
+
+#: admin/options.php:792
+msgid "Animated"
+msgstr "אנימציה"
+
+#: admin/options.php:783
+msgid "Apart"
+msgstr "בנפרד"
+
+#: admin/options.php:783
+msgid "Joined"
+msgstr "מחובר"
+
+#: admin/options.php:774
+msgid "Full width"
+msgstr "רוחב מלא"
+
+#: admin/options.php:766
+msgid "In pixels. The width is a percentage dependent on total site width and number of columns per row."
+msgstr "בפיקסלים. הרוחב הוא התוצאה באחוזים שמושפע מהרוחב הכללי של האתר ומספר העמודות לשורה."
+
+#: admin/options.php:734 admin/options.php:735
+msgid "All Categories"
+msgstr "כל הקטגוריות"
+
+#: admin/options.php:634
+msgid "Make icons clickable (linking to their respective pages)."
+msgstr "הפוך את האייקונים ללחיצים (מקשרים לעמודים הרלוונטיים שלהם)."
+
+#: admin/options.php:620
+msgid "Full Content"
+msgstr "תוכן מלא"
+
+#: admin/options.php:620 admin/options.php:1493 admin/options.php:1509
+msgid "Excerpt"
+msgstr "מובאה"
+
+#: admin/options.php:618
+msgid "Blocks Content"
+msgstr "תוכן הבלוקים"
+
+#: admin/options.php:641 admin/options.php:660 admin/options.php:679
+#: admin/options.php:698
+msgid "Block %d"
+msgstr "בלוק %d"
+
+#: admin/options.php:611 admin/options.php:726
+msgid "Section Description"
+msgstr "תאור הקטע"
+
+#: admin/options.php:604 admin/options.php:719
+msgid "Section Title"
+msgstr "כותרת הקטע"
+
+#: admin/options.php:580 admin/options.php:596
+msgid "Link"
+msgstr "קישור"
+
+#: admin/options.php:571 admin/options.php:586
+msgid "CTA Button"
+msgstr "כפתור CTA"
+
+#: admin/options.php:566 admin/options.php:573 admin/options.php:588
+msgid "Text"
+msgstr "טקסט"
+
+#: admin/options.php:559
+msgid "Title"
+msgstr "כותרת"
+
+#: admin/options.php:557
+msgid "Slider Caption"
+msgstr "כותרת הסליידר"
+
+#: admin/options.php:551
+msgid "Select the desired slider from the list. Sliders can be administered in the dashboard."
+msgstr "בחרו את השיקופית הרצויה מתוך הרשימה. השיקופיות מנוהלות מלוח הבקרה."
+
+#: admin/options.php:550
+msgid " - No sliders defined - "
+msgstr "- לא הוגדרו סליידרים -"
+
+#: admin/options.php:550
+msgid " - Please install, activate or update Serious Slider plugin - "
+msgstr "- נא התקינו, הפעילו או עדכנו את התוסף Serious Slider -"
+
+#: admin/options.php:542
+msgid "Enter shortcode provided by slider plugin. The plugin will be responsible for the slider's appearance."
+msgstr "הכניסו את הקוד המקוצר שסופק על ידי תוסף הסליידר. התוסף יהיה אחראי להופעת הסליידר."
+
+#: admin/options.php:541
+msgid "Shortcode"
+msgstr "קוד מקוצר"
+
+#: admin/options.php:534
+msgid "Slider Link"
+msgstr "קישור הסליידר"
+
+#: admin/options.php:528
+msgid "The default image can be replaced by setting a new static image."
+msgstr "תמונת ברירת המחדל יכולה להיות מוחלפת ע\"י הגדרת תמונה סטטית חדשה."
+
+#: admin/options.php:527
+msgid "Slider Image"
+msgstr "תמונת הסליידר"
+
+#: admin/options.php:518
+msgid "Static Image"
+msgstr "תמונה סטטית"
+
+#: admin/options.php:517
+msgid "Use Shortcode"
+msgstr "השתמש בקוד מקוצר"
+
+#: admin/options.php:516 admin/options.php:548
+msgid "Serious Slider"
+msgstr "Serious Slider"
+
+#: admin/options.php:504
+msgid "More Posts Label"
+msgstr "עוד תוויות פוסטים"
+
+#: admin/options.php:497 admin/options.php:1434
+msgid "Posts"
+msgstr "פוסטים"
+
+#: admin/options.php:497
+msgid "Static Page"
+msgstr "עמוד סטטי"
+
+#: admin/options.php:207 admin/options.php:495
+msgid "Featured Content"
+msgstr "תוכן מומלץ"
+
+#: admin/options.php:489
+msgid "use a static page"
+msgstr "השתמש בעמוד סטטי"
+
+#: admin/options.php:489
+msgid "To activate the Landing Page, make sure to set the WordPress <strong>Front Page displays</strong> option to %s"
+msgstr "על מנת להפעיל את עמוד הנחיתה נא ודאו שהגדרתם את<strong> תצוגת עמוד ראשי של וורדפרס</strong> ל %s"
+
+#: admin/options.php:481
+msgid "Disabled (use WordPress homepage)"
+msgstr "כבוי (השתמש בעמוד הבית של וורדפרס)"
+
+#: admin/options.php:469
+msgid "Header Widget Alignment"
+msgstr "יישור הווידג'ט בכותרת"
+
+#: admin/options.php:462
+msgid "Header Widget Width"
+msgstr "רוחב הווידג'ט בכותרת"
+
+#: admin/options.php:448
+msgid "Logo Image"
+msgstr "תמונת הלוגו"
+
+#: admin/options.php:442
+msgid "Show Tagline"
+msgstr "הצג שורת תגיות"
+
+#: admin/options.php:436
+msgid "Empty"
+msgstr "ריק"
+
+#: admin/options.php:436
+msgid "Logo & Site Title"
+msgstr "לוגו וכותרת האתר"
+
+#: admin/options.php:436
+msgid "Logo"
+msgstr "לוגו"
+
+#: admin/options.php:436 admin/options.php:1007
+msgid "Site Title"
+msgstr "כותרת האתר"
+
+#: admin/options.php:434
+msgid "Site Header Content"
+msgstr "תוכן כותרת האתר"
+
+#: admin/options.php:428
+msgid "Header Image Behaviour"
+msgstr "התנהגות תמונת הכותרת"
+
+#: admin/options.php:427 admin/options.php:1566
+msgid "Cropped"
+msgstr "מקוצץ (Cropped)"
+
+#: admin/options.php:420 admin/options.php:1559 admin/options.php:1583
+msgid "Changing this value may require to recreate your thumbnails."
+msgstr "שינוי ערך זה עלול לדרוש לייצר את כל התמונות הממוזערות מחדש."
+
+#: admin/options.php:412
+msgid "Header Image Height (in pixels)"
+msgstr "גובה תמונת הכותרת (בפיקסלים)"
+
+#: admin/options.php:404
+msgid "Menu Layout"
+msgstr "מבנה התפריט"
+
+#: admin/options.php:403 admin/options.php:471 admin/options.php:1220
+msgid "Right"
+msgstr "ימין"
+
+#: admin/options.php:403 admin/options.php:471 admin/options.php:1220
+msgid "Left"
+msgstr "שמאל"
+
+#: admin/options.php:396
+msgid "Menu Position"
+msgstr "מיקום התפריט"
+
+#: admin/options.php:395
+msgid "Over header image"
+msgstr "מעל תמונת הכותרת"
+
+#: admin/options.php:395
+msgid "Normal"
+msgstr "נורמלי"
+
+#: admin/options.php:388
+msgid "Fixed Menu"
+msgstr "תפריט מקובע"
+
+#: admin/options.php:387 admin/options.php:481 admin/options.php:1537
+#: admin/options.php:1545
+msgid "Enabled"
+msgstr "מופעל"
+
+#: admin/options.php:387 admin/options.php:497 admin/options.php:520
+#: admin/options.php:620 admin/options.php:651 admin/options.php:652
+#: admin/options.php:670 admin/options.php:671 admin/options.php:689
+#: admin/options.php:690 admin/options.php:708 admin/options.php:709
+#: admin/options.php:734 admin/options.php:735 admin/options.php:820
+#: admin/options.php:821 admin/options.php:828 admin/options.php:829
+#: admin/options.php:836 admin/options.php:837 admin/options.php:844
+#: admin/options.php:845 admin/options.php:1277 admin/options.php:1537
+#: admin/options.php:1545
+msgid "Disabled"
+msgstr "מושבת"
+
+#: admin/options.php:380
+msgid "Header/Menu Height"
+msgstr "גובה התפריט/הכותרת"
+
+#: admin/options.php:359
+msgid "Footer Widgets Alignment"
+msgstr "יישור הווידג'טים בכותרת התחתית"
+
+#: admin/options.php:358 admin/options.php:403 admin/options.php:471
+#: admin/options.php:1220
+msgid "Center"
+msgstr "מרכז"
+
+#: admin/options.php:358 admin/options.php:1220
+msgid "Default"
+msgstr "ברירת מחדל"
+
+#: admin/options.php:350
+msgid "4 Columns"
+msgstr "4 עמודות"
+
+#: admin/options.php:349
+msgid "3 Columns"
+msgstr "3 עמודות"
+
+#: admin/options.php:348
+msgid "2 Columns"
+msgstr "2 עמודות"
+
+#: admin/options.php:347
+msgid "1 Column"
+msgstr "עמודה אחת"
+
+#: admin/options.php:346
+msgid "All in a row"
+msgstr "הכל בשורה אחת"
+
+#: admin/options.php:343
+msgid "Footer Widgets Columns"
+msgstr "עמודות הווידג'טים בכותרת התחתונה"
+
+#: admin/options.php:334
+msgid "Post/page padding"
+msgstr "פסיעת (Padding) פוסט/עמוד"
+
+#: admin/options.php:325
+msgid "Three columns"
+msgstr "שלוש עמודות"
+
+#: admin/options.php:321
+msgid "Two columns"
+msgstr "שתי עמודות"
+
+#: admin/options.php:317
+msgid "One column"
+msgstr "עמודה אחת"
+
+#: admin/options.php:314
+msgid "Posts Layout"
+msgstr "סידור הפוסט"
+
+#: admin/options.php:306
+msgid "Right Sidebar Width"
+msgstr "רוחב סרגל הצד הימני"
+
+#: admin/options.php:299
+msgid "Left Sidebar Width"
+msgstr "רוחב סרגל הצד השמאלי"
+
+#: admin/options.php:292
+msgid "Site Width"
+msgstr "רוחב האתר"
+
+#: admin/options.php:286
+msgid "Wide"
+msgstr "רחב"
+
+#: admin/options.php:284
+msgid "Theme alignment"
+msgstr "יישור התבנית"
+
+#: admin/options.php:275
+msgid "Three columns, one sidebar on each side"
+msgstr "שלוש עמודות, סרגל צד אחד בכל צד"
+
+#: admin/options.php:271
+msgid "Three columns, sidebars on the left"
+msgstr "שלוש עמודות, סרגלי צד משמאל"
+
+#: admin/options.php:267
+msgid "Three columns, sidebars on the right"
+msgstr "שלוש עמודות, סרגלי צד מימין"
+
+#: admin/options.php:263
+msgid "Two columns, sidebar on the left"
+msgstr "שתי עמודות, סרגל צד משמאל"
+
+#: admin/options.php:259
+msgid "Two columns, sidebar on the right"
+msgstr "שתי עמודות, סרגל צד מימין"
+
+#: admin/options.php:255
+msgid "One column (no sidebars)"
+msgstr "עמודה אחת (בלי סרגלי צד)"
+
+#: admin/options.php:252
+msgid "Main Layout"
+msgstr "סידור ראשי"
+
+#: admin/options.php:232
+msgid "Miscellaneous"
+msgstr "שונות"
+
+#: admin/options.php:230 includes/comments.php:88
+msgid "Comments"
+msgstr "תגובות"
+
+#: admin/options.php:229
+msgid "Excerpts"
+msgstr "מובאות"
+
+#: admin/options.php:217
+msgid "Header Titles"
+msgstr "כותרות הכותרת"
+
+#: admin/options.php:228
+msgid "Meta Information"
+msgstr "מידע META"
+
+#: admin/options.php:227
+msgid "Featured Image"
+msgstr "תמונה מומלצת"
+
+#: admin/options.php:224 admin/options.php:2324
+msgid "Footer"
+msgstr "כותרת תחתית"
+
+#: admin/options.php:222
+msgid "Content"
+msgstr "תוכן"
+
+#: admin/options.php:220 includes/setup.php:57
+msgid "Social Icons"
+msgstr "אייקונים של רשתות חברתיות"
+
+#: admin/options.php:219
+msgid "Search Box Locations"
+msgstr "מיקום שדות החיפוש"
+
+#: admin/options.php:218
+msgid "Content Images"
+msgstr "תמונות התוכן"
+
+#: admin/options.php:216
+msgid "Decorations"
+msgstr "קישוט"
+
+#: admin/options.php:215
+msgid "Structure"
+msgstr "מבנה"
+
+#: admin/options.php:213
+msgid "Formatting"
+msgstr "פורמט"
+
+#: admin/options.php:212
+msgid "Content Fonts"
+msgstr "גופני התוכן"
+
+#: admin/options.php:211
+msgid "Widget Fonts"
+msgstr "גופני הווידג'טים"
+
+#: admin/options.php:210
+msgid "Header Fonts"
+msgstr "גופני הכותרת"
+
+#: admin/options.php:209 admin/options.php:978
+msgid "General Font"
+msgstr "גופן כללי"
+
+#: admin/options.php:206
+msgid "Text Areas"
+msgstr "אזורי טקסט"
+
+#: admin/options.php:203
+msgid "Featured Icon Blocks"
+msgstr "בלוקים של אייקונים מומלצים"
+
+#: admin/options.php:202 admin/options.php:513
+msgid "Slider"
+msgstr "סליידר"
+
+#: admin/options.php:201
+msgid "Settings"
+msgstr "הגדרות"
+
+#: admin/options.php:199 admin/options.php:223 admin/options.php:2346
+msgid "Header"
+msgstr "כותרת"
+
+#: admin/options.php:197
+msgid "Layout"
+msgstr "מבנה"
+
+#: admin/options.php:188
+msgid "Post Information"
+msgstr "מידע הפוסט"
+
+#: admin/options.php:187
+msgid "Typography"
+msgstr "טיפוגרפיה"
+
+#: admin/options.php:186
+msgid "Colors"
+msgstr "צבעים"
+
+#: admin/options.php:185
+msgid "General"
+msgstr "כללי"
+
+#: admin/options.php:184 admin/options.php:225 admin/options.php:479
+msgid "Landing Page"
+msgstr "עמוד נחיתה"
+
+#: admin/options.php:164 admin/options.php:183
+msgid "Site Identity"
+msgstr "זהות האתר"
+
+#: admin/options.php:157
+msgid "Header Image Settings."
+msgstr "הגדרות תמונת הכותרת."
+
+#: admin/options.php:156 admin/options.php:519
+msgid "Header Image"
+msgstr "תמונת הכותרת"
+
+#: admin/options.php:149
+msgid "Background Settings."
+msgstr "הגדרות הרקע."
+
+#: admin/options.php:148
+msgid "Background"
+msgstr "רקע"
+
+#: admin/options.php:134
+msgid "Rate %s on WordPress.org"
+msgstr "דרג את %s ב- WordPress.org"
+
+#: admin/options.php:100
+msgid "About"
+msgstr "אודות"
+
+#: admin/main.php:161
+msgid "Theme Updates"
+msgstr "עדכוני התבנית"
+
+#: admin/main.php:128
+msgid "Reset to Defaults"
+msgstr "אפס לברירת מחדל"
+
+#: admin/main.php:124 admin/options.php:140
+msgid "Manage Theme Settings"
+msgstr "נהל הגדרות תבנית"
+
+#: admin/main.php:119
+msgid "Customize %s"
+msgstr "עצב את %s"
+
+#: admin/main.php:106 admin/options.php:128
+msgid "Priority Support"
+msgstr "תמיכה מועדפת"
+
+#: admin/main.php:105 admin/options.php:122
+msgid "Browse the Forum"
+msgstr "דפדפו בפורום"
+
+#: admin/main.php:104 admin/options.php:116
+msgid "Read the Docs"
+msgstr "קראו את המסמכים"
+
+#: admin/main.php:90
+msgid "Kahuna settings have been reset successfully."
+msgstr "הגדרות קהונה אופסו בהצלחה."
+
+#: admin/main.php:82
+msgid "Kahuna settings loaded successfully."
+msgstr "הגדרות קהונה נטענו בהצלחה."
+
+#: admin/main.php:73
+msgid "Sorry, but you do not have sufficient permissions to access this page."
+msgstr "מצטערים, אבל אין לכם הרשאות מתאימות כדי להכנס לעמוד זה."
+
+#: admin/main.php:62 admin/main.php:97
+msgid "Kahuna Theme"
+msgstr "תבנית קהונה"
+
+#: admin/main.php:54
+msgid "Reset Kahuna Settings to Defaults?"
+msgstr "האם לאפס את הגדרות קהונה לברירת מחדל?"
+
+#: 404.php:16
+msgid "Apologies, but the page you requested could not be found. Perhaps searching will help."
+msgstr "מצטערים, אבל העמוד אותו חיפשתם לא נמצא. אולי תנסו חיפוש?"
+
+#: 404.php:15 includes/core.php:193 includes/core.php:407
+msgid "Not Found"
+msgstr "לא נמצא"
+
+#: admin/options.php:1000
+msgid "The fonts under the <em>Preferred Theme Fonts</em> list are recommended because they have all the font weights used throughout the theme."
+msgstr "הגופנים תחת רשימת<em> גופני תבנית מועדפים</em>  מומלצים בגלל שהם מכילים את כל משקלי הפונטים הנדרשים לכל התבנית."
+
+#: admin/options.php:1620
+msgid "Select where social icons should be visible in.<br><br><strong>Social Icons are defined using the <a href=\"%1$s\" target=\"_blank\">social icons menu</a></strong>. Read the <a href=\"%2$s\" target=\"_blank\">theme documentation</a> on how to create a social menu."
+msgstr "בחרו היכן האייקונים של הרשתות החברתיות צריכים להופיע. <br><br><strong>האייקונים של הרשתות החברתיות מוגדרים באמצעות <a href=\"%1$s\" target=\"_blank\">תפריט האייקונים של הרשתות החברתיות</a></strong>. קראו את <a href=\"%2$s\" target=\"_blank\">מסמכי התבנית </a>על מנת לדעת כיצד ליצור תפריט רשתות חברתיות."
+
+#: admin/options.php:522
+msgid "To create an advanced slider, use our <a href='%s' target='_blank'>Serious Slider</a> plugin or any other slider plugin."
+msgstr "כדי ליצור סליידר מתקדם השתמשו בתוסף <a href='%s' target='_blank'> serious Slider שלנו</a> או כל תוסף סליידר אחר."
+
+#: admin/options.php:1245 admin/options.php:1253 admin/options.php:1592
+#: admin/options.php:1630 admin/options.php:1638 admin/options.php:1646
+#: admin/options.php:1654 admin/options.php:1662
+msgid "Enable"
+msgstr "מופעל"
+
+#: content/author-bio.php:30
+msgid "View all posts by "
+msgstr "צפו בכל הפוסטים מאת "
+
+#: admin/options.php:846
+msgid "<br><br>Page properties that will be used:<br>- page title as text title<br>- page content as text content<br>- page featured image as text area background image"
+msgstr "<br><br>מאפייני העמוד שיהיו בשימוש:<br> - כותרת העמוד ככותרת הטקסט<br> - תוכן העמוד כתוכן הטקסט<br> - תמונה מומלצת של העמוד כתמונת הרקע של הטקסט"
+
+#: includes/comments.php:56
+msgctxt "%s = human-readable time difference"
+msgid "%1$s ago"
+msgstr "לפני %1$s"
+
+#: admin/options.php:987 admin/options.php:1016 admin/options.php:1045
+#: admin/options.php:1074 admin/options.php:1103 admin/options.php:1132
+#: admin/options.php:1161 admin/options.php:1191
+msgid "300 ligher"
+msgstr "300 (דק יותר)"
+
+#: admin/options.php:1568
+msgid "<strong>Contained</strong> will scale depending on the viewed resolution<br><strong>Cropped</strong> will try to keep the configured height."
+msgstr "<strong>מוכל</strong>תמיד יותאם תלוי הרזולוציה הנצפית. <br> <strong>מקוצץ</strong> ינסה לשמור על הגובה המוגדר."
+
+#: admin/options.php:946
+msgid "Boxes Background"
+msgstr "רקע התָאִים"
+
+#: admin/options.php:790
+msgid "Box Appearance"
+msgstr "תצוגת התא"
+
+#: admin/options.php:781
+msgid "Box Stacking"
+msgstr "הערמת תָּאִים"
+
+#: admin/options.php:772
+msgid "Box Layout"
+msgstr "מבנה התא"
+
+#: admin/options.php:765
+msgid "Box Height"
+msgstr "גובה התא"
+
+#: admin/options.php:753
+msgid "Boxes Per Row"
+msgstr "כמה תאים בשורה"
+
+#: admin/options.php:746
+msgid "Number of Boxes"
+msgstr "מספר התָּאים"
+
+#: admin/options.php:733
+msgid "Boxes Content"
+msgstr "תוכן התָּאים"
+
+#: admin/options.php:286 admin/options.php:774
+msgid "Boxed"
+msgstr "בתוך תא"
+
+#: admin/options.php:205
+msgid "Featured Boxes 2"
+msgstr "תאים מומלצים 2"
+
+#. Author URI of the plugin/theme
+msgid "http://www.cryoutcreations.eu"
+msgstr "http://www.cryoutcreations.eu"
+
+#. Author of the plugin/theme
+msgid "Cryout Creations"
+msgstr "Cryout Creations"
+
+#. Theme URI of the plugin/theme
+msgid "http://www.cryoutcreations.eu/wordpress-themes/kahuna"
+msgstr "http://www.cryoutcreations.eu/wordpress-themes/kahuna"

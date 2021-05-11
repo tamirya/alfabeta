@@ -1,0 +1,583 @@
+# Translation of Themes - Square in Hebrew
+# This file is distributed under the same license as the Themes - Square package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-12-21 17:11:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: he_IL\n"
+"Project-Id-Version: Themes - Square\n"
+
+#. Description of the plugin/theme
+msgid "Square is a flexible responsive multipurpose theme compatible with all browsers and devices, fully mobile friendly, loaded with lots of features. It is a minimal theme based on WordPress Customizer that allows you to customize with live preview. The theme can be used for business, corporate, digital agency, personal, portfolio, photography, parallax, blogs and magazines. Square is eCommerce (WooCommerce) Compatible, Polylang Compatible, WPML, RTL, Retina Ready, SEO Friendly and Support bbPress and BuddyPress. More over it is a complete theme. For demo http://demo.hashthemes.com/square"
+msgstr "Square היא תבנית גמישה, רספונסיבית ומיועדת למטרות שונות ותואמת לכל הדפדפנים והמכשירים השונים, תואמת לחלוטין למכשירים ניידים ומלאה בהמון אפשרויות. זוהי תבנית מינמלית המבוססת על הקוסטומייזר של וורדפרס שמאפשר לכם לעצב עם תצוגה מיידית של השינויים. התבנית מתאימה לעסקים, ארגונים, אנשי דיגיטל, אנשים פרטיים, לפורטפוליו, צלמים, בלוגים ומגזינים. תומכת מסחר אלטרוני (WooCommerce) וכן תואמתPolylang , WPML, RTL, Retina Ready, SEO Friendly ותומכת bbPress ו BuddyPress. מעבר לכל זוהי תבנית שלמה. להדגמה http://demo.hashthemes.com/square"
+
+#. Theme Name of the plugin/theme
+msgid "Square"
+msgstr "ריבוע"
+
+#: woocommerce/single-product-reviews.php:36
+msgid "Reviews"
+msgstr "ביקורות"
+
+#. translators: 1: reviews count 2: product name
+#: woocommerce/single-product-reviews.php:34
+msgid "%1$s review for %2$s"
+msgid_plural "%1$s reviews for %2$s"
+msgstr[0] "%1$s ביקורת עבור %2$s"
+msgstr[1] "%1$s ביקורות עבור %2$s"
+
+#: inc/customizer.php:854
+msgid "Documentation"
+msgstr "מסמכים"
+
+#. translators: link
+#: inc/customizer.php:875
+msgid "Please do rate our theme if you liked it %s"
+msgstr "נא דרגו את התבנית שלנו אם אתם אוהבים אותה %s"
+
+#: inc/customizer.php:854
+msgid "Like Us in Facebook"
+msgstr "עשו לנו לייק בפייסבוק"
+
+#: inc/customizer.php:854
+msgid "Support Forum"
+msgstr "פורום תמיכה"
+
+#: inc/customizer.php:854
+msgid "Live Demo"
+msgstr "הדגמה חייה"
+
+#: inc/customizer.php:835
+msgid "Important Links"
+msgstr "קישורים חשובים"
+
+#: inc/customizer.php:124
+msgid "This banner will show in the header of all the inner pages <br/>Recommended Image Size: 1800X400px"
+msgstr "הבאנר הזה יופיע בכותרת של כל העמודים הפנימיים <br/> גודל תמונה מומלץ: 1800X400 פיקסלים"
+
+#: inc/customizer.php:79
+msgid "Disable Sticky Header"
+msgstr "בטל תפריט מקובע"
+
+#: inc/customizer.php:61
+msgid "Header Settings"
+msgstr "הגדרות כותרת"
+
+#: inc/widgets/widget-personal-info.php:40
+msgid "Short Intro"
+msgstr "מבוא קצר"
+
+#: inc/widgets/widget-personal-info.php:35
+msgid "Image"
+msgstr "תמונה"
+
+#: inc/widgets/widget-personal-info.php:17
+msgid "A widget to display Personal Information"
+msgstr "הוסיפו ווידג'ט כדי להציג מידע אישי"
+
+#: inc/widgets/widget-fields.php:145
+msgid "Select Image"
+msgstr "בחרו תמונה"
+
+#: inc/widgets/widget-fields.php:144
+msgid "Remove"
+msgstr "הסר"
+
+#: inc/widgets/widget-fields.php:137
+msgid "No image selected"
+msgstr "לא נבחרה תמונה"
+
+#: inc/widgets/widget-contact-info.php:56
+msgid "Contact Time"
+msgstr "זמן איש קשר "
+
+#: inc/widgets/widget-contact-info.php:50
+msgid "Contact Address"
+msgstr "כתובת איש קשר"
+
+#: inc/widgets/widget-contact-info.php:35
+msgid "Phone"
+msgstr "טלפון"
+
+#: inc/widgets/widget-contact-info.php:17
+msgid "A widget to display Contact Information"
+msgstr "ווידג'ט להצגת פרטי איש קשר"
+
+#: inc/customizer.php:1007
+msgid "Clear"
+msgstr "נקה"
+
+#: inc/customizer.php:1006
+msgid "Add/Edit Gallery"
+msgstr "הוסף/ערוך גלריה"
+
+#: inc/customizer.php:485
+msgid "Recommended Image Size: 400X420px <br/> Leave the gallery empty for Full Width Text"
+msgstr "גודל תמונה מומלץ: 400X420 פיקסלים <br/> השאירו את הגלריה ריקה עבור טקסט ברוחב מלא"
+
+#: template-parts/content-summary.php:39
+msgid "Read More"
+msgstr "קראו עוד"
+
+#: inc/customizer.php:173
+msgid "Disable Share Buttons"
+msgstr "בטל כפתורי שיתוף של רשתות חברתיות"
+
+#: inc/customizer.php:149
+msgid "Blog Content Format"
+msgstr "פורמט תוכן הבלוג"
+
+#: inc/customizer.php:133
+msgid "Blog Settings"
+msgstr "הגדרות הבלוג"
+
+#: inc/customizer.php:827
+msgid "Instagram"
+msgstr "אינסטגרם"
+
+#: woocommerce/single-product-reviews.php:114
+msgid "Only logged in customers who have purchased this product may leave a review."
+msgstr "רק לקוחות מחוברים אשר רכשו מוצר זה יכולים לרשום חוות דעת. "
+
+#: woocommerce/single-product-reviews.php:105
+msgid "Your Review"
+msgstr "חוות דעתכם"
+
+#: woocommerce/single-product-reviews.php:101
+msgid "Very poor"
+msgstr "עלוב ביותר"
+
+#: woocommerce/single-product-reviews.php:100
+msgid "Not that bad"
+msgstr "לא כל כך נורא"
+
+#: woocommerce/single-product-reviews.php:99
+msgid "Average"
+msgstr "ממוצע"
+
+#: woocommerce/single-product-reviews.php:98
+msgid "Good"
+msgstr "בסדר"
+
+#: woocommerce/single-product-reviews.php:97
+msgid "Perfect"
+msgstr "מעולה"
+
+#: woocommerce/single-product-reviews.php:96
+msgid "Rate&hellip;"
+msgstr "דרג&hellip;"
+
+#: woocommerce/single-product-reviews.php:95
+msgid "Your rating"
+msgstr "הדירוג שלכם"
+
+#. translators: account page url
+#: woocommerce/single-product-reviews.php:90
+msgid "You must be <a href=\"%s\">logged in</a> to post a review."
+msgstr "עליכם להיות <a href=\"%s\">מחוברים</a> כדי לכתוב חוות דעת."
+
+#: woocommerce/single-product-reviews.php:82
+msgid "Submit"
+msgstr "שלח"
+
+#: woocommerce/single-product-reviews.php:80
+msgid "Email*"
+msgstr "אימייל*"
+
+#: woocommerce/single-product-reviews.php:79
+msgid "Name*"
+msgstr "שם*"
+
+#. translators: Title
+#: woocommerce/single-product-reviews.php:73
+msgid "Be the first to review &ldquo;%s&rdquo;"
+msgstr "היו הראשונים לכתוב חוות דעת &ldquo;%s&rdquo;"
+
+#: woocommerce/single-product-reviews.php:71
+msgid "Add a review"
+msgstr "הוסיפו חוות דעת"
+
+#: woocommerce/single-product-reviews.php:58
+msgid "There are no reviews yet."
+msgstr "אין עדיין חוות דעת."
+
+#: inc/square-metabox.php:16
+msgid "Sidebar Layout"
+msgstr "מבנה סרגל הצד"
+
+#: inc/customizer.php:644
+msgid "Section Title & Logo"
+msgstr "אזור כותרת ולוגו"
+
+#: inc/customizer.php:513
+msgid "Disable Tab Section "
+msgstr "בטל אזור טאבים"
+
+#: inc/customizer.php:406
+msgid "Disable About Section "
+msgstr "בטל אזור \"אודות\""
+
+#: functions.php:99
+msgid "Shop Sidebar"
+msgstr "סרגל צד לחנות"
+
+#: inc/customizer.php:685
+msgid "Recommended Image Size: 220X90px"
+msgstr "גודל תמונה מומלץ: 220X90 פיקסלים"
+
+#: inc/customizer.php:623
+msgid "Disable Client Logo Section "
+msgstr "בטל אזור לוגו של לקוחות"
+
+#: inc/customizer.php:315
+msgid "Enable Read More link "
+msgstr "הפעל קישור \"קראו עוד\""
+
+#: inc/customizer.php:284
+msgid "Recommended Image Size: 1800X800px"
+msgstr "גודל תמונה מומלץ: 1800X800 פיקסלים"
+
+#: functions.php:79
+msgid "Right Sidebar"
+msgstr "סרגל צד ימני"
+
+#: inc/customizer.php:121
+msgid "Page Header Banner"
+msgstr "באנר כותרת העמוד"
+
+#: template-parts/content-summary.php:41 template-parts/content.php:35
+msgid "Continue reading &rarr;"
+msgstr "המשיכו לקרוא &larr;"
+
+#: inc/customizer.php:101
+msgid "Header Background Color"
+msgstr "צבע רקע הכותרת"
+
+#: inc/customizer.php:26
+msgid "Black"
+msgstr "שחור"
+
+#: inc/customizer.php:25
+msgid "White"
+msgstr "לבן"
+
+#: front-page.php:24 inc/customizer.php:252 templates/home-template.php:15
+msgid "Create website in no time"
+msgstr "צרו אתר בזמן קצרצר"
+
+#: front-page.php:23 inc/customizer.php:233 templates/home-template.php:14
+msgid "Free WordPress Themes"
+msgstr "תבניות וורדפרס חינמיות"
+
+#: inc/customizer.php:808
+msgid "Linkedin"
+msgstr "לינקדאין"
+
+#: inc/customizer.php:789
+msgid "Youtube"
+msgstr "יוטיוב"
+
+#: inc/customizer.php:770
+msgid "Pinterest"
+msgstr "פינטרסט"
+
+#: inc/customizer.php:751
+msgid "Google Plus"
+msgstr "גוגל פלוס"
+
+#: inc/customizer.php:732
+msgid "Twitter"
+msgstr "טוויטר"
+
+#: inc/customizer.php:713
+msgid "Facebook"
+msgstr "פייסבוק"
+
+#: inc/customizer.php:694
+msgid "Footer Social Icons"
+msgstr "אייקונים לרשתות חברתיות בתחתית"
+
+#. Template Name of the plugin/theme
+msgid "Home Page"
+msgstr "עמוד הבית"
+
+#. translators: %s: Name of current post
+#: template-parts/content-page.php:27
+msgid "Edit %s"
+msgstr "ערוך את %s"
+
+#: template-parts/content-page.php:16 template-parts/content-single.php:20
+#: template-parts/content-summary.php:44 template-parts/content.php:40
+msgid "Pages:"
+msgstr "עמודים:"
+
+#: template-parts/content-none.php:29
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "עושה רושם שלא מצאנו את מה שחיפשתם. אולי חיפוש יעזור."
+
+#: template-parts/content-none.php:24
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "מצטערים, אך לא נמצאו תוצאות התואמות לחיפוש. יש לנסות שנית עם מילות מפתח חלופיות."
+
+#. translators: Link
+#: template-parts/content-none.php:20
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "מוכנים לפרסם את הפוסט הראשון שלכם? <a href=\"%1$s\">התחילו כאן</a>."
+
+#: template-parts/content-none.php:12
+msgid "Nothing Found"
+msgstr "לא נמצא דבר"
+
+#. translators: Search Query
+#: search.php:14
+msgid "Search Results for: %s"
+msgstr "תוצאות חיפוש עבור: %s"
+
+#: inc/template-tags.php:47
+msgid " Comment Closed"
+msgstr "התגובות סגורות"
+
+#: inc/template-tags.php:43
+msgid "1 Comment"
+msgstr "תגובה אחת"
+
+#: inc/template-tags.php:41
+msgid " Comments"
+msgstr " תגובות"
+
+#: inc/template-tags.php:39
+msgid "No Comments"
+msgstr "אין תגובות"
+
+#. translators: author
+#: inc/template-tags.php:31
+msgctxt "post author"
+msgid "by %s"
+msgstr "מאת %s"
+
+#. translators: 1: comment date, 2: comment time
+#: inc/square-functions.php:98
+msgid "%1$s at %2$s"
+msgstr "%1$s בשעה %2$s"
+
+#: inc/square-functions.php:86
+msgid "Edit"
+msgstr "עריכה"
+
+#: inc/square-functions.php:84
+msgid "Your comment is awaiting moderation."
+msgstr "תגובתכם ממתינה לאישור."
+
+#: inc/customizer.php:684
+msgid "Upload Clients Logos"
+msgstr "העלו לוגואים של לקוחות"
+
+#: inc/customizer.php:664 inc/widgets/widget-contact-info.php:30
+#: inc/widgets/widget-personal-info.php:30
+msgid "Title"
+msgstr "כותרת"
+
+#: inc/customizer.php:605
+msgid "Clients Logo Section"
+msgstr "אזור לוגואים של לקוחות"
+
+#: inc/customizer.php:555
+msgid "Tab Title"
+msgstr "כותרת הטאב"
+
+#: inc/customizer.php:535
+msgid "Tab "
+msgstr "טאב "
+
+#: inc/customizer.php:495
+msgid "Tab Section"
+msgstr "אזור הטאבים"
+
+#: inc/customizer.php:484
+msgid "About Us Stack Image"
+msgstr "מחסנית תמונות אודותינו"
+
+#: inc/customizer.php:464
+msgid "About Page Stack Images"
+msgstr "אודות ערימת תמונות לעמוד"
+
+#: inc/customizer.php:426
+msgid "About Page "
+msgstr "עמוד אודות"
+
+#: inc/customizer.php:388
+msgid "About Us Section"
+msgstr "אזור \"אודותינו\""
+
+#: inc/customizer.php:376 inc/customizer.php:576
+msgid "FontAwesome Icon"
+msgstr "אייקון FontAwesome"
+
+#: inc/customizer.php:356 inc/customizer.php:445 inc/customizer.php:595
+msgid "Select a Page"
+msgstr "בחרו עמוד"
+
+#: inc/customizer.php:337
+msgid "Featured Page "
+msgstr "עמוד מומלץ "
+
+#: inc/customizer.php:297
+msgid "Featured Section"
+msgstr "אזור מומלץ"
+
+#: inc/customizer.php:281
+msgid "Slider Image"
+msgstr "תמונת מצגת"
+
+#: inc/customizer.php:264
+msgid "Caption SubTitle"
+msgstr "כותרת כותרת המשנה"
+
+#: inc/customizer.php:245
+msgid "Caption Title"
+msgstr "כותרת בכותרת"
+
+#: inc/customizer.php:225
+msgid "Slider "
+msgstr "סליידר/מצגת"
+
+#: inc/customizer.php:202
+msgid "Slider Section"
+msgstr "אזור הסליידר"
+
+#: inc/customizer.php:193
+msgid "Home Page Sections"
+msgstr "אזורי עמוד הבית"
+
+#: inc/customizer.php:185
+msgid "Colors"
+msgstr "צבעים"
+
+#: inc/customizer.php:180
+msgid "Background Image"
+msgstr "תמונת רקע"
+
+#: inc/customizer.php:53
+msgid "Header Logo"
+msgstr "לוגו הכותרת"
+
+#: inc/customizer.php:47
+msgid "Site Title & Tagline"
+msgstr "שם ותאור האתר"
+
+#: inc/customizer.php:42
+msgid "Your theme supports a static front page."
+msgstr "התבנית תומכת בעמוד ראשי סטטי."
+
+#: inc/customizer.php:40
+msgid "Static Front Page"
+msgstr "עמוד ראשי סטטי"
+
+#: inc/customizer.php:33
+msgid "General Settings"
+msgstr "הגדות כלליות"
+
+#. Translators: To add an additional character subset specific to your
+#. language, translate this to 'greek', 'cyrillic', 'devanagari' or
+#. 'vietnamese'. Do not translate into your own language.
+#: functions.php:193
+msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
+msgid "no-subset"
+msgstr "no-subset"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Inconsolata, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:185
+msgctxt "Roboto Condensed font: on or off"
+msgid "on"
+msgstr "ב"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Open Sans, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:177
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "על"
+
+#: functions.php:149
+msgid "About Footer"
+msgstr "כותרת תחתית \"אודות\""
+
+#: functions.php:139
+msgid "Footer 4"
+msgstr "אזור כותרת תחתית 4"
+
+#: functions.php:129
+msgid "Footer 3"
+msgstr "אזור כותרת תחתית 3"
+
+#: functions.php:119
+msgid "Footer 2"
+msgstr "אזור כותרת תחתית 2"
+
+#: functions.php:109
+msgid "Footer 1"
+msgstr "אזור כותרת תחתית 1"
+
+#: functions.php:89
+msgid "Left Sidebar"
+msgstr "סרגל צד שמאלי"
+
+#: functions.php:35
+msgid "Primary Menu"
+msgstr "תפריט ראשי"
+
+#. translators: 1: link 2: Theme name
+#: footer.php:66
+msgid "%1$s by %2$s"
+msgstr "%1$s על ידי: %2$s"
+
+#: footer.php:62
+msgid "WordPress Theme"
+msgstr "תבנית וורדפרס"
+
+#: comments.php:77
+msgid "Comment"
+msgstr "תגובה"
+
+#: comments.php:71 inc/widgets/widget-contact-info.php:45
+msgid "Website"
+msgstr "אתר אינטרנט"
+
+#: comments.php:67 inc/widgets/widget-contact-info.php:40
+msgid "Email"
+msgstr "דוא''ל"
+
+#: comments.php:63 inc/widgets/widget-personal-info.php:46
+msgid "Name"
+msgstr "שם השולח"
+
+#: comments.php:52
+msgid "Comments are closed."
+msgstr "התגובות סגורות."
+
+#: 404.php:18
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "אופס! העמוד לא נמצא."
+
+#: 404.php:12
+msgid "404 Error"
+msgstr "שגיאת 404"
+
+#. Theme URI of the plugin/theme
+msgid "https://hashthemes.com/wordpress-theme/square/"
+msgstr "https://hashthemes.com/wordpress-theme/square/"
+
+#. Author URI of the plugin/theme
+msgid "https://hashthemes.com"
+msgstr "https://hashthemes.com"
+
+#. Author of the plugin/theme
+msgid "HashThemes"
+msgstr "HashThemes"
