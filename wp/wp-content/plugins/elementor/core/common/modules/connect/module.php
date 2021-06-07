@@ -4,6 +4,8 @@ namespace Elementor\Core\Common\Modules\Connect;
 use Elementor\Core\Base\Module as BaseModule;
 use Elementor\Core\Common\Modules\Connect\Apps\Base_App;
 use Elementor\Core\Common\Modules\Connect\Apps\Connect;
+use Elementor\Core\Common\Modules\Connect\Apps\Library;
+use Elementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -11,6 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Module extends BaseModule {
 
+	/**
+	 * @since 2.3.0
+	 * @access public
+	 */
 	public function get_name() {
 		return 'connect';
 	}
@@ -46,23 +52,18 @@ class Module extends BaseModule {
 
 	protected $admin_page;
 
+	/**
+	 * @since 2.3.0
+	 * @access public
+	 */
 	public function __construct() {
 		$this->registered_apps = [
 			'connect' => Connect::get_class_name(),
+			'library' => Library::get_class_name(),
 		];
 
 		// Note: The priority 11 is for allowing plugins to add their register callback on elementor init.
 		add_action( 'elementor/init', [ $this, 'init' ], 11 );
-
-		wp_register_script(
-			'elementor-connect',
-			$this->get_js_assets_url( 'connect', '/core/common/modules/connect/assets/js/' ),
-			[
-				'jquery',
-			],
-			ELEMENTOR_VERSION,
-			true
-		);
 	}
 
 	/**
@@ -95,11 +96,20 @@ class Module extends BaseModule {
 	}
 
 	/**
+	 * @deprecated 3.1.0
+	 */
+	public function localize_settings() {
+		Plugin::$instance->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function( __METHOD__, '3.1.0' );
+
+		return [];
+	}
+
+	/**
 	 * Register app.
 	 *
 	 * Registers an app.
 	 *
-	 * @since  2.3.0
+	 * @since 2.3.0
 	 * @access public
 	 *
 	 * @param string $slug App slug.
@@ -118,7 +128,7 @@ class Module extends BaseModule {
 	 *
 	 * Retrieve the app instance.
 	 *
-	 * @since  2.3.0
+	 * @since 2.3.0
 	 * @access public
 	 *
 	 * @param $slug
@@ -134,17 +144,27 @@ class Module extends BaseModule {
 	}
 
 	/**
+	 * @since 2.3.0
+	 * @access public
 	 * @return Base_App[]
 	 */
 	public function get_apps() {
 		return $this->apps;
 	}
 
+	/**
+	 * @since 2.3.0
+	 * @access public
+	 */
 	public function register_category( $slug, $args ) {
 		$this->categories[ $slug ] = $args;
 		return $this;
 	}
 
+	/**
+	 * @since 2.3.0
+	 * @access public
+	 */
 	public function get_categories() {
 		return $this->categories;
 	}

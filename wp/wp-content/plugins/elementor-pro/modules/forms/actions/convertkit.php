@@ -4,9 +4,8 @@ namespace ElementorPro\Modules\Forms\Actions;
 use Elementor\Controls_Manager;
 use ElementorPro\Modules\Forms\Classes\Form_Record;
 use ElementorPro\Modules\Forms\Classes\Integration_Base;
-use ElementorPro\Modules\Forms\Controls\Fields_Map;
 use ElementorPro\Modules\Forms\Classes\Convertkit_Handler;
-use ElementorPro\Classes\Utils;
+use ElementorPro\Core\Utils;
 use Elementor\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -101,27 +100,7 @@ class Convertkit extends Integration_Base {
 			]
 		);
 
-		$widget->add_control(
-			'convertkit_fields_map',
-			[
-				'label' => __( 'Field Mapping', 'elementor-pro' ),
-				'type' => Fields_Map::CONTROL_TYPE,
-				'separator' => 'before',
-				'fields' => [
-					[
-						'name' => 'remote_id',
-						'type' => Controls_Manager::HIDDEN,
-					],
-					[
-						'name' => 'local_id',
-						'type' => Controls_Manager::SELECT,
-					],
-				],
-				'condition' => [
-					'convertkit_form!' => '',
-				],
-			]
-		);
+		$this->register_fields_map_control( $widget );
 
 		$widget->add_control(
 			'convertkit_tags',
@@ -225,11 +204,17 @@ class Convertkit extends Integration_Base {
 		return $subscriber;
 	}
 
-	public function handle_panel_request() {
-		if ( ! empty( $_POST['api_key'] ) && 'default' === $_POST['api_key'] ) {
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 * @throws \Exception
+	 */
+	public function handle_panel_request( array $data ) {
+		if ( ! empty( $data['api_key'] ) && 'default' === $data['api_key'] ) {
 			$api_key = $this->get_global_api_key();
-		} elseif ( ! empty( $_POST['custom_api_key'] ) ) {
-			$api_key = $_POST['custom_api_key'];
+		} elseif ( ! empty( $data['custom_api_key'] ) ) {
+			$api_key = $data['custom_api_key'];
 		}
 
 		if ( empty( $api_key ) ) {
@@ -237,9 +222,8 @@ class Convertkit extends Integration_Base {
 		}
 
 		$handler = new Convertkit_Handler( $api_key );
-		if ( 'convertkit_get_forms' === $_POST['convertkit_action'] ) {
-			return $handler->get_forms_and_tags();
-		}
+
+		return $handler->get_forms_and_tags();
 	}
 
 	public function ajax_validate_api_token() {
@@ -283,5 +267,13 @@ class Convertkit extends Integration_Base {
 			add_action( 'elementor/admin/after_create_settings/' . Settings::PAGE_ID, [ $this, 'register_admin_fields' ], 15 );
 		}
 		add_action( 'wp_ajax_' . self::OPTION_NAME_API_KEY . '_validate', [ $this, 'ajax_validate_api_token' ] );
+	}
+
+	protected function get_fields_map_control_options() {
+		return [
+			'condition' => [
+				'convertkit_form!' => '',
+			],
+		];
 	}
 }

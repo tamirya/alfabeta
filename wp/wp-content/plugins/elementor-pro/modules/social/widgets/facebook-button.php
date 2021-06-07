@@ -2,7 +2,7 @@
 namespace ElementorPro\Modules\Social\Widgets;
 
 use Elementor\Controls_Manager;
-use Elementor\Widget_Base;
+use ElementorPro\Base\Base_Widget;
 use ElementorPro\Modules\Social\Classes\Facebook_SDK_Manager;
 use ElementorPro\Modules\Social\Module;
 use ElementorPro\Plugin;
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Facebook_Button extends Widget_Base {
+class Facebook_Button extends Base_Widget {
 
 	public function get_name() {
 		return 'facebook-button';
@@ -25,15 +25,11 @@ class Facebook_Button extends Widget_Base {
 		return 'eicon-facebook-like-box';
 	}
 
-	public function get_categories() {
-		return [ 'pro-elements' ];
-	}
-
 	public function get_keywords() {
 		return [ 'facebook', 'social', 'embed', 'button', 'like', 'share', 'recommend', 'follow' ];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_content',
 			[
@@ -52,21 +48,6 @@ class Facebook_Button extends Widget_Base {
 				'options' => [
 					'like' => __( 'Like', 'elementor-pro' ),
 					'recommend' => __( 'Recommend', 'elementor-pro' ),
-					/* TODO: remove on 2.3 */
-					'follow' => __( 'Follow', 'elementor-pro' ) . ' (' . __( 'Deprecated', 'elementor-pro' ) . ')',
-				],
-			]
-		);
-
-		/* TODO: remove on 2.3 */
-		$this->add_control(
-			'follow_description',
-			[
-				'type' => Controls_Manager::RAW_HTML,
-				'raw' => __( 'The Follow button has been deprecated by Facebook and will no longer work.', 'elementor-pro' ),
-				'content_classes' => 'elementor-descriptor',
-				'condition' => [
-					'type' => 'follow',
 				],
 			]
 		);
@@ -169,7 +150,7 @@ class Facebook_Button extends Widget_Base {
 		$this->add_control(
 			'url',
 			[
-				'label' => __( 'URL', 'elementor-pro' ),
+				'label' => __( 'Link', 'elementor-pro' ),
 				'placeholder' => __( 'https://your-link.com', 'elementor-pro' ),
 				'label_block' => true,
 				'condition' => [
@@ -187,13 +168,6 @@ class Facebook_Button extends Widget_Base {
 
 		// Validate URL
 		switch ( $settings['type'] ) {
-			/* TODO: remove on 2.3 */
-			case 'follow':
-				if ( Plugin::elementor()->editor->is_edit_mode() ) {
-					echo __( 'The Follow button has been deprecated by Facebook and will no longer work.', 'elementor-pro' );
-
-				}
-				return;
 			case 'like':
 			case 'recommend':
 				if ( Module::URL_TYPE_CUSTOM === $settings['url_type'] && ! filter_var( $settings['url'], FILTER_VALIDATE_URL ) ) {
@@ -211,8 +185,6 @@ class Facebook_Button extends Widget_Base {
 			'data-colorscheme' => $settings['color_scheme'],
 			'data-size' => $settings['size'],
 			'data-show-faces' => $settings['show_faces'] ? 'true' : 'false',
-			// The style prevent's the `widget.handleEmptyWidget` to set it as an empty widget
-			'style' => 'min-height: 1px',
 		];
 
 		switch ( $settings['type'] ) {

@@ -15,6 +15,10 @@ abstract class Theme_Section_Document extends Theme_Document {
 		return $properties;
 	}
 
+	protected static function get_site_editor_layout() {
+		return 'strip';
+	}
+
 	public static function get_preview_as_default() {
 		return '';
 	}
@@ -27,5 +31,13 @@ abstract class Theme_Section_Document extends Theme_Document {
 			Archive::get_preview_as_options(),
 			Single::get_preview_as_options()
 		);
+	}
+
+	protected function get_remote_library_config() {
+		$config = parent::get_remote_library_config();
+
+		$config['category'] = '';
+
+		return $config;
 	}
 }

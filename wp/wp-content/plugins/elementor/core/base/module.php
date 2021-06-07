@@ -108,6 +108,10 @@ abstract class Module extends Base_Object {
 		return get_called_class();
 	}
 
+	public static function get_experimental_data() {
+		return [];
+	}
+
 	/**
 	 * Clone.
 	 *
@@ -165,6 +169,8 @@ abstract class Module extends Base_Object {
 	}
 
 	/**
+	 * @since 2.3.0
+	 * @access public
 	 * @return Module[]
 	 */
 	public function get_components() {
@@ -195,6 +201,7 @@ abstract class Module extends Base_Object {
 	/**
 	 * Get assets url.
 	 *
+	 * @since 2.3.0
 	 * @access protected
 	 *
 	 * @param string $file_name
@@ -215,7 +222,7 @@ abstract class Module extends Base_Object {
 			$relative_url = $this->get_assets_relative_url() . $file_extension . '/';
 		}
 
-		$url = ELEMENTOR_URL . $relative_url . $file_name;
+		$url = $this->get_assets_base_url() . $relative_url . $file_name;
 
 		if ( 'default' === $add_min_suffix ) {
 			$add_min_suffix = ! $is_test_mode;
@@ -231,6 +238,7 @@ abstract class Module extends Base_Object {
 	/**
 	 * Get js assets url
 	 *
+	 * @since 2.3.0
 	 * @access protected
 	 *
 	 * @param string $file_name
@@ -246,6 +254,7 @@ abstract class Module extends Base_Object {
 	/**
 	 * Get css assets url
 	 *
+	 * @since 2.3.0
 	 * @access protected
 	 *
 	 * @param string $file_name
@@ -270,8 +279,21 @@ abstract class Module extends Base_Object {
 	}
 
 	/**
+	 * Get assets base url
+	 *
+	 * @since 2.6.0
+	 * @access protected
+	 *
+	 * @return string
+	 */
+	protected function get_assets_base_url() {
+		return ELEMENTOR_URL;
+	}
+
+	/**
 	 * Get assets relative url
 	 *
+	 * @since 2.3.0
 	 * @access protected
 	 *
 	 * @return string

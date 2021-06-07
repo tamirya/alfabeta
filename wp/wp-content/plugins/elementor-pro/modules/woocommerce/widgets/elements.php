@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Elements extends Widget_Base {
+class Elements extends Base_Widget {
 
 	public function get_name() {
 		return 'wc-elements';
@@ -49,7 +49,7 @@ class Elements extends Widget_Base {
 		];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_product',
 			[
@@ -78,11 +78,14 @@ class Elements extends Widget_Base {
 			[
 				'label' => __( 'Product', 'elementor-pro' ),
 				'type' => QueryModule::QUERY_CONTROL_ID,
-				'post_type' => '',
 				'options' => [],
 				'label_block' => true,
-				'filter_type' => 'by_id',
-				'object_type' => [ 'product' ],
+				'autocomplete' => [
+					'object' => QueryModule::QUERY_OBJECT_POST,
+					'query' => [
+						'post_type' => [ 'product' ],
+					],
+				],
 				'condition' => [
 					'element' => [ 'product_page' ],
 				],

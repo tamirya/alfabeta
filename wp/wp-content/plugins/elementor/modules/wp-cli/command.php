@@ -29,6 +29,8 @@ class Command extends \WP_CLI_Command {
 	 *  2. wp elementor flush-css --network
 	 *      - This will flush the CSS files for elementor page builder for all the sites in the network.
 	 *
+	 * @since 2.1.0
+	 * @access public
 	 * @alias flush-css
 	 */
 	public function flush_css( $args, $assoc_args ) {
@@ -58,16 +60,32 @@ class Command extends \WP_CLI_Command {
 	}
 
 	/**
+	 * Print system info powered by Elementor
+	 *
+	 * ## EXAMPLES
+	 *
+	 *  1. wp elementor system-info
+	 *      - This will print the System Info in JSON format
+	 *
+	 * @since 3.0.11
+	 * @access public
+	 * @alias system-info
+	 */
+	public function system_info() {
+		echo wp_json_encode( \Elementor\Tracker::get_tracking_data() );
+	}
+
+	/**
 	 * Replace old URLs with new URLs in all Elementor pages.
 	 *
 	 * ## EXAMPLES
 	 *
-	 *  1. wp elementor search-replace <old> <new>
+	 *  1. wp elementor replace-urls <old> <new>
 	 *      - This will replace all <old> URLs with the <new> URL.
 	 *
+	 * @access public
 	 * @alias replace-urls
 	 */
-
 	public function replace_urls( $args, $assoc_args ) {
 		if ( empty( $args[0] ) ) {
 			\WP_CLI::error( 'Please set the `old` URL' );
@@ -93,9 +111,14 @@ class Command extends \WP_CLI_Command {
 	 *  1. wp elementor sync-library
 	 *      - This will sync the library with Elementor cloud library.
 	 *
+	 * @since 2.1.0
+	 * @access public
 	 * @alias sync-library
 	 */
 	public function sync_library( $args, $assoc_args ) {
+		// TODO:
+		// \WP_CLI::warning( 'command is deprecated since 2.8.0 Please use: wp elementor library sync' );
+
 		$data = Api::get_library_data( true );
 
 		if ( empty( $data ) ) {
@@ -113,9 +136,14 @@ class Command extends \WP_CLI_Command {
 	 *  1. wp elementor import-library <file-path>
 	 *      - This will import a file or a zip of multiple files to the library.
 	 *
+	 * @since 2.1.0
+	 * @access public
 	 * @alias import-library
 	 */
 	public function import_library( $args, $assoc_args ) {
+		// TODO:
+		// \WP_CLI::warning( 'command is deprecated since 2.8.0 Please use: wp elementor library import' );
+
 		if ( empty( $args[0] ) ) {
 			\WP_CLI::error( 'Please set file path.' );
 		}

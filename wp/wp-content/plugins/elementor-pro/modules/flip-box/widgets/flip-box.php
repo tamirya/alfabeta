@@ -2,11 +2,13 @@
 namespace ElementorPro\Modules\FlipBox\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Background;
+use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
+use Elementor\Icons_Manager;
 use Elementor\Utils;
 use ElementorPro\Base\Base_Widget;
 
@@ -28,7 +30,7 @@ class Flip_Box extends Base_Widget {
 		return 'eicon-flip-box';
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_side_a_content',
@@ -46,11 +48,10 @@ class Flip_Box extends Base_Widget {
 			[
 				'label' => __( 'Graphic Element', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
-				'label_block' => false,
 				'options' => [
 					'none' => [
 						'title' => __( 'None', 'elementor-pro' ),
-						'icon' => 'fa fa-ban',
+						'icon' => 'eicon-ban',
 					],
 					'image' => [
 						'title' => __( 'Image', 'elementor-pro' ),
@@ -58,7 +59,7 @@ class Flip_Box extends Base_Widget {
 					],
 					'icon' => [
 						'title' => __( 'Icon', 'elementor-pro' ),
-						'icon' => 'fa fa-star',
+						'icon' => 'eicon-star',
 					],
 				],
 				'default' => 'icon',
@@ -72,6 +73,9 @@ class Flip_Box extends Base_Widget {
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
+				],
+				'dynamic' => [
+					'active' => true,
 				],
 				'condition' => [
 					'graphic_element' => 'image',
@@ -91,11 +95,15 @@ class Flip_Box extends Base_Widget {
 		);
 
 		$this->add_control(
-			'icon',
+			'selected_icon',
 			[
 				'label' => __( 'Icon', 'elementor-pro' ),
-				'type' => Controls_Manager::ICON,
-				'default' => 'fa fa-star',
+				'type' => Controls_Manager::ICONS,
+				'fa4compatibility' => 'icon',
+				'default' => [
+					'value' => 'fas fa-star',
+					'library' => 'fa-solid',
+				],
 				'condition' => [
 					'graphic_element' => 'icon',
 				],
@@ -143,6 +151,9 @@ class Flip_Box extends Base_Widget {
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'This is the heading', 'elementor-pro' ),
 				'placeholder' => __( 'Enter your title', 'elementor-pro' ),
+				'dynamic' => [
+					'active' => true,
+				],
 				'label_block' => true,
 				'separator' => 'before',
 			]
@@ -153,9 +164,12 @@ class Flip_Box extends Base_Widget {
 			[
 				'label' => __( 'Description', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'default' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet consectetur adipiscing elit dolor', 'elementor-pro' ),
+				'default' => __( 'Lorem ipsum dolor sit amet consectetur adipiscing elit dolor', 'elementor-pro' ),
 				'placeholder' => __( 'Enter your description', 'elementor-pro' ),
 				'separator' => 'none',
+				'dynamic' => [
+					'active' => true,
+				],
 				'rows' => 10,
 				'show_label' => false,
 			]
@@ -190,6 +204,46 @@ class Flip_Box extends Base_Widget {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name' => 'background_overlay_a_filters',
+				'selector' => '{{WRAPPER}} .elementor-flip-box__front .elementor-flip-box__layer__overlay',
+				'condition' => [
+					'background_overlay_a!' => '',
+				],
+			]
+		);
+
+		$this->add_control(
+			'background_overlay_a_blend_mode',
+			[
+				'label' => __( 'Blend Mode', 'elementor-pro' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'' => __( 'Normal', 'elementor-pro' ),
+					'multiply' => 'Multiply',
+					'screen' => 'Screen',
+					'overlay' => 'Overlay',
+					'darken' => 'Darken',
+					'lighten' => 'Lighten',
+					'color-dodge' => 'Color Dodge',
+					'color-burn' => 'Color Burn',
+					'hue' => 'Hue',
+					'saturation' => 'Saturation',
+					'color' => 'Color',
+					'exclusion' => 'Exclusion',
+					'luminosity' => 'Luminosity',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-flip-box__front .elementor-flip-box__layer__overlay' => 'mix-blend-mode: {{VALUE}}',
+				],
+				'condition' => [
+					'background_overlay_a!' => '',
+				],
+			]
+		);
+
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
@@ -214,6 +268,9 @@ class Flip_Box extends Base_Widget {
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'This is the heading', 'elementor-pro' ),
 				'placeholder' => __( 'Enter your title', 'elementor-pro' ),
+				'dynamic' => [
+					'active' => true,
+				],
 				'label_block' => true,
 			]
 		);
@@ -223,9 +280,12 @@ class Flip_Box extends Base_Widget {
 			[
 				'label' => __( 'Description', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'default' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet consectetur adipiscing elit dolor', 'elementor-pro' ),
+				'default' => __( 'Lorem ipsum dolor sit amet consectetur adipiscing elit dolor', 'elementor-pro' ),
 				'placeholder' => __( 'Enter your description', 'elementor-pro' ),
 				'separator' => 'none',
+				'dynamic' => [
+					'active' => true,
+				],
 				'rows' => 10,
 				'show_label' => false,
 			]
@@ -237,6 +297,9 @@ class Flip_Box extends Base_Widget {
 				'label' => __( 'Button Text', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'Click Here', 'elementor-pro' ),
+				'dynamic' => [
+					'active' => true,
+				],
 				'separator' => 'before',
 			]
 		);
@@ -246,6 +309,9 @@ class Flip_Box extends Base_Widget {
 			[
 				'label' => __( 'Link', 'elementor-pro' ),
 				'type' => Controls_Manager::URL,
+				'dynamic' => [
+					'active' => true,
+				],
 				'placeholder' => __( 'https://your-link.com', 'elementor-pro' ),
 			]
 		);
@@ -291,6 +357,46 @@ class Flip_Box extends Base_Widget {
 				'separator' => 'before',
 				'condition' => [
 					'background_b_image[id]!' => '',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name' => 'background_overlay_b_filters',
+				'selector' => '{{WRAPPER}} .elementor-flip-box__back .elementor-flip-box__layer__overlay',
+				'condition' => [
+					'background_overlay_b!' => '',
+				],
+			]
+		);
+
+		$this->add_control(
+			'background_overlay_b_blend_mode',
+			[
+				'label' => __( 'Blend Mode', 'elementor-pro' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'' => __( 'Normal', 'elementor-pro' ),
+					'multiply' => 'Multiply',
+					'screen' => 'Screen',
+					'overlay' => 'Overlay',
+					'darken' => 'Darken',
+					'lighten' => 'Lighten',
+					'color-dodge' => 'Color Dodge',
+					'color-burn' => 'Color Burn',
+					'hue' => 'Hue',
+					'saturation' => 'Saturation',
+					'color' => 'Color',
+					'exclusion' => 'Exclusion',
+					'luminosity' => 'Luminosity',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-flip-box__back .elementor-flip-box__layer__overlay' => 'mix-blend-mode: {{VALUE}}',
+				],
+				'condition' => [
+					'background_overlay_b!' => '',
 				],
 			]
 		);
@@ -433,19 +539,18 @@ class Flip_Box extends Base_Widget {
 			[
 				'label' => __( 'Alignment', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
-				'label_block' => false,
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'elementor-pro' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'elementor-pro' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'elementor-pro' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'default' => 'center',
@@ -460,7 +565,6 @@ class Flip_Box extends Base_Widget {
 			[
 				'label' => __( 'Vertical Position', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
-				'label_block' => false,
 				'options' => [
 					'top' => [
 						'title' => __( 'Top', 'elementor-pro' ),
@@ -531,7 +635,7 @@ class Flip_Box extends Base_Widget {
 		$this->add_control(
 			'image_width',
 			[
-				'label' => __( 'Size (%)', 'elementor-pro' ),
+				'label' => __( 'Size', 'elementor-pro' ) . ' (%)',
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ '%' ],
 				'default' => [
@@ -648,7 +752,9 @@ class Flip_Box extends Base_Widget {
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} .elementor-view-stacked .elementor-icon' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .elementor-view-stacked .elementor-icon svg' => 'stroke: {{VALUE}}',
 					'{{WRAPPER}} .elementor-view-framed .elementor-icon, {{WRAPPER}} .elementor-view-default .elementor-icon' => 'color: {{VALUE}}; border-color: {{VALUE}}',
+					'{{WRAPPER}} .elementor-view-framed .elementor-icon svg, {{WRAPPER}} .elementor-view-default .elementor-icon svg' => 'fill: {{VALUE}}; border-color: {{VALUE}}',
 				],
 				'condition' => [
 					'graphic_element' => 'icon',
@@ -668,7 +774,9 @@ class Flip_Box extends Base_Widget {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-view-framed .elementor-icon' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-view-framed .elementor-icon svg' => 'stroke: {{VALUE}};',
 					'{{WRAPPER}} .elementor-view-stacked .elementor-icon' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-view-stacked .elementor-icon svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
@@ -686,6 +794,7 @@ class Flip_Box extends Base_Widget {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-icon svg' => 'width: {{SIZE}}{{UNIT}};',
 				],
 				'condition' => [
 					'graphic_element' => 'icon',
@@ -725,6 +834,7 @@ class Flip_Box extends Base_Widget {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-icon i' => 'transform: rotate({{SIZE}}{{UNIT}});',
+					'{{WRAPPER}} .elementor-icon svg' => 'transform: rotate({{SIZE}}{{UNIT}});',
 				],
 				'condition' => [
 					'graphic_element' => 'icon',
@@ -815,7 +925,9 @@ class Flip_Box extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography_a',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .elementor-flip-box__front .elementor-flip-box__layer__title',
 				'condition' => [
 					'title_text_a!' => '',
@@ -854,7 +966,9 @@ class Flip_Box extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'description_typography_a',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .elementor-flip-box__front .elementor-flip-box__layer__description',
 				'condition' => [
 					'description_text_a!' => '',
@@ -889,19 +1003,18 @@ class Flip_Box extends Base_Widget {
 			[
 				'label' => __( 'Alignment', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
-				'label_block' => false,
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'elementor-pro' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'elementor-pro' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'elementor-pro' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'default' => 'center',
@@ -917,7 +1030,6 @@ class Flip_Box extends Base_Widget {
 			[
 				'label' => __( 'Vertical Position', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
-				'label_block' => false,
 				'options' => [
 					'top' => [
 						'title' => __( 'Top', 'elementor-pro' ),
@@ -1004,7 +1116,9 @@ class Flip_Box extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography_b',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .elementor-flip-box__back .elementor-flip-box__layer__title',
 				'condition' => [
 					'title_text_b!' => '',
@@ -1064,7 +1178,9 @@ class Flip_Box extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'description_typography_b',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .elementor-flip-box__back .elementor-flip-box__layer__description',
 				'condition' => [
 					'description_text_b!' => '',
@@ -1108,7 +1224,9 @@ class Flip_Box extends Base_Widget {
 			[
 				'name' => 'button_typography',
 				'selector' => '{{WRAPPER}} .elementor-flip-box__button',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 				'condition' => [
 					'button_text!' => '',
 				],
@@ -1134,9 +1252,6 @@ class Flip_Box extends Base_Widget {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-flip-box__button' => 'color: {{VALUE}};',
 				],
-				'condition' => [
-					'button_text!' => '',
-				],
 			]
 		);
 
@@ -1148,9 +1263,6 @@ class Flip_Box extends Base_Widget {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-flip-box__button' => 'background-color: {{VALUE}};',
 				],
-				'condition' => [
-					'button_text!' => '',
-				],
 			]
 		);
 
@@ -1161,9 +1273,6 @@ class Flip_Box extends Base_Widget {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-flip-box__button' => 'border-color: {{VALUE}};',
-				],
-				'condition' => [
-					'button_text!' => '',
 				],
 			]
 		);
@@ -1188,9 +1297,6 @@ class Flip_Box extends Base_Widget {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-flip-box__button:hover' => 'color: {{VALUE}};',
 				],
-				'condition' => [
-					'button_text!' => '',
-				],
 			]
 		);
 
@@ -1202,9 +1308,6 @@ class Flip_Box extends Base_Widget {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-flip-box__button:hover' => 'background-color: {{VALUE}};',
 				],
-				'condition' => [
-					'button_text!' => '',
-				],
 			]
 		);
 
@@ -1215,9 +1318,6 @@ class Flip_Box extends Base_Widget {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-flip-box__button:hover' => 'border-color: {{VALUE}};',
-				],
-				'condition' => [
-					'button_text!' => '',
 				],
 			]
 		);
@@ -1273,10 +1373,10 @@ class Flip_Box extends Base_Widget {
 	}
 
 	protected function render() {
-		$settings = $this->get_settings();
+		$settings = $this->get_settings_for_display();
 		$wrapper_tag = 'div';
 		$button_tag = 'a';
-		$link_url = empty( $settings['link']['url'] ) ? '#' : $settings['link']['url'];
+		$migration_allowed = Icons_Manager::is_migration_allowed();
 		$this->add_render_attribute( 'button', 'class', [
 			'elementor-flip-box__button',
 			'elementor-button',
@@ -1284,18 +1384,17 @@ class Flip_Box extends Base_Widget {
 		] );
 
 		$this->add_render_attribute( 'wrapper', 'class', 'elementor-flip-box__layer elementor-flip-box__back' );
-		if ( 'box' === $settings['link_click'] ) {
-			$wrapper_tag = 'a';
-			$button_tag = 'button';
-			$this->add_render_attribute( 'wrapper', 'href', $link_url );
-			if ( $settings['link']['is_external'] ) {
-				$this->add_render_attribute( 'wrapper', 'target', '_blank' );
+
+		if ( ! empty( $settings['link']['url'] ) ) {
+			$link_element = 'button';
+
+			if ( 'box' === $settings['link_click'] ) {
+				$wrapper_tag = 'a';
+				$button_tag = 'span';
+				$link_element = 'wrapper';
 			}
-		} else {
-			$this->add_render_attribute( 'button', 'href', $link_url );
-			if ( $settings['link']['is_external'] ) {
-				$this->add_render_attribute( 'button', 'target', '_blank' );
-			}
+
+			$this->add_link_attributes( $link_element, $settings['link'] );
 		}
 
 		if ( 'icon' === $settings['graphic_element'] ) {
@@ -1304,10 +1403,20 @@ class Flip_Box extends Base_Widget {
 			if ( 'default' != $settings['icon_view'] ) {
 				$this->add_render_attribute( 'icon-wrapper', 'class', 'elementor-shape-' . $settings['icon_shape'] );
 			}
+
+			if ( ! isset( $settings['icon'] ) && ! $migration_allowed ) {
+				// add old default
+				$settings['icon'] = 'fa fa-star';
+			}
+
 			if ( ! empty( $settings['icon'] ) ) {
 				$this->add_render_attribute( 'icon', 'class', $settings['icon'] );
 			}
 		}
+
+		$has_icon = ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon'] );
+		$migrated = isset( $settings['__fa4_migrated']['selected_icon'] );
+		$is_new = empty( $settings['icon'] ) && $migration_allowed;
 
 		?>
 		<div class="elementor-flip-box">
@@ -1318,10 +1427,14 @@ class Flip_Box extends Base_Widget {
 							<div class="elementor-flip-box__image">
 								<?php echo Group_Control_Image_Size::get_attachment_image_html( $settings ); ?>
 							</div>
-						<?php elseif ( 'icon' === $settings['graphic_element'] && ! empty( $settings['icon'] ) ) : ?>
+						<?php elseif ( 'icon' === $settings['graphic_element'] && $has_icon ) : ?>
 							<div <?php echo $this->get_render_attribute_string( 'icon-wrapper' ); ?>>
 								<div class="elementor-icon">
-									<i <?php echo $this->get_render_attribute_string( 'icon' ); ?>></i>
+									<?php if ( $is_new || $migrated ) :
+										Icons_Manager::render_icon( $settings['selected_icon'] );
+									else : ?>
+										<i <?php echo $this->get_render_attribute_string( 'icon' ); ?>></i>
+									<?php endif; ?>
 								</div>
 							</div>
 						<?php endif; ?>
@@ -1367,38 +1480,49 @@ class Flip_Box extends Base_Widget {
 		<?php
 	}
 
-	protected function _content_template() {
+	/**
+	 * Render Flip Box widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 2.9.0
+	 * @access protected
+	 */
+	protected function content_template() {
 		?>
 		<#
 		var btnClasses = 'elementor-flip-box__button elementor-button elementor-size-' + settings.button_size;
 
 		if ( 'image' === settings.graphic_element && '' !== settings.image.url ) {
-		var image = {
-		id: settings.image.id,
-		url: settings.image.url,
-		size: settings.image_size,
-		dimension: settings.image_custom_dimension,
-		model: view.getEditModel()
-		};
+			var image = {
+				id: settings.image.id,
+				url: settings.image.url,
+				size: settings.image_size,
+				dimension: settings.image_custom_dimension,
+				model: view.getEditModel()
+			};
 
-		var imageUrl = elementor.imagesManager.getImageUrl( image );
+			var imageUrl = elementor.imagesManager.getImageUrl( image );
 		}
 
 		var wrapperTag = 'div',
 		buttonTag = 'a';
 
 		if ( 'box' === settings.link_click ) {
-		wrapperTag = 'a';
-		buttonTag = 'button';
+			wrapperTag = 'a';
+			buttonTag = 'span';
 		}
 
 		if ( 'icon' === settings.graphic_element ) {
-		var iconWrapperClasses = 'elementor-icon-wrapper';
-		iconWrapperClasses += ' elementor-view-' + settings.icon_view;
-		if ( 'default' !== settings.icon_view ) {
-		iconWrapperClasses += ' elementor-shape-' + settings.icon_shape;
+			var iconWrapperClasses = 'elementor-icon-wrapper';
+			iconWrapperClasses += ' elementor-view-' + settings.icon_view;
+			if ( 'default' !== settings.icon_view ) {
+				iconWrapperClasses += ' elementor-shape-' + settings.icon_shape;
+			}
 		}
-		}
+		var hasIcon = settings.icon || settings.selected_icon,
+			iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i' , 'object' ),
+			migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
 		#>
 
 		<div class="elementor-flip-box">
@@ -1409,10 +1533,14 @@ class Flip_Box extends Base_Widget {
 						<div class="elementor-flip-box__image">
 							<img src="{{ imageUrl }}">
 						</div>
-						<#  } else if ( 'icon' === settings.graphic_element && settings.icon ) { #>
+						<#  } else if ( 'icon' === settings.graphic_element && hasIcon ) { #>
 						<div class="{{ iconWrapperClasses }}" >
 							<div class="elementor-icon">
-								<i class="{{ settings.icon }}"></i>
+								<# if ( iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
+									{{{ iconHTML.value }}}
+								<# } else { #>
+									<i class="{{ settings.icon }}"></i>
+								<# } #>
 							</div>
 						</div>
 						<# } #>

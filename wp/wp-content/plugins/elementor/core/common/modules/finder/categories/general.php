@@ -3,6 +3,7 @@ namespace Elementor\Core\Common\Modules\Finder\Categories;
 
 use Elementor\Core\Common\Modules\Finder\Base_Category;
 use Elementor\Core\RoleManager\Role_Manager;
+use Elementor\Plugin;
 use Elementor\TemplateLibrary\Source_Local;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,6 +20,7 @@ class General extends Base_Category {
 	/**
 	 * Get title.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 *
 	 * @return string
@@ -30,6 +32,7 @@ class General extends Base_Category {
 	/**
 	 * Get category items.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 *
 	 * @param array $options
@@ -38,15 +41,15 @@ class General extends Base_Category {
 	 */
 	public function get_category_items( array $options = [] ) {
 		return [
-			'my-templates' => [
-				'title' => _x( 'My Templates', 'Template Library', 'elementor' ),
+			'saved-templates' => [
+				'title' => _x( 'Saved Templates', 'Template Library', 'elementor' ),
 				'icon' => 'library-save',
-				'url' => admin_url( 'edit.php?post_type=' . Source_Local::CPT ),
-				'keywords' => [ 'template', 'header', 'footer', 'single', 'archive', 'search', '404 page' ],
+				'url' => Source_Local::get_admin_url(),
+				'keywords' => [ 'template', 'section', 'page', 'library' ],
 			],
 			'system-info' => [
 				'title' => __( 'System Info', 'elementor' ),
-				'icon' => 'info',
+				'icon' => 'info-circle-o',
 				'url' => admin_url( 'admin.php?page=elementor-system-info' ),
 				'keywords' => [ 'system', 'info', 'environment', 'elementor' ],
 			],
@@ -60,6 +63,12 @@ class General extends Base_Category {
 				'title' => __( 'Knowledge Base', 'elementor' ),
 				'url' => admin_url( 'admin.php?page=go_knowledge_base_site' ),
 				'keywords' => [ 'help', 'knowledge', 'docs', 'elementor' ],
+			],
+			'theme-builder' => [
+				'title' => __( 'Theme Builder', 'elementor' ),
+				'icon' => 'library-save',
+				'url' => Plugin::$instance->app->get_settings( 'menu_url' ),
+				'keywords' => [ 'template', 'header', 'footer', 'single', 'archive', 'search', '404', 'library' ],
 			],
 		];
 	}

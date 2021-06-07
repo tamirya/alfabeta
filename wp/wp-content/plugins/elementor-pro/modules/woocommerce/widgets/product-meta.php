@@ -2,14 +2,14 @@
 namespace ElementorPro\Modules\Woocommerce\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Color;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Product_Meta extends Widget_Base {
+class Product_Meta extends Base_Widget {
 
 	public function get_name() {
 		return 'woocommerce-product-meta';
@@ -27,7 +27,7 @@ class Product_Meta extends Widget_Base {
 		return [ 'woocommerce', 'shop', 'store', 'meta', 'data', 'product' ];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_product_meta_style',
@@ -51,7 +51,6 @@ class Product_Meta extends Widget_Base {
 			[
 				'label' => __( 'View', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
-				'label_block' => false,
 				'default' => 'inline',
 				'options' => [
 					'table' => __( 'Table', 'elementor-pro' ),
@@ -198,9 +197,8 @@ class Product_Meta extends Widget_Base {
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '#ddd',
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
 				],
 				'condition' => [
 					'divider' => 'yes',
@@ -268,6 +266,100 @@ class Product_Meta extends Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_product_meta_captions',
+			[
+				'label' => __( 'Captions', 'elementor-pro' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'heading_category_caption',
+			[
+				'label' => __( 'Category', 'elementor-pro' ),
+				'type' => Controls_Manager::HEADING,
+			]
+		);
+
+		$this->add_control(
+			'category_caption_single',
+			[
+				'label' => __( 'Singular', 'elementor-pro' ),
+				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'Category', 'elementor-pro' ),
+			]
+		);
+
+		$this->add_control(
+			'category_caption_plural',
+			[
+				'label' => __( 'Plural', 'elementor-pro' ),
+				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'Categories', 'elementor-pro' ),
+			]
+		);
+
+		$this->add_control(
+			'heading_tag_caption',
+			[
+				'label' => __( 'Tag', 'elementor-pro' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'tag_caption_single',
+			[
+				'label' => __( 'Singular', 'elementor-pro' ),
+				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'Tag', 'elementor-pro' ),
+			]
+		);
+
+		$this->add_control(
+			'tag_caption_plural',
+			[
+				'label' => __( 'Plural', 'elementor-pro' ),
+				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'Tags', 'elementor-pro' ),
+			]
+		);
+
+		$this->add_control(
+			'heading_sku_caption',
+			[
+				'label' => __( 'SKU', 'elementor-pro' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'sku_caption',
+			[
+				'label' => __( 'SKU', 'elementor-pro' ),
+				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'SKU', 'elementor-pro' ),
+			]
+		);
+
+		$this->add_control(
+			'sku_missing_caption',
+			[
+				'label' => __( 'Missing', 'elementor-pro' ),
+				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'N/A', 'elementor-pro' ),
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	private function get_plural_or_single( $single, $plural, $count ) {
+		return 1 === $count ? $single : $plural;
 	}
 
 	protected function render() {
@@ -279,29 +371,31 @@ class Product_Meta extends Widget_Base {
 			return;
 		}
 
-		$sku = $product->get_sku()
+		$sku = $product->get_sku();
+
+		$settings = $this->get_settings_for_display();
+		$sku_caption = ! empty( $settings['sku_caption'] ) ? $settings['sku_caption'] : __( 'SKU', 'elementor-pro' );
+		$sku_missing = ! empty( $settings['sku_missing_caption'] ) ? $settings['sku_missing_caption'] : __( 'N/A', 'elementor-pro' );
+		$category_caption_single = ! empty( $settings['category_caption_single'] ) ? $settings['category_caption_single'] : __( 'Category', 'elementor-pro' );
+		$category_caption_plural = ! empty( $settings['category_caption_plural'] ) ? $settings['category_caption_plural'] : __( 'Categories', 'elementor-pro' );
+		$tag_caption_single = ! empty( $settings['tag_caption_single'] ) ? $settings['tag_caption_single'] : __( 'Tag', 'elementor-pro' );
+		$tag_caption_plural = ! empty( $settings['tag_caption_plural'] ) ? $settings['tag_caption_plural'] : __( 'Tags', 'elementor-pro' );
 		?>
 		<div class="product_meta">
 
 			<?php do_action( 'woocommerce_product_meta_start' ); ?>
 
 			<?php if ( wc_product_sku_enabled() && ( $sku || $product->is_type( 'variable' ) ) ) : ?>
-
-				<span class="sku_wrapper detail-container"><span class="detail-label"><?php esc_html_e( 'SKU:', 'elementor-pro' ); ?></span> <span class="sku"><?php echo $sku ? $sku : esc_html__( 'N/A', 'elementor-pro' ); ?></span></span>
-
+				<span class="sku_wrapper detail-container"><span class="detail-label"><?php echo esc_html( $sku_caption ); ?></span> <span class="sku"><?php echo $sku ? $sku : esc_html( $sku_missing ); ?></span></span>
 			<?php endif; ?>
 
-			<?php
-			if ( count( $product->get_category_ids() ) ) :
-				echo '<span class="posted_in detail-container"><span class="detail-label">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'elementor-pro' ) . '</span> <span class="detail-content">' . get_the_term_list( $product->get_id(), 'product_cat', '', ', ' ) . '</span></span>';
-			endif;
-			?>
+			<?php if ( count( $product->get_category_ids() ) ) : ?>
+				<span class="posted_in detail-container"><span class="detail-label"><?php echo esc_html( $this->get_plural_or_single( $category_caption_single, $category_caption_plural, count( $product->get_category_ids() ) ) ); ?></span> <span class="detail-content"><?php echo get_the_term_list( $product->get_id(), 'product_cat', '', ', ' ); ?></span></span>
+			<?php endif; ?>
 
-			<?php
-			if ( count( $product->get_tag_ids() ) ) :
-				echo '<span class="tagged_as detail-container"><span class="detail-label">' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'elementor-pro' ) . '</span> <span class="detail-content">' . get_the_term_list( $product->get_id(), 'product_tag', '', ', ' ) . '</span></span>';
-			endif;
-			?>
+			<?php if ( count( $product->get_tag_ids() ) ) : ?>
+				<span class="tagged_as detail-container"><span class="detail-label"><?php echo esc_html( $this->get_plural_or_single( $tag_caption_single, $tag_caption_plural, count( $product->get_tag_ids() ) ) ); ?></span> <span class="detail-content"><?php echo get_the_term_list( $product->get_id(), 'product_tag', '', ', ' ); ?></span></span>
+			<?php endif; ?>
 
 			<?php do_action( 'woocommerce_product_meta_end' ); ?>
 

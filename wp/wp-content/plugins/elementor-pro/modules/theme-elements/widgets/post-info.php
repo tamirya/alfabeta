@@ -2,10 +2,11 @@
 namespace ElementorPro\Modules\ThemeElements\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Typography;
+use Elementor\Icons_Manager;
 use Elementor\Repeater;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -33,7 +34,7 @@ class Post_Info extends Base {
 		return [ 'post', 'info', 'date', 'time', 'author', 'taxonomy', 'comments', 'terms', 'avatar' ];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_icon',
 			[
@@ -59,7 +60,6 @@ class Post_Info extends Base {
 				],
 				'render_type' => 'template',
 				'classes' => 'elementor-control-start-end',
-				'label_block' => false,
 			]
 		);
 
@@ -87,7 +87,6 @@ class Post_Info extends Base {
 			[
 				'label' => __( 'Date Format', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
-				'label_block' => false,
 				'default' => 'default',
 				'options' => [
 					'default' => 'Default',
@@ -109,7 +108,6 @@ class Post_Info extends Base {
 				'label' => __( 'Custom Date Format', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => 'F j, Y',
-				'label_block' => false,
 				'condition' => [
 					'type' => 'date',
 					'date_format' => 'custom',
@@ -127,7 +125,6 @@ class Post_Info extends Base {
 			[
 				'label' => __( 'Time Format', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
-				'label_block' => false,
 				'default' => 'default',
 				'options' => [
 					'default' => 'Default',
@@ -148,7 +145,6 @@ class Post_Info extends Base {
 				'type' => Controls_Manager::TEXT,
 				'default' => 'g:i a',
 				'placeholder' => 'g:i a',
-				'label_block' => false,
 				'condition' => [
 					'type' => 'time',
 					'time_format' => 'custom',
@@ -180,7 +176,6 @@ class Post_Info extends Base {
 			[
 				'label' => __( 'Before', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
-				'label_block' => false,
 				'condition' => [
 					'type!' => 'custom',
 				],
@@ -229,7 +224,6 @@ class Post_Info extends Base {
 			[
 				'label' => __( 'No Comments', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
-				'label_block' => false,
 				'placeholder' => __( 'No Comments', 'elementor-pro' ),
 				'condition' => [
 					'comments_custom_strings' => 'yes',
@@ -243,7 +237,6 @@ class Post_Info extends Base {
 			[
 				'label' => __( 'One Comment', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
-				'label_block' => false,
 				'placeholder' => __( 'One Comment', 'elementor-pro' ),
 				'condition' => [
 					'comments_custom_strings' => 'yes',
@@ -257,7 +250,6 @@ class Post_Info extends Base {
 			[
 				'label' => __( 'Comments', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
-				'label_block' => false,
 				'placeholder' => __( '%s Comments', 'elementor-pro' ),
 				'condition' => [
 					'comments_custom_strings' => 'yes',
@@ -325,10 +317,11 @@ class Post_Info extends Base {
 		);
 
 		$repeater->add_control(
-			'icon',
+			'selected_icon',
 			[
 				'label' => __( 'Choose Icon', 'elementor-pro' ),
-				'type' => Controls_Manager::ICON,
+				'type' => Controls_Manager::ICONS,
+				'fa4compatibility' => 'icon',
 				'condition' => [
 					'show_icon' => 'custom',
 					'show_avatar!' => 'yes',
@@ -345,22 +338,34 @@ class Post_Info extends Base {
 				'default' => [
 					[
 						'type' => 'author',
-						'icon' => 'fa fa-user-circle-o',
+						'selected_icon' => [
+							'value' => 'far fa-user-circle',
+							'library' => 'fa-regular',
+						],
 					],
 					[
 						'type' => 'date',
-						'icon' => 'fa fa-calendar',
+						'selected_icon' => [
+							'value' => 'fas fa-calendar',
+							'library' => 'fa-solid',
+						],
 					],
 					[
 						'type' => 'time',
-						'icon' => 'fa fa-clock-o',
+						'selected_icon' => [
+							'value' => 'far fa-clock',
+							'library' => 'fa-regular',
+						],
 					],
 					[
 						'type' => 'comments',
-						'icon' => 'fa fa-commenting-o',
+						'selected_icon' => [
+							'value' => 'far fa-comment-dots',
+							'library' => 'fa-regular',
+						],
 					],
 				],
-				'title_field' => '<i class="{{ icon }}" aria-hidden="true"></i> <span style="text-transform: capitalize;">{{{ type }}}</span>',
+				'title_field' => '{{{ elementor.helpers.renderIcon( this, selected_icon, {}, "i", "panel" ) || \'<i class="{{ icon }}" aria-hidden="true"></i>\' }}} <span style="text-transform: capitalize;">{{{ type }}}</span>',
 			]
 		);
 
@@ -542,9 +547,8 @@ class Post_Info extends Base {
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '#ddd',
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
 				],
 				'condition' => [
 					'divider' => 'yes',
@@ -573,10 +577,10 @@ class Post_Info extends Base {
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} .elementor-icon-list-icon i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-icon-list-icon svg' => 'fill: {{VALUE}};',
 				],
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
 				],
 			]
 		);
@@ -597,6 +601,7 @@ class Post_Info extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-icon-list-icon' => 'width: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .elementor-icon-list-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-icon-list-icon svg' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -614,7 +619,7 @@ class Post_Info extends Base {
 		$this->add_control(
 			'text_indent',
 			[
-				'label' => __( 'Text Indent', 'elementor-pro' ),
+				'label' => __( 'Indent', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -637,9 +642,8 @@ class Post_Info extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-icon-list-text, {{WRAPPER}} .elementor-icon-list-text a' => 'color: {{VALUE}}',
 				],
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_2,
+				'global' => [
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 			]
 		);
@@ -649,7 +653,9 @@ class Post_Info extends Base {
 			[
 				'name' => 'icon_typography',
 				'selector' => '{{WRAPPER}} .elementor-icon-list-item',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -679,10 +685,16 @@ class Post_Info extends Base {
 			case 'author':
 				$item_data['text'] = get_the_author_meta( 'display_name' );
 				$item_data['icon'] = 'fa fa-user-circle-o'; // Default icon.
+				$item_data['selected_icon'] = [
+					'value' => 'far fa-user-circle',
+					'library' => 'fa-regular',
+				]; // Default icons.
 				$item_data['itemprop'] = 'author';
 
 				if ( 'yes' === $repeater_item['link'] ) {
-					$item_data['url'] = get_author_posts_url( get_the_author_meta( 'ID' ) );
+					$item_data['url'] = [
+						'url' => get_author_posts_url( get_the_author_meta( 'ID' ) ),
+					];
 				}
 
 				if ( 'yes' === $repeater_item['show_avatar'] ) {
@@ -705,10 +717,16 @@ class Post_Info extends Base {
 
 				$item_data['text'] = get_the_time( $format_options[ $repeater_item['date_format'] ] );
 				$item_data['icon'] = 'fa fa-calendar'; // Default icon
+				$item_data['selected_icon'] = [
+					'value' => 'fas fa-calendar',
+					'library' => 'fa-solid',
+				]; // Default icons.
 				$item_data['itemprop'] = 'datePublished';
 
 				if ( 'yes' === $repeater_item['link'] ) {
-					$item_data['url'] = get_day_link( get_post_time( 'Y' ), get_post_time( 'm' ), get_post_time( 'j' ) );
+					$item_data['url'] = [
+						'url' => get_day_link( get_post_time( 'Y' ), get_post_time( 'm' ), get_post_time( 'j' ) ),
+					];
 				}
 				break;
 
@@ -724,6 +742,10 @@ class Post_Info extends Base {
 				];
 				$item_data['text'] = get_the_time( $format_options[ $repeater_item['time_format'] ] );
 				$item_data['icon'] = 'fa fa-clock-o'; // Default icon
+				$item_data['selected_icon'] = [
+					'value' => 'far fa-clock',
+					'library' => 'fa-regular',
+				]; // Default icons.
 				break;
 
 			case 'comments':
@@ -757,15 +779,25 @@ class Post_Info extends Base {
 					}
 
 					if ( 'yes' === $repeater_item['link'] ) {
-						$item_data['url'] = get_comments_link();
+						$item_data['url'] = [
+							'url' => get_comments_link(),
+						];
 					}
 					$item_data['icon'] = 'fa fa-commenting-o'; // Default icon
+					$item_data['selected_icon'] = [
+						'value' => 'far fa-comment-dots',
+						'library' => 'fa-regular',
+					]; // Default icons.
 					$item_data['itemprop'] = 'commentCount';
 				}
 				break;
 
 			case 'terms':
 				$item_data['icon'] = 'fa fa-tags'; // Default icon
+				$item_data['selected_icon'] = [
+					'value' => 'fas fa-tags',
+					'library' => 'fa-solid',
+				]; // Default icons.
 				$item_data['itemprop'] = 'about';
 
 				$taxonomy = $repeater_item['taxonomy'];
@@ -781,6 +813,10 @@ class Post_Info extends Base {
 			case 'custom':
 				$item_data['text'] = $repeater_item['custom_text'];
 				$item_data['icon'] = 'fa fa-info-circle'; // Default icon.
+				$item_data['selected_icon'] = [
+					'value' => 'far fa-tags',
+					'library' => 'fa-regular',
+				]; // Default icons.
 
 				if ( 'yes' === $repeater_item['link'] && ! empty( $repeater_item['custom_url'] ) ) {
 					$item_data['url'] = $repeater_item['custom_url'];
@@ -823,10 +859,12 @@ class Post_Info extends Base {
 			$this->add_render_attribute( $item_key, 'class', 'elementor-inline-item' );
 		}
 
-		if ( ! empty( $item_data['url'] ) ) {
+		if ( ! empty( $item_data['url']['url'] ) ) {
 			$has_link = true;
-			$this->add_render_attribute( $link_key, 'href', $item_data['url'] );
+
+			$this->add_link_attributes( $link_key, $item_data['url'] );
 		}
+
 		if ( ! empty( $item_data['itemprop'] ) ) {
 			$this->add_render_attribute( $item_key, 'itemprop', $item_data['itemprop'] );
 		}
@@ -847,30 +885,49 @@ class Post_Info extends Base {
 
 	protected function render_item_icon_or_image( $item_data, $repeater_item, $repeater_index ) {
 		// Set icon according to user settings.
-		if ( 'custom' === $repeater_item['show_icon'] && ! empty( $repeater_item['icon'] ) ) {
-			$item_data['icon'] = $repeater_item['icon'];
-		} elseif ( 'none' === $repeater_item['show_icon'] ) {
-			$item_data['icon'] = '';
+		$migration_allowed = Icons_Manager::is_migration_allowed();
+		if ( ! $migration_allowed ) {
+			if ( 'custom' === $repeater_item['show_icon'] && ! empty( $repeater_item['icon'] ) ) {
+				$item_data['icon'] = $repeater_item['icon'];
+			} elseif ( 'none' === $repeater_item['show_icon'] ) {
+				$item_data['icon'] = '';
+			}
+		} else {
+			if ( 'custom' === $repeater_item['show_icon'] && ! empty( $repeater_item['selected_icon'] ) ) {
+				$item_data['selected_icon'] = $repeater_item['selected_icon'];
+			} elseif ( 'none' === $repeater_item['show_icon'] ) {
+				$item_data['selected_icon'] = [];
+			}
 		}
 
-		if ( empty( $item_data['icon'] ) && empty( $item_data['image'] ) ) {
+		if ( empty( $item_data['icon'] ) && empty( $item_data['selected_icon'] ) && empty( $item_data['image'] ) ) {
 			return;
 		}
 
-		?>
-		<span class="elementor-icon-list-icon">
+		$migrated = isset( $repeater_item['__fa4_migrated']['selected_icon'] );
+		$is_new = empty( $repeater_item['icon'] ) && $migration_allowed;
+		$show_icon = 'none' !== $repeater_item['show_icon'];
+
+		if ( ! empty( $item_data['image'] ) || $show_icon ) {
+			?>
+			<span class="elementor-icon-list-icon">
 			<?php
 			if ( ! empty( $item_data['image'] ) ) :
 				$image_data = 'image_' . $repeater_index;
 				$this->add_render_attribute( $image_data, 'src', $item_data['image'] );
 				$this->add_render_attribute( $image_data, 'alt', $item_data['text'] );
 				?>
-				<img class="elementor-avatar" <?php echo $this->get_render_attribute_string( $image_data ); ?>>
-			<?php else : ?>
-				<i class="<?php echo esc_attr( $item_data['icon'] ); ?>" aria-hidden="true"></i>
-			<?php endif; ?>
-		</span>
-		<?php
+					<img class="elementor-avatar" <?php echo $this->get_render_attribute_string( $image_data ); ?>>
+				<?php elseif ( $show_icon ) : ?>
+					<?php if ( $is_new || $migrated ) :
+						Icons_Manager::render_icon( $item_data['selected_icon'], [ 'aria-hidden' => 'true' ] );
+					else : ?>
+						<i class="<?php echo esc_attr( $item_data['icon'] ); ?>" aria-hidden="true"></i>
+					<?php endif; ?>
+				<?php endif; ?>
+			</span>
+			<?php
+		}
 	}
 
 	protected function render_item_text( $item_data, $repeater_index ) {
@@ -905,7 +962,15 @@ class Post_Info extends Base {
 				?>
 				</span>
 			<?php else : ?>
-				<?php echo esc_html( $item_data['text'] ); ?>
+				<?php
+				echo wp_kses( $item_data['text'], [
+					'a' => [
+						'href' => [],
+						'title' => [],
+						'rel' => [],
+					],
+				] );
+				?>
 			<?php endif; ?>
 		</span>
 		<?php

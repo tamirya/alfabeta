@@ -1,7 +1,7 @@
 <?php
 namespace ElementorPro\Modules\DynamicTags\Tags;
 
-use Elementor\Core\DynamicTags\Tag;
+use ElementorPro\Modules\DynamicTags\Tags\Base\Tag;
 use ElementorPro\Modules\DynamicTags\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,7 +39,7 @@ class Archive_Meta extends Tag {
 
 		$value = '';
 
-		if ( is_category() || is_tax() || is_tax() ) {
+		if ( is_category() || is_tax() ) {
 			$value = get_term_meta( get_queried_object_id(), $key, true );
 		} elseif ( is_author() ) {
 			$value = get_user_meta( get_queried_object_id(), $key, true );
@@ -52,7 +52,7 @@ class Archive_Meta extends Tag {
 		return 'key';
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->add_control(
 			'key',
 			[

@@ -13,12 +13,12 @@ class By_Author extends Condition_Base {
 		return 'singular';
 	}
 
-	public function get_name() {
-		return 'by_author';
+	public static function get_priority() {
+		return 40;
 	}
 
-	public static function get_priority() {
-		return 50;
+	public function get_name() {
+		return 'by_author';
 	}
 
 	public function get_label() {
@@ -26,10 +26,10 @@ class By_Author extends Condition_Base {
 	}
 
 	public function check( $args = null ) {
-		return get_post_field( 'post_author' ) === $args['id'];
+		return is_singular() && get_post_field( 'post_author' ) === $args['id'];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->add_control(
 			'author_id',
 			[
@@ -38,8 +38,9 @@ class By_Author extends Condition_Base {
 				'select2options' => [
 					'dropdownCssClass' => 'elementor-conditions-select2-dropdown',
 				],
-				'filter_type' => 'author',
-				'object_type' => $this->get_name(),
+				'autocomplete' => [
+					'object' => QueryModule::QUERY_OBJECT_AUTHOR,
+				],
 			]
 		);
 	}

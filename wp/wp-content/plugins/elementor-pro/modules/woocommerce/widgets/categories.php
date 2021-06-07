@@ -2,16 +2,16 @@
 namespace ElementorPro\Modules\Woocommerce\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Categories extends Widget_Base {
+class Categories extends Base_Widget {
 
 	protected $_has_template_content = false;
 
@@ -37,7 +37,7 @@ class Categories extends Widget_Base {
 		];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_layout',
 			[
@@ -191,7 +191,7 @@ class Categories extends Widget_Base {
 			[
 				'type' => Controls_Manager::HIDDEN,
 				'default' => 'wc-products',
-				'prefix_class' => 'elementor-',
+				'prefix_class' => 'elementor-products-grid elementor-',
 			]
 		);
 
@@ -243,15 +243,15 @@ class Categories extends Widget_Base {
 				'options'   => [
 					'left'   => [
 						'title' => __( 'Left', 'elementor-pro' ),
-						'icon'  => 'fa fa-align-left',
+						'icon'  => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'elementor-pro' ),
-						'icon'  => 'fa fa-align-center',
+						'icon'  => 'eicon-text-align-center',
 					],
 					'right'  => [
 						'title' => __( 'Right', 'elementor-pro' ),
-						'icon'  => 'fa fa-align-right',
+						'icon'  => 'eicon-text-align-right',
 					],
 				],
 				'prefix_class' => 'elementor-product-loop-item--align-',
@@ -316,12 +316,11 @@ class Categories extends Widget_Base {
 			[
 				'label'     => __( 'Color', 'elementor-pro' ),
 				'type'      => Controls_Manager::COLOR,
-				'scheme'    => [
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
+				'global'    => [
+					'default' => Global_Colors::COLOR_PRIMARY,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .woocommerce-loop-category__title' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .woocommerce .woocommerce-loop-category__title' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -330,8 +329,10 @@ class Categories extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'title_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .woocommerce-loop-category__title',
+				'global'    => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .woocommerce .woocommerce-loop-category__title',
 			]
 		);
 
@@ -359,7 +360,9 @@ class Categories extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'count_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'global'    => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .woocommerce-loop-category__title .count',
 			]
 		);

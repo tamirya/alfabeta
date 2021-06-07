@@ -2,11 +2,11 @@
 namespace ElementorPro\Modules\Carousel\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Embed;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Repeater;
-use Elementor\Scheme_Typography;
 use Elementor\Utils;
 use ElementorPro\Plugin;
 
@@ -60,8 +60,8 @@ class Media_Carousel extends Base {
 		$this->print_slider( $settings );
 	}
 
-	protected function _register_controls() {
-		parent::_register_controls();
+	protected function register_controls() {
+		parent::register_controls();
 
 		$this->start_controls_section(
 			'section_lightbox_style',
@@ -140,14 +140,13 @@ class Media_Carousel extends Base {
 				'options' => [
 					'image' => [
 						'title' => __( 'Image', 'elementor-pro' ),
-						'icon' => 'fa fa-image',
+						'icon' => 'eicon-image-bold',
 					],
 					'video' => [
 						'title' => __( 'Video', 'elementor-pro' ),
-						'icon' => 'fa fa-video-camera',
+						'icon' => 'eicon-video-camera',
 					],
 				],
-				'label_block' => false,
 				'toggle' => false,
 			]
 		);
@@ -163,7 +162,7 @@ class Media_Carousel extends Base {
 		$repeater->add_control(
 			'image_link_to_type',
 			[
-				'label' => __( 'Link To', 'elementor-pro' ),
+				'label' => __( 'Link', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'' => __( 'None', 'elementor-pro' ),
@@ -181,6 +180,7 @@ class Media_Carousel extends Base {
 			[
 				'type' => Controls_Manager::URL,
 				'placeholder' => __( 'https://your-link.com', 'elementor-pro' ),
+				'show_external' => 'true',
 				'condition' => [
 					'type' => 'image',
 					'image_link_to_type' => 'custom',
@@ -197,7 +197,7 @@ class Media_Carousel extends Base {
 				'type' => Controls_Manager::URL,
 				'placeholder' => __( 'Enter your video link', 'elementor-pro' ),
 				'description' => __( 'YouTube or Vimeo link', 'elementor-pro' ),
-				'show_external' => false,
+				'options' => false,
 				'condition' => [
 					'type' => 'video',
 				],
@@ -240,7 +240,7 @@ class Media_Carousel extends Base {
 	}
 
 	protected function get_image_link_to( $slide ) {
-		if ( $slide['video']['url'] ) {
+		if ( ! empty( $slide['video']['url'] ) ) {
 			return $slide['image']['url'];
 		}
 
@@ -275,27 +275,16 @@ class Media_Carousel extends Base {
 
 		$image_link_to = $this->get_image_link_to( $slide );
 
-		if ( $image_link_to ) {
-			$this->add_render_attribute( $element_key . '_link', 'href', $image_link_to );
-
+		if ( $image_link_to && empty( $settings['thumbs_slider'] ) ) {
 			if ( 'custom' === $slide['image_link_to_type'] ) {
-				if ( $slide['image_link_to']['is_external'] ) {
-					$this->add_render_attribute( $element_key . '_link', 'target', '_blank' );
-				}
-
-				if ( $slide['image_link_to']['nofollow'] ) {
-					$this->add_render_attribute( $element_key . '_link', 'nofollow', '' );
-				}
+				$this->add_link_attributes( $element_key . '_link', $slide['image_link_to'] );
 			} else {
-				$this->add_render_attribute( $element_key . '_link', [
-					'data-elementor-lightbox-slideshow' => $this->get_id(),
-					'data-elementor-lightbox-index' => $this->lightbox_slide_index,
-				] );
+				$this->add_render_attribute( $element_key . '_link', 'href', $image_link_to );
+
+				$this->add_lightbox_data_attributes( $element_key . '_link', $slide['image']['id'], 'yes', $this->get_id() );
 
 				if ( Plugin::elementor()->editor->is_edit_mode() ) {
-					$this->add_render_attribute( $element_key . '_link', [
-						'class' => 'elementor-clickable',
-					] );
+					$this->add_render_attribute( $element_key . '_link', 'class', 'elementor-clickable' );
 				}
 
 				$this->lightbox_slide_index++;
@@ -306,7 +295,6 @@ class Media_Carousel extends Base {
 					'autoplay' => 1,
 					'rel' => 0,
 					'controls' => 0,
-					'showinfo' => 0,
 				];
 
 				$this->add_render_attribute( $element_key . '_link', 'data-elementor-lightbox-video', Embed::get_embed_url( $slide['video']['url'], $embed_url_params ) );
@@ -327,7 +315,8 @@ class Media_Carousel extends Base {
 		<div <?php echo $this->get_render_attribute_string( $element_key . '-image' ); ?>>
 			<?php if ( 'video' === $slide['type'] && $settings['video_play_icon'] ) : ?>
 				<div class="elementor-custom-embed-play">
-					<i class="eicon-play"></i>
+					<i class="eicon-play" aria-hidden="true"></i>
+					<span class="elementor-screen-only"><?php _e( 'Play', 'elementor-pro' ); ?></span>
 				</div>
 			<?php endif; ?>
 		</div>
@@ -495,16 +484,16 @@ class Media_Carousel extends Base {
 				'default' => 'search-plus',
 				'options' => [
 					'search-plus' => [
-						'icon' => 'fa fa-search-plus',
+						'icon' => 'eicon-search-plus',
 					],
 					'plus-circle' => [
-						'icon' => 'fa fa-plus-circle',
+						'icon' => 'eicon-plus-circle',
 					],
 					'eye' => [
-						'icon' => 'fa fa-eye',
+						'icon' => 'eicon-preview-medium',
 					],
 					'link' => [
-						'icon' => 'fa fa-link',
+						'icon' => 'eicon-link',
 					],
 				],
 				'condition' => [
@@ -580,7 +569,9 @@ class Media_Carousel extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'caption_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 				'selector' => '{{WRAPPER}} .elementor-carousel-image-overlay',
 				'condition' => [
 					'overlay' => 'text',
@@ -673,6 +664,9 @@ class Media_Carousel extends Base {
 			[
 				'label' => __( 'Centered Slides', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
+				'condition' => [
+					'skin' => 'slideshow',
+				],
 				'frontend_available' => true,
 			]
 		);

@@ -4,9 +4,8 @@ namespace ElementorPro\Modules\Forms\Actions;
 use Elementor\Controls_Manager;
 use ElementorPro\Modules\Forms\Classes\Form_Record;
 use ElementorPro\Modules\Forms\Classes\Integration_Base;
-use ElementorPro\Modules\Forms\Controls\Fields_Map;
 use ElementorPro\Modules\Forms\Classes\Getresponse_Handler;
-use ElementorPro\Classes\Utils;
+use ElementorPro\Core\Utils;
 use Elementor\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -113,27 +112,7 @@ class Getresponse extends Integration_Base {
 			]
 		);
 
-		$widget->add_control(
-			'getresponse_fields_map',
-			[
-				'label' => __( 'Field Mapping', 'elementor-pro' ),
-				'type' => Fields_Map::CONTROL_TYPE,
-				'separator' => 'before',
-				'fields' => [
-					[
-						'name' => 'remote_id',
-						'type' => Controls_Manager::HIDDEN,
-					],
-					[
-						'name' => 'local_id',
-						'type' => Controls_Manager::SELECT,
-					],
-				],
-				'condition' => [
-					'getresponse_list!' => '',
-				],
-			]
-		);
+		$this->register_fields_map_control( $widget );
 
 		$widget->end_controls_section();
 	}
@@ -265,11 +244,17 @@ class Getresponse extends Integration_Base {
 		return $subscriber;
 	}
 
-	public function handle_panel_request() {
-		if ( ! empty( $_POST['api_key'] ) && 'default' === $_POST['api_key'] ) {
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 * @throws \Exception
+	 */
+	public function handle_panel_request( array $data ) {
+		if ( ! empty( $data['api_key'] ) && 'default' === $data['api_key'] ) {
 			$api_key = $this->get_global_api_key();
-		} elseif ( ! empty( $_POST['custom_api_key'] ) ) {
-			$api_key = $_POST['custom_api_key'];
+		} elseif ( ! empty( $data['custom_api_key'] ) ) {
+			$api_key = $data['custom_api_key'];
 		}
 
 		if ( empty( $api_key ) ) {
@@ -277,13 +262,12 @@ class Getresponse extends Integration_Base {
 		}
 
 		$handler = new Getresponse_Handler( $api_key );
-		if ( 'lists' === $_POST['getresponse_action'] ) {
+
+		if ( 'lists' === $data['getresponse_action'] ) {
 			return $handler->get_lists();
 		}
 
-		if ( 'get_fields' === $_POST['getresponse_action'] ) {
-			return $handler->get_fields();
-		}
+		return $handler->get_fields();
 	}
 
 	public function ajax_validate_api_token() {
@@ -327,5 +311,13 @@ class Getresponse extends Integration_Base {
 			add_action( 'elementor/admin/after_create_settings/' . Settings::PAGE_ID, [ $this, 'register_admin_fields' ], 15 );
 		}
 		add_action( 'wp_ajax_' . self::OPTION_NAME_API_KEY . '_validate', [ $this, 'ajax_validate_api_token' ] );
+	}
+
+	protected function get_fields_map_control_options() {
+		return [
+			'condition' => [
+				'getresponse_list!' => '',
+			],
+		];
 	}
 }

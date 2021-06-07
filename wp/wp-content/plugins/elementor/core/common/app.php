@@ -5,6 +5,11 @@ use Elementor\Core\Base\App as BaseApp;
 use Elementor\Core\Common\Modules\Ajax\Module as Ajax;
 use Elementor\Core\Common\Modules\Finder\Module as Finder;
 use Elementor\Core\Common\Modules\Connect\Module as Connect;
+use Elementor\Plugin;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 /**
  * App
@@ -20,6 +25,7 @@ class App extends BaseApp {
 	/**
 	 * App constructor.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 */
 	public function __construct() {
@@ -43,15 +49,19 @@ class App extends BaseApp {
 	 *
 	 * Initializing common components.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 */
 	public function init_components() {
 		$this->add_component( 'ajax', new Ajax() );
 
 		if ( current_user_can( 'manage_options' ) ) {
-			$this->add_component( 'finder', new Finder() );
-			$this->add_component( 'connect', new Connect() );
+			if ( ! is_customize_preview() ) {
+				$this->add_component( 'finder', new Finder() );
+			}
 		}
+
+		$this->add_component( 'connect', new Connect() );
 	}
 
 	/**
@@ -59,6 +69,7 @@ class App extends BaseApp {
 	 *
 	 * Retrieve the app name.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 *
 	 * @return string Common app name.
@@ -72,16 +83,25 @@ class App extends BaseApp {
 	 *
 	 * Register common scripts.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 */
 	public function register_scripts() {
+		wp_register_script(
+			'elementor-common-modules',
+			$this->get_js_assets_url( 'common-modules' ),
+			[],
+			ELEMENTOR_VERSION,
+			true
+		);
+
 		wp_register_script(
 			'backbone-marionette',
 			$this->get_js_assets_url( 'backbone.marionette', 'assets/lib/backbone/' ),
 			[
 				'backbone',
 			],
-			'2.4.5',
+			'2.4.5.e1',
 			true
 		);
 
@@ -101,7 +121,7 @@ class App extends BaseApp {
 			[
 				'jquery-ui-position',
 			],
-			'4.5.1',
+			'4.8.1',
 			true
 		);
 
@@ -113,13 +133,20 @@ class App extends BaseApp {
 				'jquery-ui-draggable',
 				'backbone-marionette',
 				'backbone-radio',
+				'elementor-common-modules',
 				'elementor-dialog',
+				'wp-api-request',
 			],
 			ELEMENTOR_VERSION,
 			true
 		);
 
+		wp_set_script_translations( 'elementor-common', 'elementor' );
+
 		$this->print_config();
+
+		// Used for external plugins.
+		do_action( 'elementor/common/after_register_scripts', $this );
 	}
 
 	/**
@@ -127,6 +154,7 @@ class App extends BaseApp {
 	 *
 	 * Register common styles.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 */
 	public function register_styles() {
@@ -134,7 +162,7 @@ class App extends BaseApp {
 			'elementor-icons',
 			$this->get_css_assets_url( 'elementor-icons', 'assets/lib/eicons/css/' ),
 			[],
-			'4.0.0'
+			'5.10.0'
 		);
 
 		wp_enqueue_style(
@@ -150,6 +178,7 @@ class App extends BaseApp {
 	/**
 	 * Add template.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 *
 	 * @param string $template Can be either a link to template file or template
@@ -174,6 +203,7 @@ class App extends BaseApp {
 	 *
 	 * Prints all registered templates.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 */
 	public function print_templates() {
@@ -187,17 +217,26 @@ class App extends BaseApp {
 	 *
 	 * Define the default/initial settings of the common app.
 	 *
+	 * @since 2.3.0
 	 * @access protected
 	 *
 	 * @return array
 	 */
 	protected function get_init_settings() {
+		$active_experimental_features = Plugin::$instance->experiments->get_active_features();
+
+		$active_experimental_features = array_fill_keys( array_keys( $active_experimental_features ), true );
+
 		return [
 			'version' => ELEMENTOR_VERSION,
 			'isRTL' => is_rtl(),
+			'isDebug' => ( defined( 'WP_DEBUG' ) && WP_DEBUG ),
+			'isElementorDebug' => ( defined( 'ELEMENTOR_DEBUG' ) && ELEMENTOR_DEBUG ),
 			'activeModules' => array_keys( $this->get_components() ),
+			'experimentalFeatures' => $active_experimental_features,
 			'urls' => [
 				'assets' => ELEMENTOR_ASSETS_URL,
+				'rest' => get_rest_url(),
 			],
 		];
 	}
@@ -206,6 +245,8 @@ class App extends BaseApp {
 	 * Add default templates.
 	 *
 	 * Register common app default templates.
+	 * @since 2.3.0
+	 * @access private
 	 */
 	private function add_default_templates() {
 		$default_templates = [

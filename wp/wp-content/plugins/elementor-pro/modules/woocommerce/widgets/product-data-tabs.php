@@ -4,13 +4,12 @@ namespace ElementorPro\Modules\Woocommerce\Widgets;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Product_Data_Tabs extends Widget_Base {
+class Product_Data_Tabs extends Base_Widget {
 
 	public function get_name() {
 		return 'woocommerce-product-data-tabs';
@@ -28,7 +27,7 @@ class Product_Data_Tabs extends Widget_Base {
 		return [ 'woocommerce', 'shop', 'store', 'data', 'product', 'tabs' ];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_product_tabs_style',
@@ -143,7 +142,6 @@ class Product_Data_Tabs extends Widget_Base {
 			'separator_tabs_style',
 			[
 				'type' => Controls_Manager::DIVIDER,
-				'style' => 'thick',
 			]
 		);
 
@@ -230,7 +228,6 @@ class Product_Data_Tabs extends Widget_Base {
 			'separator_panel_style',
 			[
 				'type' => Controls_Manager::DIVIDER,
-				'style' => 'thick',
 			]
 		);
 
@@ -282,7 +279,7 @@ class Product_Data_Tabs extends Widget_Base {
 		wc_get_template( 'single-product/tabs/tabs.php' );
 
 		// On render widget from Editor - trigger the init manually.
-		if ( Utils::is_ajax() ) {
+		if ( wp_doing_ajax() ) {
 			?>
 			<script>
 				jQuery( '.wc-tabs-wrapper, .woocommerce-tabs, #rating' ).trigger( 'init' );

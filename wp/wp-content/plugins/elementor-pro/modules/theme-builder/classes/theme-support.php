@@ -3,6 +3,7 @@ namespace ElementorPro\Modules\ThemeBuilder\Classes;
 
 use ElementorPro\Modules\ThemeBuilder\Module;
 use ElementorPro\Modules\ThemeBuilder\ThemeSupport\GeneratePress_Theme_Support;
+use ElementorPro\Modules\ThemeBuilder\ThemeSupport\Safe_Mode_Theme_Support;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -21,6 +22,9 @@ class Theme_Support {
 			case 'generatepress':
 				new GeneratePress_Theme_Support();
 				break;
+			case 'elementor-safe':
+				new Safe_Mode_Theme_Support();
+				break;
 		}
 
 		add_action( 'elementor/theme/register_locations', [ $this, 'after_register_locations' ], 99 );
@@ -35,7 +39,7 @@ class Theme_Support {
 		$overwrite_footer_location = false;
 
 		foreach ( $core_locations as $location => $settings ) {
-			if ( ! $location_manager->get_locations( $location ) ) {
+			if ( ! $location_manager->get_location( $location ) ) {
 				if ( 'header' === $location ) {
 					$overwrite_header_location = true;
 				} elseif ( 'footer' === $location ) {
@@ -48,13 +52,18 @@ class Theme_Support {
 		}
 
 		if ( $overwrite_header_location || $overwrite_footer_location ) {
-			$conditions_manager = Module::instance()->get_conditions_manager();
+			/** @var Module $theme_builder_module */
+			$theme_builder_module = Module::instance();
+
+			$conditions_manager = $theme_builder_module->get_conditions_manager();
+
 			$headers = $conditions_manager->get_documents_for_location( 'header' );
 			$footers = $conditions_manager->get_documents_for_location( 'footer' );
 
 			if ( ! empty( $headers ) || ! empty( $footers ) ) {
 				add_action( 'get_header', [ $this, 'get_header' ] );
 				add_action( 'get_footer', [ $this, 'get_footer' ] );
+				add_filter( 'show_admin_bar', [ $this, 'filter_admin_bar_from_body_open' ] );
 			}
 		}
 	}
@@ -76,6 +85,30 @@ class Theme_Support {
 		// It cause a `require_once` so, in the get_header it self it will not be required again.
 		locate_template( $templates, true );
 		ob_get_clean();
+	}
+
+	/**
+	 * Don't show admin bar on `wp_body_open` because the theme header HTML is ignored via `$this->get_header()`.
+	 *
+	 * @param bool $show_admin_bar
+	 *
+	 * @return bool
+	 */
+	public function filter_admin_bar_from_body_open( $show_admin_bar ) {
+		global $wp_current_filter;
+
+		// A flag to mark if $show_admin_bar is switched to false during this filter,
+		// if so, it needed to switch back on the next filter (wp_footer).
+		static $switched = false;
+
+		if ( $show_admin_bar && in_array( 'wp_body_open', $wp_current_filter ) ) {
+			$show_admin_bar = false;
+			$switched = true;
+		} elseif ( $switched ) {
+			$show_admin_bar = true;
+		}
+
+		return $show_admin_bar;
 	}
 
 	public function get_footer( $name ) {

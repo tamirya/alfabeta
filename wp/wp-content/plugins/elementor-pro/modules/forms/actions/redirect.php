@@ -2,7 +2,9 @@
 namespace ElementorPro\Modules\Forms\Actions;
 
 use Elementor\Controls_Manager;
+use Elementor\Modules\DynamicTags\Module as TagsModule;
 use ElementorPro\Modules\Forms\Classes\Action_Base;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -35,6 +37,14 @@ class Redirect extends Action_Base {
 				'label' => __( 'Redirect To', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'placeholder' => __( 'https://your-link.com', 'elementor-pro' ),
+				'dynamic' => [
+					'active' => true,
+					'categories' => [
+						TagsModule::POST_META_CATEGORY,
+						TagsModule::TEXT_CATEGORY,
+						TagsModule::URL_CATEGORY,
+					],
+				],
 				'label_block' => true,
 				'render_type' => 'none',
 				'classes' => 'elementor-control-direction-ltr',
@@ -54,6 +64,8 @@ class Redirect extends Action_Base {
 
 	public function run( $record, $ajax_handler ) {
 		$redirect_to = $record->get_form_settings( 'redirect_to' );
+
+		$redirect_to = $record->replace_setting_shortcodes( $redirect_to, true );
 
 		if ( ! empty( $redirect_to ) && filter_var( $redirect_to, FILTER_VALIDATE_URL ) ) {
 			$ajax_handler->add_response_data( 'redirect_url', $redirect_to );

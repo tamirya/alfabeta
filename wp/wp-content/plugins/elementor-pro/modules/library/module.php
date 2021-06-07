@@ -47,9 +47,38 @@ class Module extends Module_Base {
 		return $settings;
 	}
 
-	public function get_autocomplete_for_library_widget_templates() {
+	public function add_to_results_for_library_widget_templates( $val, $post, $request ) {
+		$document = Plugin::elementor()->documents->get( $post->ID );
+		if ( $document ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public function format_post_title_for_library_widget_templates( $post_title, $post_id, $request ) {
+		$document = Plugin::elementor()->documents->get( $post_id );
+		return $post_title . ' (' . $document->get_post_type_title() . ')';
+	}
+
+	public function add_actions() {
+		add_action( 'widgets_init', [ $this, 'register_wp_widgets' ] );
+	}
+
+	/**
+	 * @deprecated 2.6.0 No longer used by internal code. See Autocomplete documentation in Query-Control Module.
+	 * @param array $results
+	 * @param array $data
+	 *
+	 * @return array
+	 */
+	public function get_autocomplete_for_library_widget_templates( array $results, array $data ) {
+		$document_types = Plugin::elementor()->documents->get_document_types( [
+			'show_in_library' => true,
+		] );
+
 		$query_params = [
-			's' => $_POST['q'],
+			's' => $data['q'],
 			'post_type' => Source_Local::CPT,
 			'posts_per_page' => -1,
 			'orderby' => 'meta_value',
@@ -57,8 +86,8 @@ class Module extends Module_Base {
 			'meta_query' => [
 				[
 					'key' => Document::TYPE_META_KEY,
-					'value' => 'widget',
-					'compare' => '!=',
+					'value' => array_keys( $document_types ),
+					'compare' => 'IN',
 				],
 			],
 		];
@@ -72,7 +101,7 @@ class Module extends Module_Base {
 			if ( $document ) {
 				$results[] = [
 					'id' => $post->ID,
-					'text' => $post->post_title . ' (' . $document->get_title() . ')',
+					'text' => esc_html( $post->post_title ) . ' (' . $document->get_post_type_title() . ')',
 				];
 			}
 		}
@@ -80,15 +109,37 @@ class Module extends Module_Base {
 		return $results;
 	}
 
-	public function add_actions() {
-		add_action( 'widgets_init', [ $this, 'register_wp_widgets' ] );
+	/**
+	 * @deprecated 2.6.0 No longer used by internal code. See Autocomplete documentation in Query-Control Module.
+	 * @param $results
+	 * @param $request
+	 *
+	 * @return mixed
+	 */
+	public function get_value_title_for_library_widget_templates( $results, $request ) {
+		$ids = (array) $request['id'];
+
+		$query = new \WP_Query(
+			[
+				'post_type' => Source_Local::CPT,
+				'post__in' => $ids,
+				'posts_per_page' => -1,
+			]
+		);
+
+		foreach ( $query->posts as $post ) {
+			$document = Plugin::elementor()->documents->get( $post->ID );
+			if ( $document ) {
+				$results[ $post->ID ] = esc_html( $post->post_title ) . ' (' . $document->get_post_type_title() . ')';
+			}
+		}
+
+		return $results;
 	}
 
 	public function add_filters() {
 		add_filter( 'elementor_pro/editor/localize_settings', [ $this, 'localize_settings' ] );
 		add_filter( 'elementor_pro/admin/localize_settings', [ $this, 'localize_settings' ] ); // For WordPress Widgets and Customizer
-		add_filter( 'elementor_pro/query_control/get_autocomplete/library_widget_templates', [ $this, 'get_autocomplete_for_library_widget_templates' ] ); // For WordPress Widgets and Customizer
-
 		add_filter( 'elementor/widgets/black_list', function( $black_list ) {
 			$black_list[] = 'ElementorPro\Modules\Library\WP_Widgets\Elementor_Library';
 
@@ -102,7 +153,7 @@ class Module extends Module_Base {
 
 	public static function empty_templates_message() {
 		return '<div id="elementor-widget-template-empty-templates">
-				<div class="elementor-widget-template-empty-templates-icon"><i class="eicon-nerd"></i></div>
+				<div class="elementor-widget-template-empty-templates-icon"><i class="eicon-nerd" aria-hidden="true"></i></div>
 				<div class="elementor-widget-template-empty-templates-title">' . __( 'You Haven’t Saved Templates Yet.', 'elementor-pro' ) . '</div>
 				<div class="elementor-widget-template-empty-templates-footer">' . __( 'Want to learn more about Elementor library?', 'elementor-pro' ) . ' <a class="elementor-widget-template-empty-templates-footer-url" href="https://go.elementor.com/docs-library/" target="_blank">' . __( 'Click Here', 'elementor-pro' ) . '</a>
 				</div>

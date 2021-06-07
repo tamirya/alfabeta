@@ -59,6 +59,10 @@ class Manager {
 		$this->add_actions();
 	}
 
+	/**
+	 * @since 2.3.0
+	 * @access public
+	 */
 	public function add_actions() {
 		add_action( 'elementor/ajax/register_actions', [ $this, 'register_ajax_actions' ] );
 		add_action( 'wp_ajax_elementor_library_direct_actions', [ $this, 'handle_direct_actions' ] );
@@ -124,7 +128,14 @@ class Manager {
 		if ( ! $source_instance instanceof Source_Base ) {
 			return new \WP_Error( 'wrong_instance_source' );
 		}
-		$this->_registered_sources[ $source_instance->get_id() ] = $source_instance;
+
+		$source_id = $source_instance->get_id();
+
+		if ( isset( $this->_registered_sources[ $source_id ] ) ) {
+			return new \WP_Error( 'source_exists' );
+		}
+
+		$this->_registered_sources[ $source_id ] = $source_instance;
 
 		return true;
 	}
@@ -135,6 +146,8 @@ class Manager {
 	 * Remove an existing template sources from the list of registered template
 	 * sources.
 	 *
+	 * @deprecated 2.7.0
+	 *
 	 * @since 1.0.0
 	 * @access public
 	 *
@@ -143,12 +156,6 @@ class Manager {
 	 * @return bool Whether the source was unregistered.
 	 */
 	public function unregister_source( $id ) {
-		if ( ! isset( $this->_registered_sources[ $id ] ) ) {
-			return false;
-		}
-
-		unset( $this->_registered_sources[ $id ] );
-
 		return true;
 	}
 
@@ -223,11 +230,12 @@ class Manager {
 	public function get_library_data( array $args ) {
 		$library_data = Api::get_library_data( ! empty( $args['sync'] ) );
 
+		// Ensure all document are registered.
+		Plugin::$instance->documents->get_document_types();
+
 		return [
 			'templates' => $this->get_templates(),
-			'config' => [
-				'categories' => $library_data['categories'],
-			],
+			'config' => $library_data['types_data'],
 		];
 	}
 
@@ -258,11 +266,9 @@ class Manager {
 
 		$args['content'] = json_decode( $args['content'], true );
 
-		if ( 'page' === $args['type'] ) {
-			$page = SettingsManager::get_settings_managers( 'page' )->get_model( $args['post_id'] );
+		$page = SettingsManager::get_settings_managers( 'page' )->get_model( $args['post_id'] );
 
-			$args['page_settings'] = $page->get_data( 'settings' );
-		}
+		$args['page_settings'] = $page->get_data( 'settings' );
 
 		$template_id = $source->save_item( $args );
 
@@ -429,6 +435,10 @@ class Manager {
 		return $source->export_template( $args['template_id'] );
 	}
 
+	/**
+	 * @since 2.3.0
+	 * @access public
+	 */
 	public function direct_import_template() {
 		/** @var Source_Local $source */
 		$source = $this->get_source( 'local' );
@@ -556,8 +566,8 @@ class Manager {
 	 *
 	 * Initialize template library ajax calls for allowed ajax requests.
 	 *
-	 * @since 1.0.0
-	 * @access private
+	 * @since 2.3.0
+	 * @access public
 	 *
 	 * @param Ajax $ajax
 	 */
@@ -579,6 +589,10 @@ class Manager {
 		}
 	}
 
+	/**
+	 * @since 2.3.0
+	 * @access public
+	 */
 	public function handle_direct_actions() {
 		if ( ! User::is_current_user_can_edit_post_type( Source_Local::CPT ) ) {
 			return;
@@ -619,9 +633,13 @@ class Manager {
 	 * @access private
 	 */
 	private function on_direct_import_template_success() {
-		wp_safe_redirect( admin_url( 'edit.php?post_type=' . Source_Local::CPT ) );
+		wp_safe_redirect( admin_url( Source_Local::ADMIN_MENU_SLUG ) );
 	}
 
+	/**
+	 * @since 2.3.0
+	 * @access private
+	 */
 	private function handle_direct_action_error( $message ) {
 		_default_wp_die_handler( $message, 'Elementor Library' );
 	}

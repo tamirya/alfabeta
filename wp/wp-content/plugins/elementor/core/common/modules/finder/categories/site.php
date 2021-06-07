@@ -2,8 +2,6 @@
 namespace Elementor\Core\Common\Modules\Finder\Categories;
 
 use Elementor\Core\Common\Modules\Finder\Base_Category;
-use Elementor\Core\RoleManager\Role_Manager;
-use Elementor\TemplateLibrary\Source_Local;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -19,6 +17,7 @@ class Site extends Base_Category {
 	/**
 	 * Get title.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 *
 	 * @return string
@@ -30,6 +29,7 @@ class Site extends Base_Category {
 	/**
 	 * Get category items.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 *
 	 * @param array $options
@@ -55,6 +55,12 @@ class Site extends Base_Category {
 				'icon' => 'wordpress',
 				'url' => admin_url( 'nav-menus.php' ),
 				'keywords' => [ 'menu', 'wordpress' ],
+			],
+			'wordpress-themes' => [
+				'title' => __( 'Themes', 'elementor' ),
+				'icon' => 'wordpress',
+				'url' => admin_url( 'themes.php' ),
+				'keywords' => [ 'themes', 'wordpress' ],
 			],
 			'wordpress-customizer' => [
 				'title' => __( 'Customizer', 'elementor' ),

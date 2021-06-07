@@ -2,7 +2,7 @@
 namespace ElementorPro\Modules\DynamicTags\Tags;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\DynamicTags\Tag;
+use ElementorPro\Modules\DynamicTags\Tags\Base\Tag;
 use ElementorPro\Modules\DynamicTags\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,7 +26,7 @@ class Current_Date_Time extends Tag {
 		return [ Module::TEXT_CATEGORY ];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->add_control(
 			'date_format',
 			[
@@ -35,10 +35,10 @@ class Current_Date_Time extends Tag {
 				'options' => [
 					'default' => __( 'Default', 'elementor-pro' ),
 					'' => __( 'None', 'elementor-pro' ),
-					'F j, Y' => date( 'F j, Y' ),
-					'Y-m-d' => date( 'Y-m-d' ),
-					'm/d/Y' => date( 'm/d/Y' ),
-					'd/m/Y' => date( 'd/m/Y' ),
+					'F j, Y' => gmdate( 'F j, Y' ),
+					'Y-m-d' => gmdate( 'Y-m-d' ),
+					'm/d/Y' => gmdate( 'm/d/Y' ),
+					'd/m/Y' => gmdate( 'd/m/Y' ),
 					'custom' => __( 'Custom', 'elementor-pro' ),
 				],
 				'default' => 'default',
@@ -53,9 +53,9 @@ class Current_Date_Time extends Tag {
 				'options' => [
 					'default' => __( 'Default', 'elementor-pro' ),
 					'' => __( 'None', 'elementor-pro' ),
-					'g:i a' => date( 'g:i a' ),
-					'g:i A' => date( 'g:i A' ),
-					'H:i' => date( 'H:i' ),
+					'g:i a' => gmdate( 'g:i a' ),
+					'g:i A' => gmdate( 'g:i A' ),
+					'H:i' => gmdate( 'H:i' ),
 				],
 				'default' => 'default',
 				'condition' => [
@@ -69,7 +69,7 @@ class Current_Date_Time extends Tag {
 			[
 				'label' => __( 'Custom Format', 'elementor-pro' ),
 				'default' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
-				'description' => sprintf( '<a href="https://codex.wordpress.org/Formatting_Date_and_Time" target="_blank">%s</a>', __( 'Documentation on date and time formatting', 'elementor-pro' ) ),
+				'description' => sprintf( '<a href="https://go.elementor.com/wordpress-date-time/" target="_blank">%s</a>', __( 'Documentation on date and time formatting', 'elementor-pro' ) ),
 				'condition' => [
 					'date_format' => 'custom',
 				],

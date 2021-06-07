@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Posts_Archive_Skin_Cards extends Skin_Cards {
+	use Posts_Archive_Skin_Base;
 
 	protected function _register_controls_actions() {
 		add_action( 'elementor/element/archive-posts/section_layout/before_section_end', [ $this, 'register_controls' ] );
@@ -21,24 +22,6 @@ class Posts_Archive_Skin_Cards extends Skin_Cards {
 
 	public function get_title() {
 		return __( 'Cards', 'elementor-pro' );
-	}
-
-	public function render() {
-		$this->parent->query_posts();
-
-		$wp_query = $this->parent->get_query();
-
-		if ( ! $wp_query->found_posts ) {
-			$this->render_loop_header();
-
-			echo '<div class="elementor-nothing-found elementor-posts-nothing-found">' . esc_html( $this->parent->get_settings( 'nothing_found_message' ) ) . '</div>';
-
-			$this->render_loop_footer();
-
-			return;
-		}
-
-		parent::render();
 	}
 
 	public function get_container_class() {

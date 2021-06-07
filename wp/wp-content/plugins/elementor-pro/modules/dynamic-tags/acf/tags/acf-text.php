@@ -1,8 +1,7 @@
 <?php
 namespace ElementorPro\Modules\DynamicTags\ACF\Tags;
 
-use Elementor\Controls_Manager;
-use Elementor\Core\DynamicTags\Tag;
+use ElementorPro\Modules\DynamicTags\Tags\Base\Tag;
 use ElementorPro\Modules\DynamicTags\ACF\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,18 +30,7 @@ class ACF_Text extends Tag {
 	}
 
 	public function render() {
-		$key = $this->get_settings( 'key' );
-		if ( empty( $key ) ) {
-			return;
-		}
-
-		list( $field_key, $meta_key ) = explode( ':', $key );
-
-		if ( 'options' === $field_key ) {
-			$field = get_field_object( $meta_key, $field_key );
-		} else {
-			$field = get_field_object( $field_key );
-		}
+		list( $field, $meta_key ) = Module::get_tag_value_field( $this );
 
 		if ( $field && ! empty( $field['type'] ) ) {
 			$value = $field['value'];
@@ -54,7 +42,7 @@ class ACF_Text extends Tag {
 					}
 					break;
 				case 'select':
-					// Usa as array for `multiple=true` or `return_format=array`.
+					// Use as array for `multiple=true` or `return_format=array`.
 					$values = (array) $value;
 
 					foreach ( $values as $key => $item ) {
@@ -82,10 +70,10 @@ class ACF_Text extends Tag {
 					break;
 				case 'oembed':
 					// Get from db without formatting.
-					$value = get_post_meta( get_the_ID(), $meta_key, true );
+					$value = $this->get_queried_object_meta( $meta_key );
 					break;
 				case 'google_map':
-					$meta = get_post_meta( get_the_ID(), $meta_key, true );
+					$meta = $this->get_queried_object_meta( $meta_key );
 					$value = isset( $meta['address'] ) ? $meta['address'] : '';
 					break;
 			} // End switch().
@@ -101,18 +89,11 @@ class ACF_Text extends Tag {
 		return 'key';
 	}
 
-	protected function _register_controls() {
-		$this->add_control(
-			'key',
-			[
-				'label' => __( 'Key', 'elementor-pro' ),
-				'type' => Controls_Manager::SELECT,
-				'groups' => Module::get_control_options( $this->get_supported_fields() ),
-			]
-		);
+	protected function register_controls() {
+		Module::add_key_control( $this );
 	}
 
-	protected function get_supported_fields() {
+	public function get_supported_fields() {
 		return [
 			'text',
 			'textarea',
@@ -130,7 +111,19 @@ class ACF_Text extends Tag {
 			'google_map',
 			'date_picker',
 			'time_picker',
+			'date_time_picker',
 			'color_picker',
 		];
+	}
+
+	private function get_queried_object_meta( $meta_key ) {
+		$value = '';
+		if ( is_singular() ) {
+			$value = get_post_meta( get_the_ID(), $meta_key, true );
+		} elseif ( is_tax() || is_category() || is_tag() ) {
+			$value = get_term_meta( get_queried_object_id(), $meta_key, true );
+		}
+
+		return $value;
 	}
 }

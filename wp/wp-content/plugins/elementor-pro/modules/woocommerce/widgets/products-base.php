@@ -2,20 +2,20 @@
 namespace ElementorPro\Modules\Woocommerce\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-abstract class Products_Base extends Widget_Base {
+abstract class Products_Base extends Base_Widget {
 
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_products_style',
@@ -39,16 +39,22 @@ abstract class Products_Base extends Widget_Base {
 			[
 				'type' => Controls_Manager::HIDDEN,
 				'default' => 'wc-products',
-				'prefix_class' => 'elementor-',
+				'prefix_class' => 'elementor-products-grid elementor-',
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'column_gap',
 			[
 				'label' => __( 'Columns Gap', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
+					'size' => 20,
+				],
+				'tablet_default' => [
+					'size' => 20,
+				],
+				'mobile_default' => [
 					'size' => 20,
 				],
 				'range' => [
@@ -63,12 +69,18 @@ abstract class Products_Base extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'row_gap',
 			[
 				'label' => __( 'Rows Gap', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
+					'size' => 40,
+				],
+				'tablet_default' => [
+					'size' => 40,
+				],
+				'mobile_default' => [
 					'size' => 40,
 				],
 				'range' => [
@@ -91,15 +103,15 @@ abstract class Products_Base extends Widget_Base {
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'elementor-pro' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'elementor-pro' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'elementor-pro' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'prefix_class' => 'elementor-product-loop-item--align-',
@@ -164,12 +176,12 @@ abstract class Products_Base extends Widget_Base {
 			[
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
 				],
 				'selectors' => [
 					'{{WRAPPER}}.elementor-wc-products ul.products li.product .woocommerce-loop-product__title' => 'color: {{VALUE}}',
+					'{{WRAPPER}}.elementor-wc-products ul.products li.product .woocommerce-loop-category__title' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -178,8 +190,12 @@ abstract class Products_Base extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}}.elementor-wc-products ul.products li.product .woocommerce-loop-product__title',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}}.elementor-wc-products ul.products li.product .woocommerce-loop-product__title, ' .
+								'{{WRAPPER}}.elementor-wc-products ul.products li.product .woocommerce-loop-category__title',
+
 			]
 		);
 
@@ -198,6 +214,7 @@ abstract class Products_Base extends Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}}.elementor-wc-products ul.products li.product .woocommerce-loop-product__title' => 'margin-bottom: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}}.elementor-wc-products ul.products li.product .woocommerce-loop-category__title' => 'margin-bottom: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
@@ -287,9 +304,8 @@ abstract class Products_Base extends Widget_Base {
 			[
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
 				],
 				'selectors' => [
 					'{{WRAPPER}}.elementor-wc-products ul.products li.product .price' => 'color: {{VALUE}}',
@@ -303,7 +319,9 @@ abstract class Products_Base extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'price_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}}.elementor-wc-products ul.products li.product .price',
 			]
 		);
@@ -322,9 +340,8 @@ abstract class Products_Base extends Widget_Base {
 			[
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
 				],
 				'selectors' => [
 					'{{WRAPPER}}.elementor-wc-products ul.products li.product .price del' => 'color: {{VALUE}}',
@@ -337,7 +354,9 @@ abstract class Products_Base extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'old_price_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}}.elementor-wc-products ul.products li.product .price del .amount  ',
 				'selector' => '{{WRAPPER}}.elementor-wc-products ul.products li.product .price del ',
 			]
@@ -399,7 +418,9 @@ abstract class Products_Base extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'button_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 				'selector' => '{{WRAPPER}}.elementor-wc-products ul.products li.product .button',
 			]
 		);
@@ -441,7 +462,7 @@ abstract class Products_Base extends Widget_Base {
 				'label' => __( 'Border Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}}..elementor-wc-products ul.products li.product .button:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}}.elementor-wc-products ul.products li.product .button:hover' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -519,7 +540,9 @@ abstract class Products_Base extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'view_cart_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 				'selector' => '{{WRAPPER}}.elementor-wc-products .added_to_cart',
 			]
 		);
@@ -956,7 +979,6 @@ abstract class Products_Base extends Widget_Base {
 			[
 				'label' => __( 'Position', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
-				'label_block' => false,
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'elementor-pro' ),

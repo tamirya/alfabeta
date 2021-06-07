@@ -15,6 +15,10 @@ class Taxonomy extends Condition_Base {
 		return 'archive';
 	}
 
+	public static function get_priority() {
+		return 70;
+	}
+
 	public function __construct( $data ) {
 		parent::__construct();
 
@@ -44,7 +48,7 @@ class Taxonomy extends Condition_Base {
 		return is_tax( $taxonomy, $id );
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->add_control(
 			'taxonomy',
 			[
@@ -53,8 +57,13 @@ class Taxonomy extends Condition_Base {
 				'options' => [
 					'' => __( 'All', 'elementor-pro' ),
 				],
-				'filter_type' => 'taxonomy',
-				'object_type' => $this->get_name(),
+				'autocomplete' => [
+					'object' => QueryModule::QUERY_OBJECT_TAX,
+					'by_field' => 'term_id',
+					'query' => [
+						'taxonomy' => $this->taxonomy->name,
+					],
+				],
 			]
 		);
 	}

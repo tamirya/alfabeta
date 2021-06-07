@@ -2,7 +2,7 @@
 namespace ElementorPro\Modules\DynamicTags\Tags;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\DynamicTags\Tag;
+use ElementorPro\Modules\DynamicTags\Tags\Base\Tag;
 use ElementorPro\Modules\DynamicTags\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,7 +26,7 @@ class Post_Time extends Tag {
 		return [ Module::TEXT_CATEGORY ];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->add_control(
 			'type',
 			[
@@ -47,9 +47,9 @@ class Post_Time extends Tag {
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'default' => __( 'Default', 'elementor-pro' ),
-					'g:i a' => date( 'g:i a' ),
-					'g:i A' => date( 'g:i A' ),
-					'H:i' => date( 'H:i' ),
+					'g:i a' => gmdate( 'g:i a' ),
+					'g:i A' => gmdate( 'g:i A' ),
+					'H:i' => gmdate( 'H:i' ),
 					'custom' => __( 'Custom', 'elementor-pro' ),
 				],
 				'default' => 'default',
@@ -61,7 +61,7 @@ class Post_Time extends Tag {
 			[
 				'label' => __( 'Custom Format', 'elementor-pro' ),
 				'default' => '',
-				'description' => sprintf( '<a href="https://codex.wordpress.org/Formatting_Date_and_Time" target="_blank">%s</a>', __( 'Documentation on date and time formatting', 'elementor-pro' ) ),
+				'description' => sprintf( '<a href="https://go.elementor.com/wordpress-date-time/" target="_blank">%s</a>', __( 'Documentation on date and time formatting', 'elementor-pro' ) ),
 				'condition' => [
 					'format' => 'custom',
 				],

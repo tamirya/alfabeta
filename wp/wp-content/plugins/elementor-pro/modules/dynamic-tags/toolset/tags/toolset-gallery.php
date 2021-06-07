@@ -2,7 +2,7 @@
 namespace ElementorPro\Modules\DynamicTags\Toolset\Tags;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\DynamicTags\Data_Tag;
+use ElementorPro\Modules\DynamicTags\Tags\Base\Data_Tag;
 use ElementorPro\Modules\DynamicTags\Toolset\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -65,7 +65,7 @@ class Toolset_Gallery extends Data_Tag {
 		return $images;
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->add_control(
 			'key',
 			[

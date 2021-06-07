@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Header extends Theme_Section_Document {
+class Header extends Header_Footer_Base {
 
 	public static function get_properties() {
 		$properties = parent::get_properties();
@@ -15,7 +15,7 @@ class Header extends Theme_Section_Document {
 		return $properties;
 	}
 
-	public function get_name() {
+	protected static function get_site_editor_type() {
 		return 'header';
 	}
 
@@ -23,15 +23,17 @@ class Header extends Theme_Section_Document {
 		return __( 'Header', 'elementor-pro' );
 	}
 
-	protected static function get_editor_panel_categories() {
-		// Move to top as active.
-		$categories = [
-			'theme-elements' => [
-				'title' => __( 'Site', 'elementor-pro' ),
-				'active' => true,
-			],
-		];
+	protected static function get_site_editor_icon() {
+		return 'eicon-header';
+	}
 
-		return $categories + parent::get_editor_panel_categories();
+	protected static function get_site_editor_tooltip_data() {
+		return [
+			'title' => __( 'What is a Header Template?', 'elementor-pro' ),
+			'content' => __( 'The header template allows you to easily design and edit custom WordPress headers so you are no longer constrained by your theme’s header design limitations.', 'elementor-pro' ),
+			'tip' => __( 'You can create multiple headers, and assign each to different areas of your site.', 'elementor-pro' ),
+			'docs' => 'https://go.elementor.com/app-theme-builder-header',
+			'video_url' => 'https://www.youtube.com/embed/HHy5RK6W-6I',
+		];
 	}
 }

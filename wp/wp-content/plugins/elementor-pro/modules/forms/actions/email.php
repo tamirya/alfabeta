@@ -2,7 +2,7 @@
 namespace ElementorPro\Modules\Forms\Actions;
 
 use Elementor\Controls_Manager;
-use ElementorPro\Classes\Utils;
+use ElementorPro\Core\Utils;
 use ElementorPro\Modules\Forms\Classes\Ajax_Handler;
 use ElementorPro\Modules\Forms\Classes\Action_Base;
 use ElementorPro\Modules\Forms\Classes\Form_Record;
@@ -52,7 +52,7 @@ class Email extends Action_Base {
 		$widget->add_control(
 			$this->get_control_id( 'email_subject' ),
 			[
-				'label' => __( 'Email Subject', 'elementor-pro' ),
+				'label' => __( 'Subject', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => $default_message,
 				'placeholder' => $default_message,
@@ -64,12 +64,11 @@ class Email extends Action_Base {
 		$widget->add_control(
 			$this->get_control_id( 'email_content' ),
 			[
-				'label' => __( 'Email Content', 'elementor-pro' ),
+				'label' => __( 'Message', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'default' => '[all-fields]',
 				'placeholder' => '[all-fields]',
-				'description' => __( 'By default, all form fields are sent via shortcode: <code>[all-fields]</code>. Want to customize sent fields? Copy the shortcode that appears inside the field and paste it above.', 'elementor-pro' ),
-				'label_block' => true,
+				'description' => sprintf( __( 'By default, all form fields are sent via %s shortcode. To customize sent fields, copy the shortcode that appears inside each field and paste it above.', 'elementor-pro' ), '<code>[all-fields]</code>' ),
 				'render_type' => 'none',
 			]
 		);
@@ -194,6 +193,10 @@ class Email extends Action_Base {
 		return $element;
 	}
 
+	/**
+	 * @param \ElementorPro\Modules\Forms\Classes\Form_Record  $record
+	 * @param \ElementorPro\Modules\Forms\Classes\Ajax_Handler $ajax_handler
+	 */
 	public function run( $record, $ajax_handler ) {
 		$settings = $record->get( 'form_settings' );
 		$send_html = 'plain' !== $settings[ $this->get_control_id( 'email_content_type' ) ];
@@ -219,17 +222,7 @@ class Email extends Action_Base {
 			}
 		}
 
-		$email_reply_to = '';
-
-		if ( ! empty( $fields['email_reply_to'] ) ) {
-			$sent_data = $record->get( 'sent_data' );
-			foreach ( $record->get( 'fields' ) as $field_index => $field ) {
-				if ( $field_index === $fields['email_reply_to'] && ! empty( $sent_data[ $field_index ] ) ) {
-					$email_reply_to = $sent_data[ $field_index ];
-					break;
-				}
-			}
-		}
+		$email_reply_to = $this->get_reply_to( $record, $fields );
 
 		$fields['email_content'] = $this->replace_content_shortcodes( $fields['email_content'], $record, $line_break );
 
@@ -323,6 +316,22 @@ class Email extends Action_Base {
 		return $control_id;
 	}
 
+	protected function get_reply_to( $record, $fields ) {
+		$email_reply_to  = '';
+
+		if ( ! empty( $fields['email_reply_to'] ) ) {
+			$sent_data = $record->get( 'sent_data' );
+			foreach ( $record->get( 'fields' ) as $field_index => $field ) {
+				if ( $field_index === $fields['email_reply_to'] && ! empty( $sent_data[ $field_index ] ) && is_email( $sent_data[ $field_index ] ) ) {
+					$email_reply_to = $sent_data[ $field_index ];
+					break;
+				}
+			}
+		}
+
+		return $email_reply_to;
+	}
+
 	/**
 	 * @param string      $email_content
 	 * @param Form_Record $record
@@ -336,10 +345,15 @@ class Email extends Action_Base {
 		if ( false !== strpos( $email_content, $all_fields_shortcode ) ) {
 			$text = '';
 			foreach ( $record->get( 'fields' ) as $field ) {
-				$text .= $this->field_formatted( $field ) . $line_break;
+				$formatted = $this->field_formatted( $field );
+				if ( ( 'textarea' === $field['type'] ) && ( '<br>' === $line_break ) ) {
+					$formatted = str_replace( [ "\r\n", "\n", "\r" ], '<br />', $formatted );
+				}
+				$text .= $formatted . $line_break;
 			}
 
 			$email_content = str_replace( $all_fields_shortcode, $text, $email_content );
+
 		}
 
 		return $email_content;

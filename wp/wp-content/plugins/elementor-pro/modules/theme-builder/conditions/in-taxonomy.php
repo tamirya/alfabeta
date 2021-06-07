@@ -9,14 +9,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class In_Taxonomy extends Condition_Base {
 
-	public static function get_type() {
-		return 'singular';
-	}
 
 	/**
 	 * @var \WP_Taxonomy
 	 */
 	private $taxonomy;
+
+	public static function get_type() {
+		return 'singular';
+	}
+
+	public static function get_priority() {
+		return 40;
+	}
 
 	public function __construct( $data ) {
 		parent::__construct();
@@ -37,7 +42,7 @@ class In_Taxonomy extends Condition_Base {
 		return is_singular() && has_term( (int) $args['id'], $this->taxonomy->name );
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->add_control(
 			'taxonomy',
 			[
@@ -46,8 +51,14 @@ class In_Taxonomy extends Condition_Base {
 				'select2options' => [
 					'dropdownCssClass' => 'elementor-conditions-select2-dropdown',
 				],
-				'filter_type' => 'taxonomy',
-				'object_type' => $this->taxonomy->name,
+				'autocomplete' => [
+					'object' => QueryModule::QUERY_OBJECT_TAX,
+					'display' => 'detailed',
+					'by_field' => 'term_id',
+					'query' => [
+						'taxonomy' => $this->taxonomy->name,
+					],
+				],
 			]
 		);
 	}

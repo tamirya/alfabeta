@@ -22,8 +22,6 @@ class Module extends Module_Base {
 	public function __construct() {
 		parent::__construct();
 
-		Plugin::elementor()->editor->add_editor_template( __DIR__ . '/views/panel-template.php' );
-
 		$this->add_hooks();
 	}
 
@@ -44,8 +42,15 @@ class Module extends Module_Base {
 
 		$widgets_types = $elementor->widgets_manager->get_widget_types();
 
-		$widget_templates = array_filter( $templates_manager->get_source( 'local' )->get_items(), function( $template ) use ( $widgets_types ) {
-			return ! empty( $template['widgetType'] ) && ! empty( $widgets_types[ $template['widgetType'] ] );
+		$widget_templates = array_filter( $templates_manager->get_source( 'local' )->get_items( [ 'type' => self::TEMPLATE_TYPE ] ), function( $template ) use ( $widgets_types ) {
+			if ( empty( $template['widgetType'] ) || empty( $widgets_types[ $template['widgetType'] ] ) ) {
+				return false;
+			}
+
+			// Open the stack in order to include the widget controls in initial editor config
+			$widgets_types[ $template['widgetType'] ]->get_stack( false );
+
+			return true;
 		} );
 
 		$widget_templates_content = [];
@@ -142,43 +147,12 @@ class Module extends Module_Base {
 	 * @param array $args    Optional parameters passed to has_cap(), typically object ID.
 	 *
 	 * @return array
+	 * @deprecated 3.1.0
 	 */
 	public function remove_user_edit_cap( $allcaps, $caps, $args ) {
-		$capability = $args[0];
+		Plugin::elementor()->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function( __METHOD__, '3.1.0', 'Plugin::elementor()->documents->remove_user_edit_cap()' );
 
-		if ( empty( $args[2] ) ) {
-			return $allcaps;
-		}
-
-		global $pagenow;
-
-		if ( ! in_array( $pagenow, [ 'post.php', 'edit.php' ], true ) ) {
-			return $allcaps;
-		}
-
-		$post_id = $args[2];
-
-		if ( 'edit_post' !== $capability ) {
-			return $allcaps;
-		}
-
-		$post = get_post( $post_id );
-
-		if ( ! $post ) {
-			return $allcaps;
-		}
-
-		if ( Source_Local::CPT !== $post->post_type ) {
-			return $allcaps;
-		}
-
-		if ( ! $this->is_widget_template( $post_id ) ) {
-			return $allcaps;
-		}
-
-		$allcaps[ $caps[0] ] = false;
-
-		return $allcaps;
+		return Plugin::elementor()->documents->remove_user_edit_cap( $allcaps, $caps, $args );
 	}
 
 	public function is_widget_template( $template_id ) {
@@ -190,7 +164,7 @@ class Module extends Module_Base {
 	public function set_global_widget_included_posts_list( $post_id, $editor_data ) {
 		$global_widget_ids = [];
 
-		Plugin::elementor()->db->iterate_data( $editor_data, function( $element_data ) use ( & $global_widget_ids ) {
+		Plugin::elementor()->db->iterate_data( $editor_data, function( $element_data ) use ( &$global_widget_ids ) {
 			if ( isset( $element_data['templateID'] ) ) {
 				$global_widget_ids[] = $element_data['templateID'];
 			}
@@ -210,20 +184,15 @@ class Module extends Module_Base {
 	}
 
 	private function delete_included_posts_css( $template_id ) {
-		$including_post_ids = get_post_meta( $template_id, self::INCLUDED_POSTS_LIST_META_KEY, true );
+		$including_post_ids = (array) get_post_meta( $template_id, self::INCLUDED_POSTS_LIST_META_KEY, true );
 
 		if ( empty( $including_post_ids ) ) {
 			return;
 		}
 
-		global $wpdb;
-
-		$wpdb->query(
-			$wpdb->prepare(
-				"DELETE FROM {$wpdb->postmeta} WHERE `meta_key` = '_elementor_css' AND `post_id` IN (%s);",
-				implode( ',', array_keys( $including_post_ids ) )
-			)
-		);
+		foreach ( array_keys( $including_post_ids ) as $post_id ) {
+			delete_post_meta( $post_id, '_elementor_css' );
+		}
 	}
 
 	/**
@@ -233,17 +202,21 @@ class Module extends Module_Base {
 		$documents_manager->register_document_type( self::TEMPLATE_TYPE, Documents\Widget::get_class_full_name() );
 	}
 
+	public function on_elementor_editor_init() {
+		Plugin::elementor()->common->add_template( __DIR__ . '/views/panel-template.php' );
+	}
+
 	private function add_hooks() {
 		add_action( 'elementor/documents/register', [ $this, 'register_documents' ] );
 		add_action( 'elementor/template-library/after_save_template', [ $this, 'set_template_widget_type_meta' ], 10, 2 );
 		add_action( 'elementor/template-library/after_update_template', [ $this, 'on_template_update' ], 10, 2 );
+		add_action( 'elementor/editor/init', [ $this, 'on_elementor_editor_init' ] );
 		add_action( 'elementor/editor/after_save', [ $this, 'set_global_widget_included_posts_list' ], 10, 2 );
 
 		add_filter( 'elementor_pro/editor/localize_settings', [ $this, 'add_templates_localize_data' ] );
 		add_filter( 'elementor/template-library/get_template', [ $this, 'filter_template_data' ] );
 		add_filter( 'elementor/element/get_child_type', [ $this, 'get_element_child_type' ], 10, 2 );
-		add_filter( 'elementor/utils/is_post_type_support', [ $this, 'is_post_type_support_elementor' ], 10, 3 );
-		add_filter( 'user_has_cap', [ $this, 'remove_user_edit_cap' ], 10, 3 );
+		add_filter( 'elementor/utils/is_post_support', [ $this, 'is_post_type_support_elementor' ], 10, 3 );
 
 		add_filter( 'elementor/template_library/is_template_supports_export', [ $this, 'is_template_supports_export' ], 10, 2 );
 	}

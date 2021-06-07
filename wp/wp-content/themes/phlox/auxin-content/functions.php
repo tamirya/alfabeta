@@ -19,6 +19,22 @@ if( version_compare( PHP_VERSION, '5.3.0', '>=') ){
 
 
 if( is_admin() ){
+	add_action( 'wp_default_scripts', 'wp_default_custom_scripts' );
+    function wp_default_custom_scripts( $scripts ){
+        $scripts->add( 'wp-color-picker', "/wp-admin/js/color-picker.min.js", array( 'iris' ), false, 1 );
+        did_action( 'init' ) && $scripts->localize(
+            'wp-color-picker',
+            'wpColorPickerL10n',
+            array(
+                'clear'            => __( 'Clear' ),
+                'clearAriaLabel'   => __( 'Clear color' ),
+                'defaultString'    => __( 'Default' ),
+                'defaultAriaLabel' => __( 'Select default color' ),
+                'pick'             => __( 'Select Color' ),
+                'defaultLabel'     => __( 'Color value' ),
+            )
+        );
+	}
     locate_template( AUXIN_CON . 'include/hooks-admin.php'                                   , true, true );
 
     // Load general metabox models

@@ -1,9 +1,11 @@
 <?php
 namespace ElementorPro\Modules\AssetsManager\AssetTypes\Fonts;
 
+use Elementor\Core\Files\Assets\Files_Upload_Handler;
 use Elementor\Core\Files\CSS\Base;
 use ElementorPro\Modules\AssetsManager\Classes;
 use ElementorPro\Modules\AssetsManager\AssetTypes\Fonts_Manager;
+use ElementorPro\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -169,7 +171,7 @@ class Custom_Fonts extends Classes\Font_Base {
 	}
 
 	public function upload_mimes( $mine_types ) {
-		if ( current_user_can( Fonts_Manager::CAPABILITY ) ) {
+		if ( current_user_can( Fonts_Manager::CAPABILITY ) && $this->is_elementor_font_upload() ) {
 			foreach ( $this->get_file_types() as $type => $mine ) {
 				if ( ! isset( $mine_types[ $type ] ) ) {
 					$mine_types[ $type ] = $mine;
@@ -178,6 +180,33 @@ class Custom_Fonts extends Classes\Font_Base {
 		}
 
 		return $mine_types;
+	}
+
+	public function wp_handle_upload_prefilter( $file ) {
+		if ( ! $this->is_elementor_font_upload() ) {
+			return $file;
+		}
+
+		$ext = pathinfo( $file['name'], PATHINFO_EXTENSION );
+
+		if ( 'svg' !== $ext ) {
+			return $file;
+		}
+
+		/**
+		 * @var \Elementor\Core\Files\Assets\Svg\Svg_Handler $svg_handler;
+		 */
+		$svg_handler = Plugin::elementor()->assets_manager->get_asset( 'svg-handler' );
+
+		if ( Files_Upload_Handler::file_sanitizer_can_run() && ! $svg_handler->sanitize_svg( $file['tmp_name'] ) ) {
+			$file['error'] = __( 'Invalid SVG Format, file not uploaded for security reasons', 'elementor-pro' );
+		}
+
+		return $file;
+	}
+
+	private function is_elementor_font_upload() {
+		return isset( $_POST['uploadTypeCaller'] ) && 'elementor-admin-font-upload' === $_POST['uploadTypeCaller']; // phpcs:ignore
 	}
 
 	/**
@@ -196,6 +225,8 @@ class Custom_Fonts extends Classes\Font_Base {
 		if ( ! isset( $registered_file_types[ $filetype['ext'] ] ) ) {
 			return $data;
 		}
+		// Fix incorrect file mime type
+		$filetype['type'] = explode( '|', $filetype['type'] )[0];
 
 		return [
 			'ext' => $filetype['ext'],
@@ -238,6 +269,7 @@ class Custom_Fonts extends Classes\Font_Base {
 		$font_face .= "\tfont-family: '" . $font_family . "';" . PHP_EOL;
 		$font_face .= "\tfont-style: " . $data['font_style'] . ';' . PHP_EOL;
 		$font_face .= "\tfont-weight: " . $data['font_weight'] . ';' . PHP_EOL;
+		$font_face .= "\tfont-display: " . apply_filters( 'elementor_pro/custom_fonts/font_display', 'auto', $font_family, $data ) . ';' . PHP_EOL;
 
 		if ( isset( $data['eot'] ) && isset( $data['eot']['url'] ) && ! empty( $data['eot']['url'] ) ) {
 			$font_face .= "\tsrc: url('" . esc_attr( $data['eot']['url'] ) . "');" . PHP_EOL;
@@ -311,7 +343,7 @@ class Custom_Fonts extends Classes\Font_Base {
 			return;
 		}
 
-		printf( '<style>%s</style><span style="font-family: \'%s\';">%s</span>', $font_face, get_the_title( $post_id ), $this->font_preview_phrase );
+		printf( '<style>%s</style><span style="font-family: \'%s\';">%s</span>', $font_face, esc_html( get_the_title( $post_id ) ), $this->font_preview_phrase );
 	}
 
 	public function get_font_family_type( $post_id, $post_title ) {
@@ -348,16 +380,21 @@ class Custom_Fonts extends Classes\Font_Base {
 		$post_css->get_stylesheet()->add_raw_css( $custom_css );
 	}
 
-	public function handle_panel_request() {
-		if ( ! isset( $_POST['font'] ) ) {
-			throw new \Exception( 'Font is required.' );
-		}
-		$font_family = sanitize_text_field( $_POST['font'] );
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 * @throws \Exception
+	 */
+	public function handle_panel_request( array $data ) {
+		$font_family = sanitize_text_field( $data['font'] );
 
 		$font_face = $this->get_font_face_by_font_family( $font_family );
+
 		if ( empty( $font_face ) ) {
 			/* translators: %s: Font family. */
 			$error_message = sprintf( __( 'Font %s was not found.', 'elementor-pro' ), $font_family );
+
 			throw new \Exception( $error_message );
 		}
 
@@ -406,6 +443,7 @@ class Custom_Fonts extends Classes\Font_Base {
 		parent::actions();
 
 		add_filter( 'wp_check_filetype_and_ext', [ $this, 'filter_fix_wp_check_filetype_and_ext' ], 10, 4 );
+		add_filter( 'wp_handle_upload_prefilter', [ $this, 'wp_handle_upload_prefilter' ] );
 		add_filter( 'upload_mimes', [ $this, 'upload_mimes' ] );
 		add_action( 'add_meta_boxes_' . Fonts_Manager::CPT, [ $this, 'add_meta_box' ] );
 	}

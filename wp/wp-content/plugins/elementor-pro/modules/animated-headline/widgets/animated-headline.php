@@ -2,17 +2,17 @@
 namespace ElementorPro\Modules\AnimatedHeadline\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
-use Elementor\Widget_Base;
 use Elementor\Modules\DynamicTags\Module as TagsModule;
+use ElementorPro\Base\Base_Widget;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Animated_Headline extends Widget_Base {
+class Animated_Headline extends Base_Widget {
 
 	public function get_name() {
 		return 'animated-headline';
@@ -26,15 +26,11 @@ class Animated_Headline extends Widget_Base {
 		return 'eicon-animated-headline';
 	}
 
-	public function get_categories() {
-		return [ 'pro-elements' ];
-	}
-
 	public function get_keywords() {
 		return [ 'headline', 'heading', 'animation', 'title', 'text' ];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'text_elements',
 			[
@@ -130,6 +126,12 @@ class Animated_Headline extends Widget_Base {
 			[
 				'label' => __( 'Highlighted Text', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+					'categories' => [
+						TagsModule::TEXT_CATEGORY,
+					],
+				],
 				'default' => __( 'Amazing', 'elementor-pro' ),
 				'label_block' => true,
 				'condition' => [
@@ -148,7 +150,12 @@ class Animated_Headline extends Widget_Base {
 				'placeholder' => __( 'Enter each word in a separate line', 'elementor-pro' ),
 				'separator' => 'none',
 				'default' => "Better\nBigger\nFaster",
-				'rows' => 5,
+				'dynamic' => [
+					'active' => true,
+					'categories' => [
+						TagsModule::TEXT_CATEGORY,
+					],
+				],
 				'condition' => [
 					'headline_style' => 'rotate',
 				],
@@ -174,6 +181,67 @@ class Animated_Headline extends Widget_Base {
 		);
 
 		$this->add_control(
+			'loop',
+			[
+				'label' => __( 'Infinite Loop', 'elementor-pro' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+				'render_type' => 'template',
+				'frontend_available' => true,
+				'selectors' => [
+					'{{WRAPPER}}' => '--iteration-count: infinite',
+				],
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'highlight_animation_duration',
+			[
+				'label' => __( 'Duration', 'elementor-pro' ) . ' (ms)',
+				'type' => Controls_Manager::NUMBER,
+				'default' => 1200,
+				'render_type' => 'template',
+				'frontend_available' => true,
+				'selectors' => [
+					'{{WRAPPER}}' => '--animation-duration: {{VALUE}}ms',
+				],
+				'condition' => [
+					'headline_style' => 'highlight',
+				],
+			]
+		);
+
+		$this->add_control(
+			'highlight_iteration_delay',
+			[
+				'label' => __( 'Delay', 'elementor-pro' ) . ' (ms)',
+				'type' => Controls_Manager::NUMBER,
+				'default' => 8000,
+				'render_type' => 'template',
+				'frontend_available' => true,
+				'condition' => [
+					'headline_style' => 'highlight',
+					'loop' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'rotate_iteration_delay',
+			[
+				'label' => __( 'Duration', 'elementor-pro' ) . ' (ms)',
+				'type' => Controls_Manager::NUMBER,
+				'default' => 2500,
+				'render_type' => 'template',
+				'frontend_available' => true,
+				'condition' => [
+					'headline_style' => 'rotate',
+				],
+			]
+		);
+
+		$this->add_control(
 			'link',
 			[
 				'label' => __( 'Link', 'elementor-pro' ),
@@ -190,19 +258,18 @@ class Animated_Headline extends Widget_Base {
 			[
 				'label' => __( 'Alignment', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
-				'label_block' => false,
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'elementor-pro' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'elementor-pro' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'elementor-pro' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'default' => 'center',
@@ -250,9 +317,8 @@ class Animated_Headline extends Widget_Base {
 			[
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_4,
+				'global' => [
+					'default' => Global_Colors::COLOR_ACCENT,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-headline-dynamic-wrapper path' => 'stroke: {{VALUE}}',
@@ -315,13 +381,11 @@ class Animated_Headline extends Widget_Base {
 			[
 				'label' => __( 'Text Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_2,
+				'global' => [
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-headline-plain-text' => 'color: {{VALUE}}',
-
 				],
 			]
 		);
@@ -330,7 +394,9 @@ class Animated_Headline extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .elementor-headline',
 			]
 		);
@@ -349,12 +415,11 @@ class Animated_Headline extends Widget_Base {
 			[
 				'label' => __( 'Text Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_2,
+				'global' => [
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-headline-dynamic-text' => 'color: {{VALUE}}',
+					'{{WRAPPER}}' => '--dynamic-text-color: {{VALUE}}',
 				],
 			]
 		);
@@ -363,9 +428,54 @@ class Animated_Headline extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'words_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .elementor-headline-dynamic-text',
 				'exclude' => [ 'font_size' ],
+			]
+		);
+
+		$this->add_control(
+			'typing_animation_highlight_colors',
+			[
+				'type' => Controls_Manager::HEADING,
+				'label' => __( 'Selected Text', 'elementor-pro' ),
+				'separator' => 'before',
+				'condition' => [
+					'headline_style' => 'rotate',
+					'animation_type' => 'typing',
+				],
+			]
+		);
+
+		$this->add_control(
+			'highlighted_text_background_color',
+			[
+				'label' => __( 'Selection Color', 'elementor-pro' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}}' => '--typing-selected-bg-color: {{VALUE}}',
+				],
+				'condition' => [
+					'headline_style' => 'rotate',
+					'animation_type' => 'typing',
+				],
+			]
+		);
+
+		$this->add_control(
+			'highlighted_text_color',
+			[
+				'label' => __( 'Text Color', 'elementor-pro' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}}' => '--typing-selected-color: {{VALUE}}',
+				],
+				'condition' => [
+					'headline_style' => 'rotate',
+					'animation_type' => 'typing',
+				],
 			]
 		);
 
@@ -390,27 +500,31 @@ class Animated_Headline extends Widget_Base {
 		}
 
 		if ( ! empty( $settings['link']['url'] ) ) {
-			$this->add_render_attribute( 'url', 'href', $settings['link']['url'] );
+			$this->add_link_attributes( 'url', $settings['link'] );
 
-			if ( $settings['link']['is_external'] ) {
-				$this->add_render_attribute( 'url', 'target', '_blank' );
-			}
-
-			if ( ! empty( $settings['link']['nofollow'] ) ) {
-				$this->add_render_attribute( 'url', 'rel', 'nofollow' );
-			}
-
-			echo '<a ' . $this->get_render_attribute_string( 'url' );
+			echo '<a ' . $this->get_render_attribute_string( 'url' ) . '>';
 		}
 
 		?>
 		<<?php echo $tag; ?> <?php echo $this->get_render_attribute_string( 'headline' ); ?>>
-			<?php if ( ! empty( $settings['before_text'] ) ) : ?>
-				<span class="elementor-headline-plain-text elementor-headline-text-wrapper"><?php echo $settings['before_text']; ?></span>
-			<?php endif; ?>
-			<span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper"></span>
-			<?php if ( ! empty( $settings['after_text'] ) ) : ?>
-				<span class="elementor-headline-plain-text elementor-headline-text-wrapper"><?php echo $settings['after_text']; ?></span>
+		<?php if ( ! empty( $settings['before_text'] ) ) : ?>
+			<span class="elementor-headline-plain-text elementor-headline-text-wrapper"><?php echo $settings['before_text']; ?></span>
+		<?php endif; ?>
+		<span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper">
+		<?php if ( 'rotate' === $settings['headline_style'] && $settings['rotating_text'] ) :
+			$rotating_text = explode( "\n", $settings['rotating_text'] );
+			foreach ( $rotating_text as $key => $text ) :
+				$status_class = 1 > $key ? 'elementor-headline-text-active' : ''; ?>
+			<span class="elementor-headline-dynamic-text <?php echo $status_class; ?>">
+				<?php echo str_replace( ' ', '&nbsp;', $text ); ?>
+			</span>
+		<?php endforeach; ?>
+		<?php elseif ( 'highlight' === $settings['headline_style'] && ! empty( $settings['highlighted_text'] ) ) : ?>
+			<span class="elementor-headline-dynamic-text elementor-headline-text-active"><?php echo $settings['highlighted_text']; ?></span>
+		<?php endif ?>
+		</span>
+		<?php if ( ! empty( $settings['after_text'] ) ) : ?>
+			<span class="elementor-headline-plain-text elementor-headline-text-wrapper"><?php echo $settings['after_text']; ?></span>
 			<?php endif; ?>
 		</<?php echo $tag; ?>>
 		<?php
@@ -420,7 +534,15 @@ class Animated_Headline extends Widget_Base {
 		}
 	}
 
-	protected function _content_template() {
+	/**
+	 * Render Animated Headline widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 2.9.0
+	 * @access protected
+	 */
+	protected function content_template() {
 		?>
 		<#
 		var headlineClasses = 'elementor-headline',
@@ -437,7 +559,7 @@ class Animated_Headline extends Widget_Base {
 		}
 
 		if ( settings.link.url ) { #>
-			<a htef="#">
+			<a href="#">
 		<# } #>
 				<{{{ tag }}} class="{{{ headlineClasses }}}">
 					<# if ( settings.before_text ) { #>
@@ -445,7 +567,21 @@ class Animated_Headline extends Widget_Base {
 					<# } #>
 
 					<# if ( settings.rotating_text ) { #>
-						<span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper"></span>
+						<span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper">
+						<# if ( 'rotate' === settings.headline_style && settings.rotating_text ) {
+							var rotatingText = ( settings.rotating_text || '' ).split( '\n' );
+							for ( var i = 0; i < rotatingText.length; i++ ) {
+								var statusClass = 0 === i ? 'elementor-headline-text-active' : ''; #>
+								<span class="elementor-headline-dynamic-text {{ statusClass }}">
+									{{{ rotatingText[ i ].replace( ' ', '&nbsp;' ) }}}
+								</span>
+							<# }
+						}
+
+						else if ( 'highlight' === settings.headline_style && settings.highlighted_text ) { #>
+							<span class="elementor-headline-dynamic-text elementor-headline-text-active">{{ settings.highlighted_text }}</span>
+						<# } #>
+						</span>
 					<# } #>
 
 					<# if ( settings.after_text ) { #>
@@ -453,7 +589,7 @@ class Animated_Headline extends Widget_Base {
 					<# } #>
 				</{{{ tag }}}>
 		<# if ( settings.link.url ) { #>
-			<a htef="#">
+			</a>
 		<# } #>
 		<?php
 	}

@@ -76,6 +76,12 @@ class Updater {
 			return $_transient_data;
 		}
 
+		if ( ! empty( $version_info['elementor_requires'] ) ) {
+			if ( version_compare( ELEMENTOR_VERSION, $version_info['elementor_requires'], '<' ) ) {
+				return $_transient_data;
+			}
+		}
+
 		if ( version_compare( $this->plugin_version, $version_info['new_version'], '<' ) ) {
 			$plugin_info = (object) $version_info;
 			unset( $plugin_info->sections );
@@ -140,6 +146,10 @@ class Updater {
 
 		if ( empty( $api_request_transient ) ) {
 			$api_response = API::get_version();
+
+			if ( is_wp_error( $api_response ) ) {
+				return $_data;
+			}
 
 			$api_request_transient = new \stdClass();
 

@@ -4,15 +4,15 @@ namespace ElementorPro\Modules\Forms\Actions;
 use Elementor\Controls_Manager;
 use Elementor\Settings;
 use ElementorPro\Modules\Forms\Classes\Form_Record;
-use ElementorPro\Modules\Forms\Controls\Fields_Map;
+use ElementorPro\Modules\Forms\Classes\Integration_Base;
 use ElementorPro\Modules\Forms\Classes;
-use ElementorPro\Classes\Utils;
+use ElementorPro\Core\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-class Activecampaign extends Classes\Integration_Base {
+class Activecampaign extends Integration_Base {
 
 	const OPTION_NAME_API_KEY = 'pro_activecampaign_api_key';
 	const OPTION_NAME_API_URL = 'pro_activecampaign_api_url';
@@ -57,7 +57,7 @@ class Activecampaign extends Classes\Integration_Base {
 		$widget->add_control(
 			'activecampaign_api_credentials_source',
 			[
-				'label' => __( 'API Credentials', 'elementor-pro' ),
+				'label' => __( 'API Key', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'label_block' => false,
 				'options' => [
@@ -71,7 +71,7 @@ class Activecampaign extends Classes\Integration_Base {
 		$widget->add_control(
 			'activecampaign_api_key',
 			[
-				'label' => __( 'API Key', 'elementor-pro' ),
+				'label' => __( 'Custom API Key', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'description' => __( 'Use this field to set a custom API Key for the current form', 'elementor-pro' ),
 				'condition' => [
@@ -127,27 +127,7 @@ class Activecampaign extends Classes\Integration_Base {
 			]
 		);
 
-		$widget->add_control(
-			'activecampaign_fields_map',
-			[
-				'label' => __( 'Field Mapping', 'elementor-pro' ),
-				'type' => Fields_Map::CONTROL_TYPE,
-				'separator' => 'before',
-				'fields' => [
-					[
-						'name' => 'remote_id',
-						'type' => Controls_Manager::HIDDEN,
-					],
-					[
-						'name' => 'local_id',
-						'type' => Controls_Manager::SELECT,
-					],
-				],
-				'condition' => [
-					'activecampaign_list!' => '',
-				],
-			]
-		);
+		$this->register_fields_map_control( $widget );
 
 		$widget->add_control(
 			'activecampaign_tags',
@@ -260,13 +240,19 @@ class Activecampaign extends Classes\Integration_Base {
 		return $subscriber;
 	}
 
-	public function handle_panel_request() {
-		if ( ! empty( $_POST['api_cred'] ) && 'default' === $_POST['api_cred'] ) {
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 * @throws \Exception
+	 */
+	public function handle_panel_request( array $data ) {
+		if ( ! empty( $data['api_cred'] ) && 'default' === $data['api_cred'] ) {
 			$api_key = $this->get_global_api_key();
 			$api_url = $this->get_global_api_url();
-		} elseif ( ! empty( $_POST['api_key'] ) && ! empty( $_POST['api_url'] ) ) {
-			$api_key = $_POST['api_key'];
-			$api_url = $_POST['api_url'];
+		} elseif ( ! empty( $data['api_key'] ) && ! empty( $data['api_url'] ) ) {
+			$api_key = $data['api_key'];
+			$api_url = $data['api_url'];
 		}
 
 		if ( empty( $api_key ) ) {
@@ -278,9 +264,8 @@ class Activecampaign extends Classes\Integration_Base {
 		}
 
 		$handler = new Classes\Activecampaign_Handler( $api_key, $api_url );
-		if ( 'activecampaign_list' === $_POST['activecampaign_action'] ) {
-			return $handler->get_lists();
-		}
+
+		return $handler->get_lists();
 	}
 
 	public function ajax_validate_api_token() {
@@ -330,5 +315,13 @@ class Activecampaign extends Classes\Integration_Base {
 			add_action( 'elementor/admin/after_create_settings/' . Settings::PAGE_ID, [ $this, 'register_admin_fields' ], 15 );
 		}
 		add_action( 'wp_ajax_' . self::OPTION_NAME_API_KEY . '_validate', [ $this, 'ajax_validate_api_token' ] );
+	}
+
+	protected function get_fields_map_control_options() {
+		return [
+			'condition' => [
+				'activecampaign_list!' => '',
+			],
+		];
 	}
 }

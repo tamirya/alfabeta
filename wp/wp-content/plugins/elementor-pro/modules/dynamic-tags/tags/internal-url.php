@@ -2,7 +2,7 @@
 namespace ElementorPro\Modules\DynamicTags\Tags;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\DynamicTags\Data_Tag;
+use ElementorPro\Modules\DynamicTags\Tags\Base\Data_Tag;
 use ElementorPro\Modules\DynamicTags\Module;
 use ElementorPro\Modules\QueryControl\Module as QueryModule;
 
@@ -55,7 +55,7 @@ class Internal_URL extends Data_Tag {
 		return '';
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->add_control( 'type', [
 			'label' => __( 'Type', 'elementor-pro' ),
 			'type' => Controls_Manager::SELECT,
@@ -70,12 +70,15 @@ class Internal_URL extends Data_Tag {
 		$this->add_control( 'post_id', [
 			'label' => __( 'Search & Select', 'elementor-pro' ),
 			'type' => QueryModule::QUERY_CONTROL_ID,
-			'post_type' => '',
 			'options' => [],
 			'label_block' => true,
-			'filter_type' => 'post',
-			'object_type' => 'any',
-			'include_type' => true,
+			'autocomplete' => [
+				'object' => QueryModule::QUERY_OBJECT_POST,
+				'display' => 'detailed',
+				'query' => [
+					'post_type' => 'any',
+				],
+			],
 			'condition' => [
 				'type' => 'post',
 			],
@@ -84,11 +87,12 @@ class Internal_URL extends Data_Tag {
 		$this->add_control( 'taxonomy_id', [
 			'label' => __( 'Search & Select', 'elementor-pro' ),
 			'type' => QueryModule::QUERY_CONTROL_ID,
-			'post_type' => '',
 			'options' => [],
 			'label_block' => true,
-			'filter_type' => 'taxonomy',
-			'include_type' => true,
+			'autocomplete' => [
+				'object' => QueryModule::QUERY_OBJECT_TAX,
+				'display' => 'detailed',
+			],
 			'condition' => [
 				'type' => 'taxonomy',
 			],
@@ -97,11 +101,12 @@ class Internal_URL extends Data_Tag {
 		$this->add_control( 'attachment_id', [
 			'label' => __( 'Search & Select', 'elementor-pro' ),
 			'type' => QueryModule::QUERY_CONTROL_ID,
-			'post_type' => '',
 			'options' => [],
 			'label_block' => true,
-			'filter_type' => 'post',
-			'object_type' => 'attachment',
+			'autocomplete' => [
+				'object' => QueryModule::QUERY_OBJECT_ATTACHMENT,
+				'display' => 'detailed',
+			],
 			'condition' => [
 				'type' => 'attachment',
 			],
@@ -110,11 +115,12 @@ class Internal_URL extends Data_Tag {
 		$this->add_control( 'author_id', [
 			'label' => __( 'Search & Select', 'elementor-pro' ),
 			'type' => QueryModule::QUERY_CONTROL_ID,
-			'post_type' => '',
 			'options' => [],
 			'label_block' => true,
-			'filter_type' => 'author',
-			'include_type' => true,
+			'autocomplete' => [
+				'object' => QueryModule::QUERY_OBJECT_AUTHOR,
+				'display' => 'detailed',
+			],
 			'condition' => [
 				'type' => 'author',
 			],

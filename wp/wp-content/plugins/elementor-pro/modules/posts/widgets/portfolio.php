@@ -1,13 +1,13 @@
 <?php
 namespace ElementorPro\Modules\Posts\Widgets;
 
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
 use ElementorPro\Base\Base_Widget;
-use ElementorPro\Modules\QueryControl\Controls\Group_Control_Posts;
-use ElementorPro\Modules\QueryControl\Module;
+use ElementorPro\Modules\QueryControl\Module as Module_Query;
+use ElementorPro\Modules\QueryControl\Controls\Group_Control_Related;
 use Elementor\Controls_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -54,17 +54,11 @@ class Portfolio extends Base_Widget {
 		return $element;
 	}
 
-	public function on_export( $element ) {
-		$element = Group_Control_Posts::on_export_remove_setting_from_element( $element, 'posts' );
-
-		return $element;
-	}
-
 	public function get_query() {
 		return $this->_query;
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->register_query_section_controls();
 	}
 
@@ -206,69 +200,13 @@ class Portfolio extends Base_Widget {
 		);
 
 		$this->add_group_control(
-			Group_Control_Posts::get_type(),
+			Group_Control_Related::get_type(),
 			[
 				'name' => 'posts',
-			]
-		);
-
-		$this->add_control(
-			'advanced',
-			[
-				'label' => __( 'Advanced', 'elementor-pro' ),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-
-		$this->add_control(
-			'orderby',
-			[
-				'label' => __( 'Order By', 'elementor-pro' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'post_date',
-				'options' => [
-					'post_date' => __( 'Date', 'elementor-pro' ),
-					'post_title' => __( 'Title', 'elementor-pro' ),
-					'menu_order' => __( 'Menu Order', 'elementor-pro' ),
-					'rand' => __( 'Random', 'elementor-pro' ),
+				'presets' => [ 'full' ],
+				'exclude' => [
+					'posts_per_page', //use the one from Layout section
 				],
-			]
-		);
-
-		$this->add_control(
-			'order',
-			[
-				'label' => __( 'Order', 'elementor-pro' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'desc',
-				'options' => [
-					'asc' => __( 'ASC', 'elementor-pro' ),
-					'desc' => __( 'DESC', 'elementor-pro' ),
-				],
-			]
-		);
-
-		$this->add_control(
-			'offset',
-			[
-				'label' => __( 'Offset', 'elementor-pro' ),
-				'type' => Controls_Manager::NUMBER,
-				'default' => 0,
-				'condition' => [
-					'posts_post_type!' => 'by_id',
-				],
-			]
-		);
-
-		Module::add_exclude_controls( $this );
-
-		$this->add_control(
-			'posts_query_id',
-			[
-				'label' => __( 'Query ID', 'elementor-pro' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => '',
-				'description' => __( 'Give your Query a custom unique id to allow server side filtering', 'elementor-pro' ),
 			]
 		);
 
@@ -328,11 +266,7 @@ class Portfolio extends Base_Widget {
 				'label' => __( 'Item Gap', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-grid' => 'grid-row-gap: {{SIZE}}{{UNIT}}; grid-column-gap: {{SIZE}}{{UNIT}}',
-					'.elementor-msie {{WRAPPER}} .elementor-portfolio' => 'margin: 0 -{{SIZE}}px',
-					'(desktop).elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'width: calc( 100% / {{columns.SIZE}} ); border: {{SIZE}}px solid transparent',
-					'(tablet).elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'width: calc( 100% / {{columns_tablet.SIZE}} ); border: {{SIZE}}px solid transparent',
-					'(mobile).elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'width: calc( 100% / {{columns_mobile.SIZE}} ); border: {{SIZE}}px solid transparent',
+					'{{WRAPPER}}' => '--grid-row-gap: {{SIZE}}{{UNIT}}; --grid-column-gap: {{SIZE}}{{UNIT}};',
 				],
 				'frontend_available' => true,
 				'classes' => 'elementor-hidden',
@@ -351,9 +285,7 @@ class Portfolio extends Base_Widget {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-posts-container' => 'grid-column-gap: {{SIZE}}{{UNIT}}',
-					'.elementor-msie {{WRAPPER}} .elementor-portfolio' => 'margin: 0 -{{SIZE}}px',
-					'.elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'border-style: solid; border-color: transparent; border-right-width: calc({{SIZE}}px / 2); border-left-width: calc({{SIZE}}px / 2)',
+					'{{WRAPPER}}' => ' --grid-column-gap: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
@@ -371,8 +303,7 @@ class Portfolio extends Base_Widget {
 				],
 				'frontend_available' => true,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-posts-container' => 'grid-row-gap: {{SIZE}}{{UNIT}}',
-					'.elementor-msie {{WRAPPER}} .elementor-portfolio-item' => 'border-bottom-width: {{SIZE}}px',
+					'{{WRAPPER}}' => '--grid-row-gap: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
@@ -404,9 +335,8 @@ class Portfolio extends Base_Widget {
 			[
 				'label' => __( 'Background Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_4,
+				'global' => [
+					'default' => Global_Colors::COLOR_ACCENT,
 				],
 				'selectors' => [
 					'{{WRAPPER}} a .elementor-portfolio-item__overlay' => 'background-color: {{VALUE}};',
@@ -433,7 +363,9 @@ class Portfolio extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'typography_title',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .elementor-portfolio-item__title',
 				'condition' => [
 					'show_title' => 'yes',
@@ -459,9 +391,8 @@ class Portfolio extends Base_Widget {
 			[
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-portfolio__filter' => 'color: {{VALUE}}',
@@ -474,9 +405,8 @@ class Portfolio extends Base_Widget {
 			[
 				'label' => __( 'Active Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-portfolio__filter.elementor-active' => 'color: {{VALUE}};',
@@ -488,7 +418,9 @@ class Portfolio extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'typography_filter',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .elementor-portfolio__filter',
 			]
 		);
@@ -572,18 +504,14 @@ class Portfolio extends Base_Widget {
 	}
 
 	public function query_posts() {
-		$query_args = Module::get_query_args( 'posts', $this->get_settings() );
 
-		$query_args['posts_per_page'] = $this->get_settings( 'posts_per_page' );
+		$query_args = [
+			'posts_per_page' => $this->get_settings( 'posts_per_page' ),
+		];
 
-		$query_id = $this->get_settings( 'posts_query_id' );
-		if ( ! empty( $query_id ) ) {
-			add_action( 'pre_get_posts', [ $this, 'pre_get_posts_filter' ] );
-			$this->_query = new \WP_Query( $query_args );
-			remove_action( 'pre_get_posts', [ $this, 'pre_get_posts_filter' ] );
-		} else {
-			$this->_query = new \WP_Query( $query_args );
-		}
+		/** @var Module_Query $elementor_query */
+		$elementor_query = Module_Query::instance();
+		$this->_query = $elementor_query->get_query( $this, 'posts', $query_args, [] );
 	}
 
 	public function render() {
@@ -756,21 +684,4 @@ class Portfolio extends Base_Widget {
 
 	public function render_plain_content() {}
 
-	public function pre_get_posts_filter( $wp_query ) {
-		$query_id = $this->get_settings( 'posts_query_id' );
-
-		/**
-		 * Elementor Pro portfolio widget Query args.
-		 *
-		 * It allows developers to alter individual posts widget queries.
-		 *
-		 * The dynamic portion of the hook name, `$query_id`, refers to the Query ID.
-		 *
-		 * @since 2.1.0
-		 *
-		 * @param \WP_Query $wp_query
-		 * @param Posts     $this
-		 */
-		do_action( "elementor_pro/portfolio/query/{$query_id}", $wp_query, $this );
-	}
 }

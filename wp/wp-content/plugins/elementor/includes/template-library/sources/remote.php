@@ -65,8 +65,7 @@ class Source_Remote extends Source_Base {
 	 * @since 1.0.0
 	 * @access public
 	 *
-	 * @param array $args Optional. Filter templates list based on a set of
-	 *                    arguments. Default is an empty array.
+	 * @param array $args Optional. Nou used in remote source.
 	 *
 	 * @return array Remote templates.
 	 */
@@ -79,10 +78,6 @@ class Source_Remote extends Source_Base {
 			foreach ( $library_data['templates'] as $template_data ) {
 				$templates[] = $this->prepare_template( $template_data );
 			}
-		}
-
-		if ( ! empty( $args ) ) {
-			$templates = wp_list_filter( $templates, $args );
 		}
 
 		return $templates;
@@ -185,7 +180,7 @@ class Source_Remote extends Source_Base {
 	 * @param array  $args    Custom template arguments.
 	 * @param string $context Optional. The context. Default is `display`.
 	 *
-	 * @return array Remote Template data.
+	 * @return array|\WP_Error Remote Template data.
 	 */
 	public function get_data( array $args, $context = 'display' ) {
 		$data = Api::get_template_content( $args['template_id'] );
@@ -194,10 +189,13 @@ class Source_Remote extends Source_Base {
 			return $data;
 		}
 
+		// BC.
+		$data = (array) $data;
+
 		$data['content'] = $this->replace_elements_ids( $data['content'] );
 		$data['content'] = $this->process_export_import_content( $data['content'], 'on_import' );
 
-		$post_id = $_POST['editor_post_id'];
+		$post_id = $args['editor_post_id'];
 		$document = Plugin::$instance->documents->get( $post_id );
 		if ( $document ) {
 			$data['content'] = $document->get_elements_raw_data( $data['content'], true );
@@ -206,6 +204,10 @@ class Source_Remote extends Source_Base {
 		return $data;
 	}
 
+	/**
+	 * @since 2.2.0
+	 * @access private
+	 */
 	private function prepare_template( array $template_data ) {
 		$favorite_templates = $this->get_user_meta( 'favorites' );
 

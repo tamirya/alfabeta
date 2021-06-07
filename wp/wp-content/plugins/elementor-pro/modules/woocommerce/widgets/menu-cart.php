@@ -2,19 +2,16 @@
 namespace ElementorPro\Modules\Woocommerce\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
-use Elementor\Utils;
 use ElementorPro\Modules\Woocommerce\Module;
-use ElementorPro\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Menu_Cart extends Widget_Base {
+class Menu_Cart extends Base_Widget {
 
 	public function get_name() {
 		return 'woocommerce-menu-cart';
@@ -32,7 +29,7 @@ class Menu_Cart extends Widget_Base {
 		return [ 'theme-elements', 'woocommerce-elements' ];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_menu_icon_content',
@@ -78,6 +75,21 @@ class Menu_Cart extends Widget_Base {
 		);
 
 		$this->add_control(
+			'hide_empty_indicator',
+			[
+				'label' => __( 'Hide Empty', 'elementor-pro' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'elementor-pro' ),
+				'label_off' => __( 'No', 'elementor-pro' ),
+				'return_value' => 'hide',
+				'prefix_class' => 'elementor-menu-cart--empty-indicator-',
+				'condition' => [
+					'items_indicator!' => 'none',
+				],
+			]
+		);
+
+		$this->add_control(
 			'show_subtotal',
 			[
 				'label' => __( 'Subtotal', 'elementor-pro' ),
@@ -95,19 +107,18 @@ class Menu_Cart extends Widget_Base {
 			[
 				'label' => __( 'Alignment', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
-				'label_block' => false,
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'elementor-pro' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'elementor-pro' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'elementor-pro' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'selectors' => [
@@ -267,7 +278,9 @@ class Menu_Cart extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'toggle_button_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .elementor-menu-cart__toggle .elementor-button',
 				'separator' => 'before',
 			]
@@ -335,7 +348,7 @@ class Menu_Cart extends Widget_Base {
 			'items_indicator_style',
 			[
 				'type' => Controls_Manager::HEADING,
-				'label' => _x( 'Items Indicator', 'Menu Cart Widget', 'elementor-pro' ),
+				'label' => __( 'Items Indicator', 'elementor-pro' ),
 				'separator' => 'before',
 				'condition' => [
 					'items_indicator!' => 'none',
@@ -494,7 +507,9 @@ class Menu_Cart extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'product_title_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .elementor-menu-cart__product-name, {{WRAPPER}} .elementor-menu-cart__product-name a',
 			]
 		);
@@ -524,7 +539,9 @@ class Menu_Cart extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'product_price_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .elementor-menu-cart__product-price',
 			]
 		);
@@ -617,7 +634,7 @@ class Menu_Cart extends Widget_Base {
 			'buttons_layout',
 			[
 				'label' => __( 'Layout', 'elementor-pro' ),
-				'type' => Controls_Manager::SELECT2,
+				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'inline' => __( 'Inline', 'elementor-pro' ),
 					'stacked' => __( 'Stacked', 'elementor-pro' ),
@@ -640,6 +657,35 @@ class Menu_Cart extends Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-menu-cart__footer-buttons' => 'grid-column-gap: {{SIZE}}{{UNIT}}; grid-row-gap: {{SIZE}}{{UNIT}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'product_buttons_typography',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .elementor-menu-cart__footer-buttons .elementor-button',
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'button_border_radius',
+			[
+				'label' => __( 'Border Radius', 'elementor-pro' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-menu-cart__footer-buttons .elementor-button' => 'border-radius: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
@@ -675,32 +721,11 @@ class Menu_Cart extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'view_cart_button_border_color',
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
 			[
-				'label' => __( 'Border Color', 'elementor-pro' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .elementor-button--view-cart' => 'border-color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'view_cart_button_border_width',
-			[
-				'label' => __( 'Border Width', 'elementor-pro' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 20,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .elementor-button--view-cart' => 'border-width: {{SIZE}}{{UNIT}};',
-				],
-				'separator' => 'after',
+				'name' => 'view_cart_border',
+				'selector' => '{{WRAPPER}} .elementor-button--view-cart',
 			]
 		);
 
@@ -735,65 +760,30 @@ class Menu_Cart extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'checkout_button_border_color',
-			[
-				'label' => __( 'Border Color', 'elementor-pro' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .elementor-button--checkout' => 'border-color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'checkout_button_border_width',
-			[
-				'label' => __( 'Border Width', 'elementor-pro' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 20,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .elementor-button--checkout' => 'border-width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
 		$this->add_group_control(
-			Group_Control_Typography::get_type(),
+			Group_Control_Border::get_type(),
 			[
-				'name' => 'product_buttons_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .elementor-menu-cart__footer-buttons .elementor-button',
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_control(
-			'button_border_radius',
-			[
-				'label' => __( 'Border Radius', 'elementor-pro' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .elementor-menu-cart__footer-buttons .elementor-button' => 'border-radius: {{SIZE}}{{UNIT}}',
-				],
+				'name' => 'checkout_border',
+				'selector' => '{{WRAPPER}} .elementor-button--checkout',
 			]
 		);
 
 		$this->end_controls_section();
 	}
 
+	/**
+	 * Check if user did not explicitly disabled the use of our mini-cart template and set the option accordingly.
+	 * The option value is later used by Module::woocommerce_locate_template().
+	 */
+	private function maybe_use_mini_cart_template() {
+		$option_value = get_option( 'elementor_' . Module::OPTION_NAME_USE_MINI_CART, '' );
+		if ( empty( $option_value ) || 'initial' === $option_value ) {
+			update_option( 'elementor_' . Module::OPTION_NAME_USE_MINI_CART, 'yes' );
+		}
+	}
+
 	protected function render() {
+		$this->maybe_use_mini_cart_template();
 		Module::render_menu_cart();
 	}
 

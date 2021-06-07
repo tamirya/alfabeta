@@ -4,10 +4,9 @@ namespace ElementorPro\Modules\Forms\Actions;
 use Elementor\Controls_Manager;
 use Elementor\Settings;
 use ElementorPro\Modules\Forms\Classes\Form_Record;
-use ElementorPro\Modules\Forms\Controls\Fields_Map;
 use ElementorPro\Modules\Forms\Classes\Integration_Base;
 use ElementorPro\Modules\Forms\Classes\Drip_Handler;
-use ElementorPro\Classes\Utils;
+use ElementorPro\Core\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -53,7 +52,7 @@ class Drip extends Integration_Base {
 		$widget->add_control(
 			'drip_api_token_source',
 			[
-				'label' => __( 'API Token', 'elementor-pro' ),
+				'label' => __( 'API Key', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'label_block' => false,
 				'options' => [
@@ -67,12 +66,12 @@ class Drip extends Integration_Base {
 		$widget->add_control(
 			'drip_custom_api_token',
 			[
-				'label' => __( 'Custom API Token', 'elementor-pro' ),
+				'label' => __( 'Custom API Key', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'condition' => [
 					'drip_api_token_source' => 'custom',
 				],
-				'description' => __( 'Use this field to set a custom API token for the current form', 'elementor-pro' ),
+				'description' => __( 'Use this field to set a custom API key for the current form', 'elementor-pro' ),
 			]
 		);
 
@@ -101,27 +100,7 @@ class Drip extends Integration_Base {
 			]
 		);
 
-		$widget->add_control(
-			'drip_fields_map',
-			[
-				'label' => __( 'Email Field Mapping', 'elementor-pro' ),
-				'type' => Fields_Map::CONTROL_TYPE,
-				'separator' => 'before',
-				'fields' => [
-					[
-						'name' => 'remote_id',
-						'type' => Controls_Manager::HIDDEN,
-					],
-					[
-						'name' => 'local_id',
-						'type' => Controls_Manager::SELECT,
-					],
-				],
-				'condition' => [
-					'drip_account!' => '',
-				],
-			]
-		);
+		$this->register_fields_map_control( $widget );
 
 		$widget->add_control(
 			'drip_custom_field_heading',
@@ -220,7 +199,9 @@ class Drip extends Integration_Base {
 		];
 
 		if ( isset( $form_settings['tags'] ) && ! empty( $form_settings['tags'] ) ) {
-			$subscriber['tags'] = explode( ',', $form_settings['tags'] );
+			$tags = $record->replace_setting_shortcodes( $form_settings['tags'] );
+
+			$subscriber['tags'] = explode( ',', $tags );
 		}
 
 		$custom_fields = [];
@@ -231,46 +212,6 @@ class Drip extends Integration_Base {
 		$subscriber['custom_fields'] = $custom_fields;
 
 		return $subscriber;
-	}
-
-	/**
-	 * Gets submittion meta data
-	 *
-	 * @param $meta_data
-	 *
-	 * @return array
-	 */
-	private function get_meta_data( $meta_data ) {
-		$custom_fields = [];
-		foreach ( $meta_data as $meta_type ) {
-			switch ( $meta_type ) {
-				case 'date':
-					$custom_fields[ $meta_type ] = date_i18n( get_option( 'date_format' ) );
-					break;
-
-				case 'time':
-					$custom_fields[ $meta_type ] = date_i18n( get_option( 'time_format' ) );
-					break;
-
-				case 'page_url':
-					$custom_fields[ $meta_type ] = $_POST['referrer'];
-					break;
-
-				case 'user_agent':
-					$custom_fields[ $meta_type ] = $_SERVER['HTTP_USER_AGENT'];
-					break;
-
-				case 'remote_ip':
-					$custom_fields[ $meta_type ] = Utils::get_client_ip();
-					break;
-
-				case 'credit':
-					$custom_fields[ $meta_type ] = sprintf( __( 'Powered by %s', 'elementor-pro' ), 'https://elementor.com/pro/' );
-					break;
-			}
-		}
-
-		return $custom_fields;
 	}
 
 	/**
@@ -320,11 +261,17 @@ class Drip extends Integration_Base {
 		return false;
 	}
 
-	public function handle_panel_request() {
-		if ( ! empty( $_POST['api_token'] ) && 'default' === $_POST['api_token'] ) {
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 * @throws \Exception
+	 */
+	public function handle_panel_request( array $data ) {
+		if ( ! empty( $data['api_token'] ) && 'default' === $data['api_token'] ) {
 			$api_key = $this->get_global_api_key();
-		} elseif ( ! empty( $_POST['custom_api_token'] ) ) {
-			$api_key = $_POST['custom_api_token'];
+		} elseif ( ! empty( $data['custom_api_token'] ) ) {
+			$api_key = $data['custom_api_token'];
 		}
 
 		if ( empty( $api_key ) ) {
@@ -332,9 +279,8 @@ class Drip extends Integration_Base {
 		}
 
 		$handler = new Drip_Handler( $api_key );
-		if ( 'accounts' === $_POST['drip_action'] ) {
-			return $handler->get_accounts();
-		}
+
+		return $handler->get_accounts();
 	}
 
 	public function register_admin_fields( Settings $settings ) {
@@ -344,7 +290,7 @@ class Drip extends Integration_Base {
 			},
 			'fields' => [
 				self::OPTION_NAME_API_KEY => [
-					'label' => __( 'API Token', 'elementor-pro' ),
+					'label' => __( 'API Key', 'elementor-pro' ),
 					'field_args' => [
 						'type' => 'text',
 						'desc' => sprintf( __( 'To integrate with our forms you need an <a href="%s" target="_blank">API Key</a>.', 'elementor-pro' ), 'http://kb.getdrip.com/general/where-can-i-find-my-api-token/' ),
@@ -353,7 +299,7 @@ class Drip extends Integration_Base {
 				'validate_api_data' => [
 					'field_args' => [
 						'type' => 'raw_html',
-						'html' => sprintf( '<button data-action="%s" data-nonce="%s" class="button elementor-button-spinner" id="elementor_pro_drip_api_token_button">%s</button>', self::OPTION_NAME_API_KEY . '_validate', wp_create_nonce( self::OPTION_NAME_API_KEY ), __( 'Validate API Token', 'elementor-pro' ) ),
+						'html' => sprintf( '<button data-action="%s" data-nonce="%s" class="button elementor-button-spinner" id="elementor_pro_drip_api_token_button">%s</button>', self::OPTION_NAME_API_KEY . '_validate', wp_create_nonce( self::OPTION_NAME_API_KEY ), __( 'Validate API Key', 'elementor-pro' ) ),
 					],
 				],
 			],
@@ -381,5 +327,13 @@ class Drip extends Integration_Base {
 			add_action( 'elementor/admin/after_create_settings/' . Settings::PAGE_ID, [ $this, 'register_admin_fields' ], 15 );
 		}
 		add_action( 'wp_ajax_' . self::OPTION_NAME_API_KEY . '_validate', [ $this, 'ajax_validate_api_token' ] );
+	}
+
+	protected function get_fields_map_control_options() {
+		return [
+			'condition' => [
+				'drip_account!' => '',
+			],
+		];
 	}
 }

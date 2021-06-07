@@ -13,6 +13,10 @@ class Author extends Condition_Base {
 		return 'archive';
 	}
 
+	public static function get_priority() {
+		return 70;
+	}
+
 	public function get_name() {
 		return 'author';
 	}
@@ -25,7 +29,7 @@ class Author extends Condition_Base {
 		return is_author( $args['id'] );
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->add_control(
 			'author_id',
 			[
@@ -34,8 +38,9 @@ class Author extends Condition_Base {
 				'select2options' => [
 					'dropdownCssClass' => 'elementor-conditions-select2-dropdown',
 				],
-				'filter_type' => 'author',
-				'object_type' => $this->get_name(),
+				'autocomplete' => [
+					'object' => QueryModule::QUERY_OBJECT_AUTHOR,
+				],
 			]
 		);
 	}

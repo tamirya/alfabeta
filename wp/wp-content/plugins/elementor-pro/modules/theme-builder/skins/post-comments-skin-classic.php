@@ -190,9 +190,8 @@ class Post_Comments_Skin_Classic extends Skin_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-comment .comment-meta' => 'color: {{VALUE}};',
 				],
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
 				],
 			]
 		);
@@ -202,7 +201,9 @@ class Post_Comments_Skin_Classic extends Skin_Base {
 			[
 				'name' => 'meta_typography',
 				'selector' => '{{WRAPPER}} .elementor-comment .comment-meta',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -224,9 +225,8 @@ class Post_Comments_Skin_Classic extends Skin_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-comment .comment-content' => 'color: {{VALUE}};',
 				],
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
 				],
 			]
 		);
@@ -236,7 +236,9 @@ class Post_Comments_Skin_Classic extends Skin_Base {
 			[
 				'name' => 'content__typography',
 				'selector' => '{{WRAPPER}} .elementor-comment .comment-content',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -276,7 +278,9 @@ class Post_Comments_Skin_Classic extends Skin_Base {
 			[
 				'name' => 'reply_button_typography',
 				'label' => __( 'Typography', 'elementor-pro' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 				'selector' => '{{WRAPPER}} .elementor-comment .comment-reply-link',
 			]
 		);
@@ -286,9 +290,8 @@ class Post_Comments_Skin_Classic extends Skin_Base {
 			[
 				'label' => __( 'Background Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_4,
+				'global' => [
+					'default' => Global_Colors::COLOR_ACCENT,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-comment .comment-reply-link' => 'background-color: {{VALUE}};',

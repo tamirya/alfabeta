@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Breadcrumb extends Widget_Base {
+class Breadcrumb extends Base_Widget {
 
 	public function get_name() {
 		return 'woocommerce-breadcrumb';
@@ -30,7 +30,7 @@ class Breadcrumb extends Widget_Base {
 		return [ 'woocommerce-elements', 'woocommerce-elements-single' ];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_product_rating_style',
@@ -87,15 +87,15 @@ class Breadcrumb extends Widget_Base {
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'elementor-pro' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'elementor-pro' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'elementor-pro' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'selectors' => [

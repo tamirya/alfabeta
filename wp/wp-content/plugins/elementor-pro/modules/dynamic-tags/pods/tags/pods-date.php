@@ -43,7 +43,7 @@ class Pods_Date extends Pods_Base {
 						break;
 				}
 
-				$value = date( $date_format, $timestamp );
+				$value = gmdate( $date_format, $timestamp );
 			}
 		}
 		echo wp_kses_post( $value );
@@ -53,8 +53,8 @@ class Pods_Date extends Pods_Base {
 		return 'key';
 	}
 
-	protected function _register_controls() {
-		parent::_register_controls();
+	protected function register_controls() {
+		parent::register_controls();
 
 		$this->add_control(
 			'format',
@@ -63,10 +63,10 @@ class Pods_Date extends Pods_Base {
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'default' => __( 'Default', 'elementor-pro' ),
-					'F j, Y' => date( 'F j, Y' ),
-					'Y-m-d' => date( 'Y-m-d' ),
-					'm/d/Y' => date( 'm/d/Y' ),
-					'd/m/Y' => date( 'd/m/Y' ),
+					'F j, Y' => gmdate( 'F j, Y' ),
+					'Y-m-d' => gmdate( 'Y-m-d' ),
+					'm/d/Y' => gmdate( 'm/d/Y' ),
+					'd/m/Y' => gmdate( 'd/m/Y' ),
 					'human' => __( 'Human Readable', 'elementor-pro' ),
 					'custom' => __( 'Custom', 'elementor-pro' ),
 				],
@@ -79,7 +79,7 @@ class Pods_Date extends Pods_Base {
 			[
 				'label' => __( 'Custom Format', 'elementor-pro' ),
 				'default' => '',
-				'description' => sprintf( '<a href="https://codex.wordpress.org/Formatting_Date_and_Time" target="_blank">%s</a>', __( 'Documentation on date and time formatting', 'elementor-pro' ) ),
+				'description' => sprintf( '<a href="https://go.elementor.com/wordpress-date-time/" target="_blank">%s</a>', __( 'Documentation on date and time formatting', 'elementor-pro' ) ),
 				'condition' => [
 					'format' => 'custom',
 				],

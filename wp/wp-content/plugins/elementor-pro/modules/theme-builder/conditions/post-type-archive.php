@@ -14,6 +14,10 @@ class Post_Type_Archive extends Condition_Base {
 		return 'archive';
 	}
 
+	public static function get_priority() {
+		return 70;
+	}
+
 	public function __construct( $data ) {
 		$this->post_type = get_post_type_object( $data['post_type'] );
 		$taxonomies = get_object_taxonomies( $data['post_type'], 'objects' );
@@ -44,6 +48,20 @@ class Post_Type_Archive extends Condition_Base {
 			] );
 
 			$this->register_sub_condition( $condition );
+
+			if ( ! $object->hierarchical ) {
+				continue;
+			}
+
+			$sub_conditions = [
+				'Child_Of_Term',
+				'Any_Child_Of_Term',
+			];
+
+			foreach ( $sub_conditions as $class_name ) {
+				$full_class_name = __NAMESPACE__ . '\\' . $class_name;
+				$this->register_sub_condition( new $full_class_name( [ 'object' => $object ] ) );
+			}
 		}
 	}
 

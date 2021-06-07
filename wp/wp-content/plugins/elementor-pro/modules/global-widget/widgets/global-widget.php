@@ -128,12 +128,14 @@ class Global_Widget extends Base_Widget {
 		$this->get_original_element_instance()->render_plain_content();
 	}
 
-	protected function _add_render_attributes() {
-		parent::_add_render_attributes();
+	protected function add_render_attributes() {
+		parent::add_render_attributes();
 
 		$skin_type = $this->get_settings( '_skin' );
 
 		$original_widget_type = $this->get_original_element_instance()->get_data( 'widgetType' );
+
+		$this->set_render_attribute( '_wrapper', 'data-widget_type', $original_widget_type . '.' . ( $skin_type ? $skin_type : 'default' ) );
 
 		$this->add_render_attribute( '_wrapper', [
 			'class' => [
@@ -141,8 +143,6 @@ class Global_Widget extends Base_Widget {
 				'elementor-widget-' . $original_widget_type,
 			],
 		] );
-
-		$this->set_render_attribute( '_wrapper', 'data-element_type', $original_widget_type . '.' . ( $skin_type ? $skin_type : 'default' ) );
 	}
 
 	private function get_template_content() {
@@ -176,12 +176,13 @@ class Global_Widget extends Base_Widget {
 		// TODO: a better way for detection.
 		$is_publishing = false;
 
-		// Elementor >= 2.0.0 beta 4 with the method `get_current_action_data`.
-		if ( ! empty( Plugin::elementor()->ajax ) && method_exists( Plugin::elementor()->ajax, 'get_current_action_data' ) ) {
-			$ajax_data = Plugin::elementor()->ajax->get_current_action_data();
-			if ( $ajax_data && 'save_builder' === $ajax_data['action'] && DB::STATUS_PUBLISH === $ajax_data['data']['status'] ) {
-				$is_publishing = true;
-			}
+		/** @var \Elementor\Core\Common\Modules\Ajax\Module $ajax */
+		$ajax = Plugin::elementor()->common->get_component( 'ajax' );
+
+		$ajax_data = $ajax->get_current_action_data();
+
+		if ( $ajax_data && 'save_builder' === $ajax_data['action'] && DB::STATUS_PUBLISH === $ajax_data['data']['status'] ) {
+			$is_publishing = true;
 		}
 
 		if ( $is_publishing ) {

@@ -1,0 +1,10 @@
+2021-06-05T08:48:59+00:00 CRITICAL Uncaught Error: Class 'PHPMailer\PHPMailer\SMTP' not found in C:\wamp64\www\alfabeta\wp-includes\PHPMailer\PHPMailer.php:1821
+Stack trace:
+#0 C:\wamp64\www\alfabeta\wp-includes\PHPMailer\PHPMailer.php(1942): PHPMailer\PHPMailer\PHPMailer->getSMTPInstance()
+#1 C:\wamp64\www\alfabeta\wp-includes\PHPMailer\PHPMailer.php(1858): PHPMailer\PHPMailer\PHPMailer->smtpConnect(Array)
+#2 C:\wamp64\www\alfabeta\wp-includes\PHPMailer\PHPMailer.php(1601): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Sat, 5 Ju...', '\xD7\x94\xD7\x90\xD7\xAA\xD7\xA8 http:/...')
+#3 C:\wamp64\www\alfabeta\wp-includes\PHPMailer\PHPMailer.php(1437): PHPMailer\PHPMailer\PHPMailer->postSend()
+#4 C:\wamp64\www\alfabeta\wp-content\plugins\wp-mail-smtp\src\MailCatcher.php(55): PHPMailer\PHPMailer\PHPMailer->send()
+#5 C:\wamp64\www\alfabeta\wp-includes\pluggable.php(498): WPMailSMTP\MailCatcher->send()
+#6 C:\wamp64\www\alfabeta\wp-admin\includes\class-wp-automatic-updater.php(875): wp_mail(Array, '[A.B Designs] \xD7...', '\xD7\x94\xD7\x90\xD7\xAA\xD7 בקובץ C:\wamp64\www\alfabeta\wp-includes\PHPMailer\PHPMailer.php בשורה 1821
+

@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Footer extends Theme_Section_Document {
+class Footer extends Header_Footer_Base {
 
 	public static function get_properties() {
 		$properties = parent::get_properties();
@@ -15,7 +15,7 @@ class Footer extends Theme_Section_Document {
 		return $properties;
 	}
 
-	public function get_name() {
+	protected static function get_site_editor_type() {
 		return 'footer';
 	}
 
@@ -23,15 +23,17 @@ class Footer extends Theme_Section_Document {
 		return __( 'Footer', 'elementor-pro' );
 	}
 
-	protected static function get_editor_panel_categories() {
-		// Move to top as active.
-		$categories = [
-			'theme-elements' => [
-				'title' => __( 'Site', 'elementor-pro' ),
-				'active' => true,
-			],
-		];
+	protected static function get_site_editor_icon() {
+		return 'eicon-footer';
+	}
 
-		return $categories + parent::get_editor_panel_categories();
+	protected static function get_site_editor_tooltip_data() {
+		return [
+			'title' => __( 'What is a Footer Template?', 'elementor-pro' ),
+			'content' => __( 'The footer template allows you to easily design and edit custom WordPress footers without the limits of your theme’s footer design constraints', 'elementor-pro' ),
+			'tip' => __( 'You can create multiple footers, and assign each to different areas of your site.', 'elementor-pro' ),
+			'docs' => 'https://go.elementor.com/app-theme-builder-footer',
+			'video_url' => 'https://www.youtube.com/embed/xa8DoR4tQrY',
+		];
 	}
 }

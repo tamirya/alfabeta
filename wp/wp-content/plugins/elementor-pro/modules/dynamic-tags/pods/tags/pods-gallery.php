@@ -2,7 +2,7 @@
 namespace ElementorPro\Modules\DynamicTags\Pods\Tags;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\DynamicTags\Data_Tag;
+use ElementorPro\Modules\DynamicTags\Tags\Base\Data_Tag;
 use ElementorPro\Modules\DynamicTags\Pods\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -45,7 +45,15 @@ class Pods_Gallery extends Data_Tag {
 		 */
 		$pod = pods( $pod_name, get_the_ID() );
 
+		if ( false === $pod ) {
+			return [];
+		}
+
 		$galley_images = $pod->field( $meta_key );
+
+		if ( empty( $galley_images ) || ! is_array( $galley_images ) ) {
+			return $images;
+		}
 
 		foreach ( $galley_images as $image ) {
 			$images[] = [
@@ -56,7 +64,7 @@ class Pods_Gallery extends Data_Tag {
 		return $images;
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->add_control(
 			'key',
 			[

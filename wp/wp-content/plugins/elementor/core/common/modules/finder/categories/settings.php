@@ -19,6 +19,7 @@ class Settings extends Base_Category {
 	/**
 	 * Get title.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 *
 	 * @return string
@@ -30,6 +31,7 @@ class Settings extends Base_Category {
 	/**
 	 * Get category items.
 	 *
+	 * @since 2.3.0
 	 * @access public
 	 *
 	 * @param array $options
@@ -45,15 +47,15 @@ class Settings extends Base_Category {
 				'url' => $settings_url,
 				'keywords' => [ 'general', 'settings', 'elementor' ],
 			],
-			'style' => [
-				'title' => __( 'Style', 'elementor' ),
-				'url' => $settings_url . '#tab-style',
-				'keywords' => [ 'style', 'settings', 'elementor' ],
-			],
 			'advanced' => [
 				'title' => __( 'Advanced', 'elementor' ),
 				'url' => $settings_url . '#tab-advanced',
 				'keywords' => [ 'advanced', 'settings', 'elementor' ],
+			],
+			'experiments' => [
+				'title' => __( 'Experiments', 'elementor' ),
+				'url' => $settings_url . '#tab-experiments',
+				'keywords' => [ 'settings', 'elementor', 'experiments' ],
 			],
 		];
 	}

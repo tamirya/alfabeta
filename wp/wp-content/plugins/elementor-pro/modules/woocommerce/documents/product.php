@@ -2,14 +2,14 @@
 namespace ElementorPro\Modules\Woocommerce\Documents;
 
 use Elementor\Controls_Manager;
-use ElementorPro\Modules\ThemeBuilder\Documents\Single;
+use ElementorPro\Modules\ThemeBuilder\Documents\Single_Base;
 use ElementorPro\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Product extends Single {
+class Product extends Single_Base {
 
 	public static function get_properties() {
 		$properties = parent::get_properties();
@@ -20,7 +20,7 @@ class Product extends Single {
 		return $properties;
 	}
 
-	public function get_name() {
+	protected static function get_site_editor_type() {
 		return 'product';
 	}
 
@@ -28,54 +28,27 @@ class Product extends Single {
 		return __( 'Single Product', 'elementor-pro' );
 	}
 
-	public function get_remote_library_type() {
-		return 'single product';
+	protected static function get_site_editor_icon() {
+		return 'eicon-single-product';
 	}
 
-	protected static function get_editor_panel_categories() {
-		$categories = [
-			'woocommerce-elements-single' => [
-				'title' => __( 'Product', 'elementor-pro' ),
+	protected static function get_site_editor_tooltip_data() {
+		return [
+			'title' => __( 'What is a Single Product Template?', 'elementor-pro' ),
+			'content' => __( 'A single product template allows you to easily design the layout and style of WooCommerce single product pages, and apply that template to various conditions that you assign.', 'elementor-pro' ),
+			'tip' => __( 'You can create multiple single product templates, and assign each to different types of products, enabling a custom design for each group of similar products.', 'elementor-pro' ),
+			'docs' => 'https://go.elementor.com/app-theme-builder-product',
+			'video_url' => 'https://www.youtube.com/embed/PjhoB1RWkBM',
+		];
+	}
 
-			],
-			// Move to top as active.
-			'woocommerce-elements' => [
-				'title' => __( 'WooCommerce', 'elementor-pro' ),
-				'active' => true,
-			],
+	public static function get_editor_panel_config() {
+		$config = parent::get_editor_panel_config();
+		$config['widgets_settings']['woocommerce-product-content'] = [
+			'show_in_panel' => true,
 		];
 
-		$categories += parent::get_editor_panel_categories();
-
-		unset( $categories['theme-elements-single'] );
-
-		return $categories;
-	}
-
-	protected function _register_controls() {
-		parent::_register_controls();
-
-		$this->update_control(
-			'preview_type',
-			[
-				'type' => Controls_Manager::HIDDEN,
-				'default' => 'single/product',
-			]
-		);
-
-		$latest_posts = get_posts( [
-			'posts_per_page' => 1,
-			'post_type' => 'product',
-		] );
-
-		if ( ! empty( $latest_posts ) ) {
-			$this->update_control(
-				'preview_id',
-				[
-					'default' => $latest_posts[0]->ID,
-				]
-			);
-		}
+		return $config;
 	}
 
 	public function enqueue_scripts() {
@@ -111,12 +84,12 @@ class Product extends Single {
 		return Plugin::elementor()->widgets_manager->get_widget_types( 'woocommerce-product-data-tabs' );
 	}
 
-	public function get_container_classes() {
-		$classes = parent::get_container_classes();
+	public function get_container_attributes() {
+		$attributes = parent::get_container_attributes();
 
-		$classes .= ' product';
+		$attributes['class'] .= ' product';
 
-		return $classes;
+		return $attributes;
 	}
 
 	public function filter_body_classes( $body_classes ) {
@@ -129,25 +102,89 @@ class Product extends Single {
 		return $body_classes;
 	}
 
-	public function print_content() {
+	public function before_get_content() {
+		parent::before_get_content();
+
 		global $product;
 		if ( ! is_object( $product ) ) {
 			$product = wc_get_product( get_the_ID() );
 		}
 
+		do_action( 'woocommerce_before_single_product' );
+	}
+
+	public function after_get_content() {
+		parent::after_get_content();
+
+		do_action( 'woocommerce_after_single_product' );
+	}
+
+	public function print_content() {
 		if ( post_password_required() ) {
-			echo get_the_password_form(); // WPCS: XSS ok.
+			echo get_the_password_form();
 			return;
 		}
 
-		do_action( 'woocommerce_before_single_product' );
 		parent::print_content();
-		do_action( 'woocommerce_after_single_product' );
 	}
 
 	public function __construct( array $data = [] ) {
 		parent::__construct( $data );
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ], 11 );
+	}
+
+	protected static function get_editor_panel_categories() {
+		$categories = [
+			'woocommerce-elements-single' => [
+				'title' => __( 'Product', 'elementor-pro' ),
+
+			],
+			// Move to top as active.
+			'woocommerce-elements' => [
+				'title' => __( 'WooCommerce', 'elementor-pro' ),
+				'active' => true,
+			],
+		];
+
+		$categories += parent::get_editor_panel_categories();
+
+		unset( $categories['theme-elements-single'] );
+
+		return $categories;
+	}
+
+	protected function register_controls() {
+		parent::register_controls();
+
+		$this->update_control(
+			'preview_type',
+			[
+				'type' => Controls_Manager::HIDDEN,
+				'default' => 'single/product',
+			]
+		);
+
+		$latest_posts = get_posts( [
+			'posts_per_page' => 1,
+			'post_type' => 'product',
+		] );
+
+		if ( ! empty( $latest_posts ) ) {
+			$this->update_control(
+				'preview_id',
+				[
+					'default' => $latest_posts[0]->ID,
+				]
+			);
+		}
+	}
+
+	protected function get_remote_library_config() {
+		$config = parent::get_remote_library_config();
+
+		$config['category'] = 'single product';
+
+		return $config;
 	}
 }
